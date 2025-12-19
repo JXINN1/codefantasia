@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
+import logo from '@/assets/logo.avif';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,17 +61,17 @@ export default function Header() {
       ref={headerRef}
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled ? 'glass-dark py-4' : 'py-6 bg-transparent'
+        isScrolled ? 'glass-dark py-3' : 'py-4 bg-transparent'
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="group flex items-center gap-3">
-          <div className="relative">
-            <span className="font-display text-xl md:text-2xl font-bold tracking-wider text-foreground group-hover:text-primary transition-colors duration-300">
-              CODE<span className="text-gradient">FANTASIA</span>
-            </span>
-          </div>
+          <img 
+            src={logo} 
+            alt="Code Fantasia" 
+            className="h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+          />
         </Link>
 
         {/* Navigation */}
