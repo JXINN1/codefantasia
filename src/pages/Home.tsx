@@ -57,20 +57,18 @@ export default function Home() {
         ref={heroRef}
         className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-16"
       >
-        {/* Background Effects */}
+        {/* Background Effects - Light background for logo visibility */}
         <div className="hero-bg absolute inset-0">
-          {/* Gradient Background */}
-          <div className="absolute inset-0 bg-hero-gradient" />
+          {/* Light Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-100 via-slate-50 to-white" />
           
-          {/* Grid Pattern */}
-          <div className="absolute inset-0 bg-grid opacity-30" />
+          {/* Subtle Grid Pattern */}
+          <div className="absolute inset-0 bg-grid opacity-10" />
           
-          {/* Glow Orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-float animation-delay-200" />
-          
-          {/* Noise Overlay */}
-          <div className="absolute inset-0 noise-overlay" />
+          {/* Soft colored orbs */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-400/15 rounded-full blur-3xl animate-float animation-delay-200" />
+          <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-rose-400/10 rounded-full blur-3xl animate-float animation-delay-400" />
         </div>
 
         {/* Content */}
@@ -101,7 +99,7 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-xs font-mono text-muted-foreground tracking-wider">CODE FANTASIA SHOWREEL 2024</span>
+                <span className="text-xs font-mono text-muted-foreground tracking-wider">CODE FANTASIA SHOWREEL 2025</span>
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                   <span className="text-xs text-primary font-mono">LIVE</span>
