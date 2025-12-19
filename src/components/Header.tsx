@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
   { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
   { href: '/service', label: 'Services' },
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/contact', label: 'Contact' },
@@ -61,7 +62,7 @@ export default function Header() {
       ref={headerRef}
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled ? 'glass-dark py-3' : 'py-4 bg-transparent'
+        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'py-4 bg-transparent'
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -83,8 +84,8 @@ export default function Header() {
               className={cn(
                 'relative font-body text-sm font-medium tracking-wide uppercase transition-colors duration-300',
                 location.pathname === link.href
-                  ? 'text-primary'
-                  : 'text-muted-foreground hover:text-foreground'
+                  ? 'text-violet-600'
+                  : 'text-slate-600 hover:text-slate-900'
               )}
             >
               {link.label}
@@ -96,7 +97,7 @@ export default function Header() {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden p-2 text-foreground">
+        <button className="md:hidden p-2 text-slate-700">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
