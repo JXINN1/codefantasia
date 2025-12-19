@@ -3,6 +3,9 @@ import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Link } from 'react-router-dom';
 import aivfxScene from '@/assets/aivfxscene.png';
+import vfx2 from '@/assets/vfx2.jpeg';
+import vfx3 from '@/assets/vfx3.jpeg';
+import vfx4 from '@/assets/vfx4.png';
 import originalIp from '@/assets/originalip.jpg';
 import originalIp2 from '@/assets/originalip2.png';
 import saasImg from '@/assets/saas.jpg';
@@ -13,7 +16,7 @@ const services = [
     title: 'AI VFX',
     subtitle: 'AI-Optimized Film CG',
     description: 'AI 최적화된 영화 CG를 제공할 수 있는 효율적이고 높은 퀄리티의 AI 파이프라인을 구축해 BtoB 서비스를 제공',
-    images: [aivfxScene],
+    images: [aivfxScene, vfx2, vfx3, vfx4],
     features: ['Efficient AI Pipeline', 'High-Quality CG', 'B2B Services', 'Film Production'],
     gradient: 'from-rose-500/20 via-orange-500/10 to-transparent',
   },
@@ -85,13 +88,13 @@ export default function Service() {
                     </span>
                     
                     <div className="relative z-10">
-                      <span className="text-sm font-semibold uppercase tracking-wider text-primary mb-2 block">
+                      <span className="text-sm font-semibold uppercase tracking-wider text-violet-600 mb-2 block">
                         {service.subtitle}
                       </span>
-                      <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+                      <h2 className="font-display text-3xl md:text-4xl font-bold text-slate-800 mb-4">
                         {service.title}
                       </h2>
-                      <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                      <p className="text-slate-600 text-lg leading-relaxed mb-6">
                         {service.description}
                       </p>
                       
@@ -120,25 +123,25 @@ export default function Service() {
                     <div className="relative">
                       {service.images.length === 1 ? (
                         // Single image layout
-                        <div className="group relative rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
-                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="group relative rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                           <img
                             src={service.images[0]}
                             alt={service.title}
                             className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
                           />
                           {/* Corner accents */}
-                          <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-primary/50 z-20" />
-                          <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-primary/50 z-20" />
-                          <div className="absolute bottom-3 left-3 w-6 h-6 border-l-2 border-b-2 border-primary/50 z-20" />
-                          <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-primary/50 z-20" />
+                          <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-violet-500/50 z-20" />
+                          <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-violet-500/50 z-20" />
+                          <div className="absolute bottom-3 left-3 w-6 h-6 border-l-2 border-b-2 border-violet-500/50 z-20" />
+                          <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-violet-500/50 z-20" />
                         </div>
-                      ) : (
+                      ) : service.images.length === 2 ? (
                         // Double image staggered layout
                         <div className="relative h-[400px] md:h-[500px]">
                           {/* First image - positioned left and up */}
-                          <div className="group absolute left-0 top-0 w-[60%] z-10 rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <div className="group absolute left-0 top-0 w-[60%] z-10 rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <img
                               src={service.images[0]}
                               alt={`${service.title} - 1`}
@@ -147,16 +150,33 @@ export default function Service() {
                           </div>
                           
                           {/* Second image - positioned right and down */}
-                          <div className="group absolute right-0 bottom-0 w-[55%] z-20 rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <div className="group absolute right-0 bottom-0 w-[55%] z-20 rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <img
                               src={service.images[1]}
                               alt={`${service.title} - 2`}
                               className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Decorative border */}
-                            <div className="absolute inset-0 border-2 border-primary/30 rounded-2xl z-30" />
+                            <div className="absolute inset-0 border-2 border-violet-500/30 rounded-2xl z-30" />
                           </div>
+                        </div>
+                      ) : (
+                        // Four image grid layout (for AI VFX)
+                        <div className="grid grid-cols-2 gap-4">
+                          {service.images.map((img, imgIndex) => (
+                            <div key={imgIndex} className="group relative rounded-xl overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-shadow duration-500">
+                              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                              <img
+                                src={img}
+                                alt={`${service.title} - ${imgIndex + 1}`}
+                                className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
+                              />
+                              {/* Corner accent */}
+                              <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-violet-500/50 z-20" />
+                              <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-violet-500/50 z-20" />
+                            </div>
+                          ))}
                         </div>
                       )}
                     </div>

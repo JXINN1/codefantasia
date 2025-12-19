@@ -156,54 +156,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Feature Highlights */}
-      <section className="py-32 bg-card relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection animation="fade-up">
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-center mb-4">
-              The Future of <span className="text-gradient">Filmmaking</span>
-            </h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16">
-              Pushing the boundaries of what's possible with AI-generated visuals
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'AI Animation',
-                description: 'Revolutionary techniques blending traditional storytelling with cutting-edge AI generation.',
-                icon: '🎬',
-              },
-              {
-                title: 'Creative Tools',
-                description: 'Custom workflows and tools designed for the next generation of digital creators.',
-                icon: '⚡',
-              },
-              {
-                title: 'Visual Excellence',
-                description: 'Cinematic quality that pushes the boundaries of AI-generated content.',
-                icon: '✨',
-              },
-            ].map((feature, index) => (
-              <AnimatedSection key={feature.title} animation="fade-up" delay={index * 0.1}>
-                <div className="group p-8 rounded-xl bg-background border border-border/50 transition-all duration-500 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
-                  <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-3 text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent" />

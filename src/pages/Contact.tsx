@@ -53,13 +53,13 @@ export default function Contact() {
 
         <div className="container mx-auto px-6 relative z-10">
           <AnimatedSection animation="fade-up">
-            <span className="inline-block px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-wider text-primary border border-primary/30 rounded-full">
+            <span className="inline-block px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-wider text-violet-600 bg-violet-100 border border-violet-200 rounded-full">
               Get in Touch
             </span>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl">
-              Let's Create <span className="text-gradient">Together</span>
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl text-slate-900">
+              Let's Create <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">Together</span>
             </h1>
-            <p className="mt-6 text-xl text-muted-foreground max-w-2xl">
+            <p className="mt-6 text-xl text-slate-600 max-w-2xl">
               Have a project in mind? We'd love to hear about it. Reach out and let's discuss how we can bring your vision to life.
             </p>
           </AnimatedSection>
@@ -171,54 +171,54 @@ export default function Contact() {
             {/* Info */}
             <AnimatedSection animation="slide-right">
               <div className="lg:pl-8">
-                <h2 className="font-display text-2xl font-bold text-foreground mb-8">
+                <h2 className="font-display text-2xl font-bold text-slate-800 mb-8">
                   Contact Information
                 </h2>
 
                 <div className="space-y-8">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-card border border-border flex items-center justify-center text-primary">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-violet-100 border border-violet-200 flex items-center justify-center text-violet-600">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">Email</h3>
-                      <a href="mailto:hello@codefantasia.ai" className="text-muted-foreground hover:text-primary transition-colors">
+                      <h3 className="font-semibold text-slate-800">Email</h3>
+                      <a href="mailto:hello@codefantasia.ai" className="text-slate-600 hover:text-violet-600 transition-colors">
                         hello@codefantasia.ai
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-card border border-border flex items-center justify-center text-primary">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-cyan-100 border border-cyan-200 flex items-center justify-center text-cyan-600">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">Response Time</h3>
-                      <p className="text-muted-foreground">We typically respond within 24-48 hours</p>
+                      <h3 className="font-semibold text-slate-800">Response Time</h3>
+                      <p className="text-slate-600">We typically respond within 24-48 hours</p>
                     </div>
                   </div>
                 </div>
 
                 {/* FAQ */}
-                <div className="mt-12 p-6 rounded-xl bg-card border border-border/50">
-                  <h3 className="font-display font-semibold text-foreground mb-4">
+                <div className="mt-12 p-6 rounded-xl bg-white border border-slate-200 shadow-lg">
+                  <h3 className="font-display font-semibold text-slate-800 mb-4">
                     What happens next?
                   </h3>
-                  <ol className="space-y-3 text-sm text-muted-foreground">
+                  <ol className="space-y-3 text-sm text-slate-600">
                     <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-semibold">1</span>
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 text-violet-600 text-xs flex items-center justify-center font-semibold">1</span>
                       We'll review your project details
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-semibold">2</span>
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 text-violet-600 text-xs flex items-center justify-center font-semibold">2</span>
                       Schedule a discovery call to discuss your vision
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-semibold">3</span>
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 text-violet-600 text-xs flex items-center justify-center font-semibold">3</span>
                       Receive a customized proposal and timeline
                     </li>
                   </ol>
