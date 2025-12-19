@@ -5,20 +5,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
-import logo from '@/assets/logo.avif';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLImageElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Set initial states
-      gsap.set(logoRef.current, { opacity: 0, scale: 0.8 });
       gsap.set(videoRef.current, { opacity: 0, y: 60 });
       gsap.set(ctaRef.current, { opacity: 0, y: 20 });
 
@@ -28,8 +26,7 @@ export default function Home() {
         delay: 0.1 
       });
 
-      tl.to(logoRef.current, { opacity: 1, scale: 1, duration: 1.2 })
-        .to(videoRef.current, { opacity: 1, y: 0, duration: 1 }, '-=0.6')
+      tl.to(videoRef.current, { opacity: 1, y: 0, duration: 1 })
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4');
 
       // Parallax effect on scroll
@@ -73,13 +70,6 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-6 flex flex-col items-center">
-          {/* Logo */}
-          <img
-            ref={logoRef}
-            src={logo}
-            alt="Code Fantasia"
-            className="w-64 md:w-80 lg:w-96 mb-8 drop-shadow-2xl"
-          />
 
           {/* Showreel Video with Cinematic Frame */}
           <div
@@ -151,7 +141,7 @@ export default function Home() {
 
             <Link
               to="/contact"
-              className="px-8 py-4 border border-border text-foreground font-display font-semibold uppercase tracking-wider rounded-lg transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-lg hover:shadow-primary/10"
+              className="px-8 py-4 bg-slate-800 text-white font-display font-semibold uppercase tracking-wider rounded-lg transition-all duration-300 hover:bg-slate-700 hover:shadow-lg"
             >
               Get in Touch
             </Link>

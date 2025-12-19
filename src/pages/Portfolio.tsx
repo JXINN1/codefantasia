@@ -36,14 +36,14 @@ export const portfolioItems = [
 
 export default function Portfolio() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
       <Header />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-20" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-grid opacity-10" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-400/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-400/10 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-6 relative z-10">
           <AnimatedSection animation="fade-up">
