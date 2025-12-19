@@ -5,20 +5,21 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
+import logo from '@/assets/logo.avif';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const logoRef = useRef<HTMLImageElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Set initial states
-      gsap.set(titleRef.current, { opacity: 0, y: 50 });
-      gsap.set(subtitleRef.current, { opacity: 0, y: 30 });
+      gsap.set(logoRef.current, { opacity: 0, scale: 0.8 });
+      gsap.set(videoRef.current, { opacity: 0, y: 60 });
       gsap.set(ctaRef.current, { opacity: 0, y: 20 });
 
       // Hero entrance animation with slight delay to ensure DOM is ready
@@ -27,8 +28,8 @@ export default function Home() {
         delay: 0.1 
       });
 
-      tl.to(titleRef.current, { opacity: 1, y: 0, duration: 1 })
-        .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
+      tl.to(logoRef.current, { opacity: 1, scale: 1, duration: 1.2 })
+        .to(videoRef.current, { opacity: 1, y: 0, duration: 1 }, '-=0.6')
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4');
 
       // Parallax effect on scroll
@@ -54,7 +55,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-16"
       >
         {/* Background Effects */}
         <div className="hero-bg absolute inset-0">
@@ -67,30 +68,80 @@ export default function Home() {
           {/* Glow Orbs */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-float animation-delay-200" />
-          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float animation-delay-400" />
           
           {/* Noise Overlay */}
           <div className="absolute inset-0 noise-overlay" />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <h1
-            ref={titleRef}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tight"
-          >
-            <span className="block text-foreground">CODE</span>
-            <span className="block text-gradient text-glow-primary">FANTASIA</span>
-          </h1>
+        <div className="relative z-10 container mx-auto px-6 flex flex-col items-center">
+          {/* Logo */}
+          <img
+            ref={logoRef}
+            src={logo}
+            alt="Code Fantasia"
+            className="w-64 md:w-80 lg:w-96 mb-8 drop-shadow-2xl"
+          />
 
-          <p
-            ref={subtitleRef}
-            className="mt-8 max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed"
+          {/* Showreel Video with Cinematic Frame */}
+          <div
+            ref={videoRef}
+            className="relative w-full max-w-5xl mx-auto"
           >
-            We create tools, workflows, and aesthetics that will define a generation of{' '}
-            <span className="text-primary font-medium">AI-powered filmmaking</span>.
-          </p>
+            {/* Outer cinematic frame */}
+            <div className="absolute -inset-3 md:-inset-4 bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/30 rounded-2xl blur-sm" />
+            <div className="absolute -inset-2 md:-inset-3 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 rounded-xl" />
+            
+            {/* Main video container */}
+            <div className="relative bg-card/80 backdrop-blur-sm rounded-xl overflow-hidden border border-border/50 shadow-2xl shadow-primary/10">
+              {/* Top bar - cinema style */}
+              <div className="flex items-center justify-between px-4 py-2 bg-background/80 border-b border-border/50">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-destructive/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                </div>
+                <span className="text-xs font-mono text-muted-foreground tracking-wider">CODE FANTASIA SHOWREEL 2024</span>
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-xs text-primary font-mono">LIVE</span>
+                </div>
+              </div>
+              
+              {/* Video */}
+              <div className="relative aspect-video">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/videos/showreel.mp4" type="video/mp4" />
+                </video>
+                
+                {/* Scanline effect */}
+                <div className="absolute inset-0 pointer-events-none bg-scanlines opacity-10" />
+                
+                {/* Corner decorations */}
+                <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary/50" />
+                <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-primary/50" />
+                <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-primary/50" />
+                <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary/50" />
+              </div>
+              
+              {/* Bottom bar */}
+              <div className="flex items-center justify-between px-4 py-2 bg-background/80 border-t border-border/50">
+                <div className="flex items-center gap-4">
+                  <span className="text-xs font-mono text-muted-foreground">4K UHD</span>
+                  <span className="text-xs font-mono text-muted-foreground">60 FPS</span>
+                </div>
+                <span className="text-xs font-mono text-primary">AI POWERED FILMMAKING</span>
+              </div>
+            </div>
+          </div>
 
+          {/* CTA Buttons */}
           <div ref={ctaRef} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/portfolio"
@@ -109,7 +160,7 @@ export default function Home() {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+          <div className="mt-16">
             <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
               <div className="w-1 h-2 bg-primary rounded-full animate-bounce" />
             </div>

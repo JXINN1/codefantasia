@@ -2,31 +2,38 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Link } from 'react-router-dom';
+import aivfxScene from '@/assets/aivfxscene.png';
+import originalIp from '@/assets/originalip.jpg';
+import originalIp2 from '@/assets/originalip2.png';
+import saasImg from '@/assets/saas.jpg';
 
 const services = [
   {
-    title: 'AI Animation',
-    description: 'Transform concepts into stunning animated sequences using the latest AI generation technologies.',
-    features: ['Character Animation', 'Motion Design', 'Visual Effects', 'Style Transfer'],
-    icon: '🎬',
+    id: 'ai-vfx',
+    title: 'AI VFX',
+    subtitle: 'AI-Optimized Film CG',
+    description: 'AI 최적화된 영화 CG를 제공할 수 있는 효율적이고 높은 퀄리티의 AI 파이프라인을 구축해 BtoB 서비스를 제공',
+    images: [aivfxScene],
+    features: ['Efficient AI Pipeline', 'High-Quality CG', 'B2B Services', 'Film Production'],
+    gradient: 'from-rose-500/20 via-orange-500/10 to-transparent',
   },
   {
-    title: 'AI Short Films',
-    description: 'Complete short film production powered by AI, from storyboarding to final render.',
-    features: ['Concept Development', 'Script Visualization', 'AI Generation', 'Post-Production'],
-    icon: '🎥',
+    id: 'original-ip',
+    title: 'CODE FANTASIA Original Contents (IP)',
+    subtitle: 'Virtual Artist & AI Storytelling',
+    description: '버추얼 아티스트 제작 / AI를 활용한 스토리기반의 오리지널 영화 / 애니메이션 / 미디어 콘텐츠 제작',
+    images: [originalIp, originalIp2],
+    features: ['Virtual Artists', 'Original Films', 'Animation', 'Media Contents'],
+    gradient: 'from-violet-500/20 via-pink-500/10 to-transparent',
   },
   {
-    title: 'Music Videos',
-    description: 'Create visually captivating music videos that push creative boundaries.',
-    features: ['Visual Storytelling', 'Synchronized Animation', 'Artistic Direction', 'Color Grading'],
-    icon: '🎵',
-  },
-  {
-    title: 'Creative Tools',
-    description: 'Custom workflows and tools designed for AI-powered creative production.',
-    features: ['Workflow Automation', 'Custom Pipelines', 'Tool Development', 'Training Sessions'],
-    icon: '⚡',
+    id: 'ai-tech',
+    title: 'AI Technology Product Development',
+    subtitle: 'Software & SaaS Platform',
+    description: '프로그램 소프트웨어 개발 / B to B 서비스 / SaaS 플랫폼 개발',
+    images: [saasImg],
+    features: ['Software Development', 'B2B Services', 'SaaS Platform', 'Custom Solutions'],
+    gradient: 'from-cyan-500/20 via-blue-500/10 to-transparent',
   },
 ];
 
@@ -56,47 +63,113 @@ export default function Service() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-20 bg-card">
+      {/* Staggered Services Section */}
+      <section className="py-20 relative">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <AnimatedSection 
-                key={service.title} 
-                animation={index % 2 === 0 ? 'slide-left' : 'slide-right'} 
-                delay={index * 0.1}
-              >
-                <div className="group h-full p-8 md:p-10 rounded-2xl bg-background border border-border/50 transition-all duration-500 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5">
-                  <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-card flex items-center justify-center text-3xl border border-border group-hover:border-primary/50 transition-colors">
-                      {service.icon}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-display text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+          {services.map((service, index) => (
+            <AnimatedSection
+              key={service.id}
+              animation={index % 2 === 0 ? 'slide-left' : 'slide-right'}
+              delay={index * 0.15}
+              className="mb-32 last:mb-0"
+            >
+              <div className={`relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${
+                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+              }`}>
+                {/* Content Side */}
+                <div className={`lg:col-span-5 ${index % 2 === 1 ? 'lg:col-start-8' : ''}`}>
+                  <div className="relative">
+                    {/* Number indicator */}
+                    <span className="absolute -left-4 -top-8 font-display text-8xl font-black text-primary/10">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    
+                    <div className="relative z-10">
+                      <span className="text-sm font-semibold uppercase tracking-wider text-primary mb-2 block">
+                        {service.subtitle}
+                      </span>
+                      <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
                         {service.title}
-                      </h3>
-                      <p className="mt-3 text-muted-foreground leading-relaxed">
+                      </h2>
+                      <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                         {service.description}
                       </p>
-                      <ul className="mt-6 grid grid-cols-2 gap-3">
+                      
+                      {/* Features */}
+                      <div className="flex flex-wrap gap-2">
                         {service.features.map((feature) => (
-                          <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          <span
+                            key={feature}
+                            className="px-3 py-1.5 text-xs font-medium uppercase tracking-wider bg-primary/10 text-primary rounded-full border border-primary/20"
+                          >
                             {feature}
-                          </li>
+                          </span>
                         ))}
-                      </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </AnimatedSection>
-            ))}
-          </div>
+
+                {/* Image Side */}
+                <div className={`lg:col-span-7 ${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+                  <div className="relative">
+                    {/* Background glow */}
+                    <div className={`absolute -inset-8 bg-gradient-to-br ${service.gradient} rounded-3xl blur-2xl`} />
+                    
+                    {/* Image container with staggered layout */}
+                    <div className="relative">
+                      {service.images.length === 1 ? (
+                        // Single image layout
+                        <div className="group relative rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <img
+                            src={service.images[0]}
+                            alt={service.title}
+                            className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
+                          />
+                          {/* Corner accents */}
+                          <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-primary/50 z-20" />
+                          <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-primary/50 z-20" />
+                          <div className="absolute bottom-3 left-3 w-6 h-6 border-l-2 border-b-2 border-primary/50 z-20" />
+                          <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-primary/50 z-20" />
+                        </div>
+                      ) : (
+                        // Double image staggered layout
+                        <div className="relative h-[400px] md:h-[500px]">
+                          {/* First image - positioned left and up */}
+                          <div className="group absolute left-0 top-0 w-[60%] z-10 rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <img
+                              src={service.images[0]}
+                              alt={`${service.title} - 1`}
+                              className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          </div>
+                          
+                          {/* Second image - positioned right and down */}
+                          <div className="group absolute right-0 bottom-0 w-[55%] z-20 rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <img
+                              src={service.images[1]}
+                              alt={`${service.title} - 2`}
+                              className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            {/* Decorative border */}
+                            <div className="absolute inset-0 border-2 border-primary/30 rounded-2xl z-30" />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-32 relative overflow-hidden bg-card/50">
         <div className="container mx-auto px-6">
           <AnimatedSection animation="fade-up" className="text-center mb-16">
             <h2 className="font-display text-3xl md:text-5xl font-bold">
@@ -136,7 +209,7 @@ export default function Service() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-card">
+      <section className="py-20">
         <div className="container mx-auto px-6">
           <AnimatedSection animation="scale" className="text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
