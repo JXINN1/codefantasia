@@ -32,6 +32,14 @@ export const portfolioItems = [
     videoUrl: 'https://www.youtube.com/watch?v=igPb1ypyMDE&list=RDigPb1ypyMDE&start_radio=1',
     description: 'Official music video for Baek A-yeon\'s "My Universe". This project demonstrates the seamless integration of AI-generated visuals with traditional music video production, creating a unique visual language.',
   },
+  {
+    slug: 'red-soda-circle',
+    title: 'RED SODA CIRCLE',
+    subtitle: 'Red Soda_ENT. Season 1',
+    category: 'ORIGINAL CONTENTS (IP)',
+    videoUrl: 'https://www.youtube.com/watch?v=GeiryySprUc&t=44s',
+    description: 'An original IP content series showcasing innovative storytelling through AI-powered visual production.',
+  },
 ];
 
 export default function Portfolio() {
@@ -70,6 +78,7 @@ export default function Portfolio() {
                 slug={item.slug}
                 title={item.title}
                 subtitle={item.subtitle}
+                category={item.category}
                 videoUrl={item.videoUrl}
                 index={index}
               />

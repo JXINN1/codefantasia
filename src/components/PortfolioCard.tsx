@@ -8,6 +8,7 @@ interface PortfolioCardProps {
   slug: string;
   title: string;
   subtitle: string;
+  category?: string;
   videoUrl: string;
   thumbnailOverride?: string;
   index: number;
@@ -17,6 +18,7 @@ export default function PortfolioCard({
   slug, 
   title, 
   subtitle, 
+  category,
   videoUrl, 
   thumbnailOverride,
   index 
@@ -125,6 +127,11 @@ export default function PortfolioCard({
 
         {/* Content */}
         <div className="p-5">
+          {category && (
+            <span className="inline-block px-2 py-1 mb-2 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-violet-500/20 to-cyan-500/20 text-violet-600 rounded border border-violet-500/30">
+              {category}
+            </span>
+          )}
           <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-1">
             {title}
           </h3>

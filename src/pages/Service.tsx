@@ -52,14 +52,14 @@ export default function Service() {
 
         <div className="container mx-auto px-6 relative z-10">
           <AnimatedSection animation="fade-up">
-            <span className="inline-block px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-wider text-primary border border-primary/30 rounded-full">
+            <span className="inline-block px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-wider text-violet-600 border border-violet-500/30 rounded-full bg-violet-50">
               Our Services
             </span>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl text-slate-900">
               Crafting the Future of{' '}
-              <span className="text-gradient">Visual Storytelling</span>
+              <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">Visual Storytelling</span>
             </h1>
-            <p className="mt-6 text-xl text-muted-foreground max-w-2xl">
+            <p className="mt-6 text-xl text-slate-600 max-w-2xl">
               We specialize in AI-powered filmmaking, creating tools and content that define the next generation of visual media.
             </p>
           </AnimatedSection>
