@@ -11,7 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 const teamMembers = [
   { 
     role: 'CEO', 
-    name: '박관우 (KWANWOO PARK)',
+    name: 'KWANWOO PARK',
+    initial: 'P',
     careers: [
       '26년 경력의 글로벌 3D·VFX·대형 미디어 콘텐츠 전문가',
       'Showscan Entertainment (LA) 부사장 역임',
@@ -27,7 +28,8 @@ const teamMembers = [
   },
   { 
     role: 'COO', 
-    name: '서태규 (TAEGYU SEO)',
+    name: 'TAEGYU SEO',
+    initial: 'S',
     careers: [
       'AI 기반 콘텐츠·미디어아트·하이브리드 제작 총괄 전문가',
       '2025 서울 국제 AI 영화제 금상',
@@ -43,7 +45,8 @@ const teamMembers = [
   },
   { 
     role: 'CTO', 
-    name: '정경태 (KYUNGTAE CHUNG)',
+    name: 'KYUNGTAE CHUNG',
+    initial: 'C',
     careers: [
       'AI·SW 기술 26년 경력의 국내 탑티어 기술 리더',
       '서강대학교 컴퓨터공학 겸임 교수',
@@ -58,8 +61,9 @@ const teamMembers = [
     ]
   },
   { 
-    role: '실장', 
-    name: '김슬기 (JANE KIM)',
+    role: 'Director', 
+    name: 'JANE KIM',
+    initial: 'K',
     careers: [
       '콘텐츠·전시·미디어아트 기획 전문 프로듀서',
       'LAMPERS 기획팀 팀장 (2024–2025)',
@@ -82,7 +86,6 @@ const expertiseItems = [
     description: '자체 AI·VFX 파이프라인 기반의 효율적인 스토리텔링 중심 비주얼 콘텐츠 제작',
     detail: '기획부터 제작까지 연결된 자체 파이프라인을 통해, 고품질 AI 비주얼 콘텐츠를 빠르고 안정적으로 구현합니다.',
     gradient: 'from-violet-500 to-purple-600',
-    icon: '🎬',
   },
   {
     number: '02',
@@ -90,7 +93,6 @@ const expertiseItems = [
     description: '스토리·캐릭터 중심의 오리지널 IP 기획 및 개발 역량',
     detail: '장기 확장이 가능한 세계관, 캐릭터, 스토리를 직접 설계하고 콘텐츠·플랫폼·비즈니스로 확장합니다.',
     gradient: 'from-cyan-500 to-blue-600',
-    icon: '✨',
   },
   {
     number: '03',
@@ -98,7 +100,6 @@ const expertiseItems = [
     description: 'AI 콘텐츠 기술 연구·개발 및 실전 적용',
     detail: '영상·이미지·인터랙션을 아우르는 AI 기술을 직접 R&D하고, 실제 상용 콘텐츠에 적용 가능한 솔루션으로 개발합니다.',
     gradient: 'from-rose-500 to-orange-500',
-    icon: '⚙️',
   },
 ];
 
@@ -110,18 +111,19 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
       className="team-card relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      style={{ minHeight: '420px' }}
     >
       {/* Main Card */}
       <div 
         className={`relative bg-white rounded-2xl p-6 shadow-lg border border-slate-200 transition-all duration-500 z-10 ${
-          isHovered ? '-translate-y-24 shadow-2xl shadow-violet-200/50' : ''
+          isHovered ? '-translate-y-32 shadow-2xl shadow-violet-200/50' : ''
         }`}
       >
         {/* Avatar */}
         <div className="mx-auto w-20 h-20 mb-4">
           <div className="w-full h-full rounded-full bg-gradient-to-br from-violet-200 to-cyan-200 flex items-center justify-center">
             <span className="text-3xl text-violet-600 font-bold">
-              {member.name.charAt(0)}
+              {member.initial}
             </span>
           </div>
         </div>
@@ -148,10 +150,10 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
 
       {/* Career Details - Revealed on Hover */}
       <div 
-        className={`absolute top-0 left-0 right-0 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 pt-28 transition-all duration-500 ${
+        className={`absolute top-0 left-0 right-0 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 pt-32 transition-all duration-500 ${
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}
-        style={{ minHeight: '400px' }}
+        style={{ minHeight: '420px' }}
       >
         <div className="space-y-3">
           <h4 className="text-cyan-400 font-semibold text-sm uppercase tracking-wider mb-2">경력</h4>
@@ -333,17 +335,11 @@ export default function About() {
                     {/* Background Gradient */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
                     
-                    {/* Number Badge */}
-                    <div className="absolute -top-2 -right-2 w-16 h-16 flex items-center justify-center">
-                      <span className={`font-display text-6xl font-black bg-gradient-to-br ${item.gradient} bg-clip-text text-transparent opacity-20`}>
-                        {item.number}
-                      </span>
-                    </div>
 
                     <div className="relative z-10 flex items-start gap-6">
-                      {/* Icon */}
+                      {/* Number Badge as Icon */}
                       <div className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}>
-                        <span className="text-3xl">{item.icon}</span>
+                        <span className="text-2xl font-display font-black text-white">{item.number}</span>
                       </div>
 
                       {/* Content */}
@@ -390,50 +386,20 @@ export default function About() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-            {teamMembers.map((member, index) => (
+          {/* First Row - CEO & COO */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-3xl mx-auto mt-16">
+            {teamMembers.slice(0, 2).map((member, index) => (
               <TeamCard key={member.name} member={member} index={index} />
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Our Process Section */}
-      <section className="py-32 relative overflow-hidden bg-slate-900">
-        <div className="absolute inset-0 bg-grid opacity-10" />
-        <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection animation="fade-up" className="text-center mb-16">
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-white">
-              Our <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">Process</span>
-            </h2>
-            <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
-              A streamlined approach to bringing your vision to life
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Discovery', description: 'Understanding your vision and goals' },
-              { step: '02', title: 'Concept', description: 'Developing the creative direction' },
-              { step: '03', title: 'Production', description: 'AI-powered creation and iteration' },
-              { step: '04', title: 'Delivery', description: 'Final polish and handoff' },
-            ].map((item, index) => (
-              <AnimatedSection key={item.step} animation="fade-up" delay={index * 0.15}>
-                <div className="relative text-center group">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-violet-500/50 group-hover:border-violet-400 group-hover:shadow-lg group-hover:shadow-violet-500/30 transition-all duration-300 bg-slate-800/50">
-                    <span className="font-display text-xl font-bold text-violet-400">{item.step}</span>
-                  </div>
-                  <h3 className="mt-6 font-display text-lg font-semibold text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-slate-400">
-                    {item.description}
-                  </p>
-                  {index < 3 && (
-                    <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-violet-500/50 to-transparent" />
-                  )}
-                </div>
-              </AnimatedSection>
+          
+          {/* Spacing between rows */}
+          <div className="h-48" />
+          
+          {/* Second Row - CTO & Director */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {teamMembers.slice(2, 4).map((member, index) => (
+              <TeamCard key={member.name} member={member} index={index + 2} />
             ))}
           </div>
         </div>
