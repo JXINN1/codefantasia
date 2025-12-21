@@ -108,11 +108,13 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
 
   return (
     <div
-      className={`team-card relative transition-all duration-700 ${isHovered ? 'z-50' : 'z-10'}`}
+      className={`team-card relative transition-all duration-500 ${isHovered ? 'z-50' : 'z-10'}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Main Card - Always visible */}
       <div 
-        className={`relative bg-white rounded-2xl p-6 shadow-lg border border-slate-200 transition-all duration-700 ${
+        className={`relative bg-white rounded-2xl p-6 shadow-lg border border-slate-200 transition-all duration-500 ${
           isHovered ? 'shadow-2xl shadow-violet-200/50' : ''
         }`}
       >
@@ -137,20 +139,16 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
           {member.name}
         </h3>
 
-        {/* Profile Button - Hover trigger only on this button */}
+        {/* Profile Button */}
         <div className="text-center">
-          <button 
-            className="px-4 py-2 text-sm font-semibold text-violet-600 border-2 border-violet-500/30 rounded-full hover:bg-violet-50 transition-colors duration-300 cursor-pointer"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
+          <button className="px-4 py-2 text-sm font-semibold text-violet-600 border-2 border-violet-500/30 rounded-full hover:bg-violet-50 transition-colors duration-300">
             Profile
           </button>
         </div>
 
         {/* Career Details - Expands below on hover */}
         <div 
-          className={`overflow-hidden transition-all duration-700 ease-in-out ${
+          className={`overflow-hidden transition-all duration-500 ${
             isHovered ? 'max-h-[600px] opacity-100 mt-6 pt-6 border-t border-slate-200' : 'max-h-0 opacity-0'
           }`}
         >
