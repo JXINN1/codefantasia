@@ -108,15 +108,14 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
 
   return (
     <div
-      className="team-card relative"
+      className={`team-card relative transition-all duration-500 ${isHovered ? 'z-50' : 'z-10'}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ minHeight: '420px' }}
     >
-      {/* Main Card */}
+      {/* Main Card - Always visible */}
       <div 
-        className={`relative bg-white rounded-2xl p-6 shadow-lg border border-slate-200 transition-all duration-500 z-10 ${
-          isHovered ? '-translate-y-32 shadow-2xl shadow-violet-200/50' : ''
+        className={`relative bg-white rounded-2xl p-6 shadow-lg border border-slate-200 transition-all duration-500 ${
+          isHovered ? 'shadow-2xl shadow-violet-200/50' : ''
         }`}
       >
         {/* Avatar */}
@@ -146,31 +145,30 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
             Profile
           </button>
         </div>
-      </div>
 
-      {/* Career Details - Revealed on Hover */}
-      <div 
-        className={`absolute top-0 left-0 right-0 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 pt-32 transition-all duration-500 ${
-          isHovered ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ minHeight: '420px' }}
-      >
-        <div className="space-y-3">
-          <h4 className="text-cyan-400 font-semibold text-sm uppercase tracking-wider mb-2">경력</h4>
-          {member.careers.map((career, i) => (
-            <p key={i} className="text-slate-300 text-xs leading-relaxed flex items-start gap-2">
-              <span className="text-violet-400 mt-0.5">▸</span>
-              {career}
-            </p>
-          ))}
-          
-          <h4 className="text-cyan-400 font-semibold text-sm uppercase tracking-wider mt-4 mb-2">주요 프로젝트</h4>
-          {member.projects.map((project, i) => (
-            <p key={i} className="text-slate-400 text-xs leading-relaxed flex items-start gap-2">
-              <span className="text-cyan-400 mt-0.5">•</span>
-              {project}
-            </p>
-          ))}
+        {/* Career Details - Expands below on hover */}
+        <div 
+          className={`overflow-hidden transition-all duration-500 ${
+            isHovered ? 'max-h-[600px] opacity-100 mt-6 pt-6 border-t border-slate-200' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-5 space-y-3">
+            <h4 className="text-cyan-400 font-semibold text-sm uppercase tracking-wider mb-2">경력</h4>
+            {member.careers.map((career, i) => (
+              <p key={i} className="text-slate-300 text-xs leading-relaxed flex items-start gap-2">
+                <span className="text-violet-400 mt-0.5">▸</span>
+                {career}
+              </p>
+            ))}
+            
+            <h4 className="text-cyan-400 font-semibold text-sm uppercase tracking-wider mt-4 mb-2">주요 프로젝트</h4>
+            {member.projects.map((project, i) => (
+              <p key={i} className="text-slate-400 text-xs leading-relaxed flex items-start gap-2">
+                <span className="text-cyan-400 mt-0.5">•</span>
+                {project}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -386,20 +384,10 @@ export default function About() {
             </div>
           </AnimatedSection>
 
-          {/* First Row - CEO & COO */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-3xl mx-auto mt-16">
-            {teamMembers.slice(0, 2).map((member, index) => (
+          {/* Team Grid - All 4 cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-16">
+            {teamMembers.map((member, index) => (
               <TeamCard key={member.name} member={member} index={index} />
-            ))}
-          </div>
-          
-          {/* Spacing between rows */}
-          <div className="h-48" />
-          
-          {/* Second Row - CTO & Director */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {teamMembers.slice(2, 4).map((member, index) => (
-              <TeamCard key={member.name} member={member} index={index + 2} />
             ))}
           </div>
         </div>
