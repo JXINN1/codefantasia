@@ -3,8 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AnimatedSection from '@/components/AnimatedSection';
 import { Link } from 'react-router-dom';
+import { ArrowRight, Sparkles, Zap, Layers } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +13,7 @@ const teamMembers = [
     role: 'CEO', 
     name: 'KWANWOO PARK',
     initial: 'P',
+    color: 'from-violet-500 to-fuchsia-500',
     careers: [
       '26년 경력의 글로벌 3D·VFX·대형 미디어 콘텐츠 전문가',
       'Showscan Entertainment (LA) 부사장 역임',
@@ -30,6 +31,7 @@ const teamMembers = [
     role: 'COO', 
     name: 'TAEGYU SEO',
     initial: 'S',
+    color: 'from-cyan-500 to-blue-500',
     careers: [
       'AI 기반 콘텐츠·미디어아트·하이브리드 제작 총괄 전문가',
       '2025 서울 국제 AI 영화제 금상',
@@ -47,6 +49,7 @@ const teamMembers = [
     role: 'CTO', 
     name: 'KYUNGTAE CHUNG',
     initial: 'C',
+    color: 'from-emerald-500 to-teal-500',
     careers: [
       'AI·SW 기술 26년 경력의 국내 탑티어 기술 리더',
       '서강대학교 컴퓨터공학 겸임 교수',
@@ -64,6 +67,7 @@ const teamMembers = [
     role: 'Director', 
     name: 'JANE KIM',
     initial: 'K',
+    color: 'from-rose-500 to-pink-500',
     careers: [
       '콘텐츠·전시·미디어아트 기획 전문 프로듀서',
       'LAMPERS 기획팀 팀장 (2024–2025)',
@@ -81,25 +85,22 @@ const teamMembers = [
 
 const expertiseItems = [
   {
-    number: '01',
-    title: 'End-to-End AI Content Production Pipeline',
+    icon: Layers,
+    title: 'AI Content Pipeline',
+    subtitle: 'End-to-End Production',
     description: '자체 AI·VFX 파이프라인 기반의 효율적인 스토리텔링 중심 비주얼 콘텐츠 제작',
-    detail: '기획부터 제작까지 연결된 자체 파이프라인을 통해, 고품질 AI 비주얼 콘텐츠를 빠르고 안정적으로 구현합니다.',
-    gradient: 'from-violet-500 to-purple-600',
   },
   {
-    number: '02',
-    title: 'Original IP & Character Development',
+    icon: Sparkles,
+    title: 'Original IP',
+    subtitle: 'Character & Story Development',
     description: '스토리·캐릭터 중심의 오리지널 IP 기획 및 개발 역량',
-    detail: '장기 확장이 가능한 세계관, 캐릭터, 스토리를 직접 설계하고 콘텐츠·플랫폼·비즈니스로 확장합니다.',
-    gradient: 'from-cyan-500 to-blue-600',
   },
   {
-    number: '03',
-    title: 'AI Content Technology R&D',
+    icon: Zap,
+    title: 'AI Technology R&D',
+    subtitle: 'Research & Development',
     description: 'AI 콘텐츠 기술 연구·개발 및 실전 적용',
-    detail: '영상·이미지·인터랙션을 아우르는 AI 기술을 직접 R&D하고, 실제 상용 콘텐츠에 적용 가능한 솔루션으로 개발합니다.',
-    gradient: 'from-rose-500 to-orange-500',
   },
 ];
 
@@ -108,66 +109,93 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
 
   return (
     <div
-      className={`team-card relative transition-all duration-500 ${isHovered ? 'z-50' : 'z-10'}`}
+      className={`team-card relative transition-all duration-700 ease-out ${isHovered ? 'z-50' : 'z-10'}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Main Card - Always visible */}
       <div 
-        className={`relative bg-white rounded-2xl p-6 shadow-lg border border-slate-200 transition-all duration-500 ${
-          isHovered ? 'shadow-2xl shadow-violet-200/50' : ''
+        className={`relative overflow-hidden rounded-3xl transition-all duration-700 ease-out ${
+          isHovered 
+            ? 'bg-slate-900 shadow-2xl scale-[1.02]' 
+            : 'bg-slate-900/50 backdrop-blur-sm'
         }`}
+        style={{
+          border: '1px solid rgba(255,255,255,0.1)',
+        }}
       >
-        {/* Avatar */}
-        <div className="mx-auto w-20 h-20 mb-4">
-          <div className="w-full h-full rounded-full bg-gradient-to-br from-violet-200 to-cyan-200 flex items-center justify-center">
-            <span className="text-3xl text-violet-600 font-bold">
-              {member.initial}
+        {/* Gradient Border Effect */}
+        <div 
+          className={`absolute inset-0 bg-gradient-to-br ${member.color} opacity-0 transition-opacity duration-700 ${
+            isHovered ? 'opacity-20' : ''
+          }`}
+        />
+        
+        {/* Content Container */}
+        <div className="relative p-8">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-6">
+            {/* Avatar */}
+            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${member.color} flex items-center justify-center shadow-lg`}>
+              <span className="text-2xl font-bold text-white font-display">
+                {member.initial}
+              </span>
+            </div>
+            
+            {/* Role Badge */}
+            <span className={`px-4 py-1.5 rounded-full text-xs font-bold tracking-widest bg-gradient-to-r ${member.color} text-white`}>
+              {member.role}
             </span>
           </div>
-        </div>
 
-        {/* Role Badge */}
-        <div className="text-center mb-3">
-          <span className="inline-block px-3 py-1 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full text-xs font-bold text-white tracking-wider">
-            {member.role}
-          </span>
-        </div>
+          {/* Name */}
+          <h3 className="font-display text-2xl font-bold text-white mb-2 tracking-tight">
+            {member.name}
+          </h3>
 
-        {/* Name */}
-        <h3 className="text-center font-display text-lg font-bold text-slate-900 mb-4">
-          {member.name}
-        </h3>
+          {/* Minimal Description */}
+          <p className="text-slate-400 text-sm mb-6 line-clamp-2">
+            {member.careers[0]}
+          </p>
 
-        {/* Profile Button */}
-        <div className="text-center">
-          <button className="px-4 py-2 text-sm font-semibold text-violet-600 border-2 border-violet-500/30 rounded-full hover:bg-violet-50 transition-colors duration-300">
-            Profile
-          </button>
-        </div>
+          {/* Expandable Details */}
+          <div 
+            className={`overflow-hidden transition-all duration-700 ease-out ${
+              isHovered ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="pt-6 border-t border-white/10 space-y-6">
+              {/* Career */}
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Career</h4>
+                <ul className="space-y-2">
+                  {member.careers.slice(1).map((career, i) => (
+                    <li key={i} className="text-sm text-slate-300 flex items-start gap-2">
+                      <span className={`w-1 h-1 rounded-full bg-gradient-to-r ${member.color} mt-2 flex-shrink-0`} />
+                      {career}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              {/* Projects */}
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Projects</h4>
+                <ul className="space-y-2">
+                  {member.projects.map((project, i) => (
+                    <li key={i} className="text-sm text-slate-400 flex items-start gap-2">
+                      <span className="w-1 h-1 rounded-full bg-white/30 mt-2 flex-shrink-0" />
+                      {project}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        {/* Career Details - Expands below on hover */}
-        <div 
-          className={`overflow-hidden transition-all duration-500 ${
-            isHovered ? 'max-h-[600px] opacity-100 mt-6 pt-6 border-t border-slate-200' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-5 space-y-3">
-            <h4 className="text-cyan-400 font-semibold text-sm uppercase tracking-wider mb-2">경력</h4>
-            {member.careers.map((career, i) => (
-              <p key={i} className="text-slate-300 text-xs leading-relaxed flex items-start gap-2">
-                <span className="text-violet-400 mt-0.5">▸</span>
-                {career}
-              </p>
-            ))}
-            
-            <h4 className="text-cyan-400 font-semibold text-sm uppercase tracking-wider mt-4 mb-2">주요 프로젝트</h4>
-            {member.projects.map((project, i) => (
-              <p key={i} className="text-slate-400 text-xs leading-relaxed flex items-start gap-2">
-                <span className="text-cyan-400 mt-0.5">•</span>
-                {project}
-              </p>
-            ))}
+          {/* View More Indicator */}
+          <div className={`flex items-center gap-2 mt-4 transition-all duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
+            <span className="text-xs text-slate-500 uppercase tracking-wider">Hover for more</span>
+            <ArrowRight className="w-3 h-3 text-slate-500" />
           </div>
         </div>
       </div>
@@ -176,21 +204,53 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
 }
 
 export default function About() {
+  const heroRef = useRef<HTMLDivElement>(null);
   const visionRef = useRef<HTMLDivElement>(null);
-  const whatWeDoRef = useRef<HTMLDivElement>(null);
+  const expertiseRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Custom cursor follower
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
+    const moveCursor = (e: MouseEvent) => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+    };
+
+    window.addEventListener('mousemove', moveCursor);
+
     const ctx = gsap.context(() => {
-      // Vision section animation
+      // Hero text reveal
       gsap.fromTo(
-        '.vision-text',
-        { opacity: 0, y: 40 },
+        '.hero-line',
+        { y: 120, opacity: 0 },
         {
-          opacity: 1,
           y: 0,
-          duration: 0.8,
-          stagger: 0.2,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: 'power4.out',
+          delay: 0.3,
+        }
+      );
+
+      // Vision parallax
+      gsap.fromTo(
+        '.vision-word',
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: visionRef.current,
             start: 'top 80%',
@@ -198,194 +258,217 @@ export default function About() {
         }
       );
 
-      // Expertise cards staggered animation
+      // Expertise cards
       gsap.fromTo(
-        '.expertise-card',
-        { opacity: 0, x: -80, y: 40 },
+        '.expertise-item',
+        { y: 60, opacity: 0 },
         {
-          opacity: 1,
-          x: 0,
           y: 0,
-          duration: 0.7,
-          stagger: 0.2,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
           scrollTrigger: {
-            trigger: whatWeDoRef.current,
-            start: 'top 80%',
+            trigger: expertiseRef.current,
+            start: 'top 75%',
           },
         }
       );
 
-      // Team cards animation
+      // Team cards
       gsap.fromTo(
         '.team-card',
-        { opacity: 0, scale: 0.9, rotateY: 15 },
+        { y: 80, opacity: 0, scale: 0.95 },
         {
+          y: 0,
           opacity: 1,
           scale: 1,
-          rotateY: 0,
-          duration: 0.6,
-          stagger: 0.1,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: teamRef.current,
-            start: 'top 80%',
+            start: 'top 75%',
           },
         }
       );
     });
 
-    return () => ctx.revert();
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
+    <main className="min-h-screen bg-slate-950 text-white overflow-hidden">
+      {/* Custom Cursor */}
+      <div 
+        ref={cursorRef}
+        className="fixed w-64 h-64 pointer-events-none z-0 hidden lg:block"
+        style={{
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)',
+          transform: 'translate(-50%, -50%)',
+        }}
+      />
+
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10" />
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-violet-400/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-cyan-400/10 rounded-full blur-3xl" />
+      {/* Hero Section - Cinematic Typography */}
+      <section ref={heroRef} className="min-h-screen flex items-center justify-center relative">
+        {/* Background Grid */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/10 rounded-full blur-[150px]" />
+        </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection animation="fade-up">
-            <div className="text-center max-w-4xl mx-auto">
-              <span className="inline-block px-4 py-2 bg-slate-800/10 rounded-full text-sm font-medium text-slate-700 mb-6 tracking-wide">
-                ABOUT US
+          <div className="max-w-6xl mx-auto text-center">
+            {/* Label */}
+            <div className="hero-line overflow-hidden mb-8">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-sm text-slate-400 tracking-widest">
+                <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
+                ABOUT LAMPERS
               </span>
-              <h1 className="font-display text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-                CREATIVITY<br />
-                <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">
-                  MEETS AI
-                </span>
+            </div>
+
+            {/* Main Title */}
+            <div className="overflow-hidden mb-4">
+              <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter">
+                CREATIVITY
               </h1>
             </div>
-          </AnimatedSection>
+            <div className="overflow-hidden mb-4">
+              <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+                MEETS AI
+              </h1>
+            </div>
+
+            {/* Subtitle */}
+            <div className="hero-line mt-12">
+              <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                스토리텔링 중심의 AI 프로덕션으로<br className="hidden sm:block" />
+                콘텐츠 산업의 새로운 지평을 열어갑니다
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+          <div className="flex flex-col items-center gap-4">
+            <span className="text-xs text-slate-500 tracking-widest">SCROLL</span>
+            <div className="w-px h-16 bg-gradient-to-b from-violet-500 to-transparent" />
+          </div>
         </div>
       </section>
 
-      {/* Vision Section */}
-      <section ref={visionRef} className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-cyan-500/5" />
-        <div className="container mx-auto px-6 relative z-10">
+      {/* Vision Section - Minimalist Typography */}
+      <section ref={visionRef} className="py-32 md:py-48 relative">
+        <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <AnimatedSection animation="fade-up">
-              <div className="text-center mb-12">
-                <span className="inline-block px-6 py-3 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full text-sm font-bold text-white mb-6 tracking-wider shadow-lg shadow-violet-500/30">
-                  VISION
+            {/* Section Label */}
+            <div className="mb-16">
+              <span className="text-xs text-slate-500 tracking-[0.3em] font-medium">01 — VISION</span>
+            </div>
+
+            {/* Vision Text - Large Typography */}
+            <div className="space-y-4">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-white/90 leading-relaxed">
+                스토리텔링 중심의
+              </p>
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed">
+                <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                  크리에이티브 AI 프로덕션
                 </span>
-              </div>
-            </AnimatedSection>
-
-            <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-2xl shadow-slate-200/50 border border-slate-100">
-              {/* Decorative gradient border */}
-              <div className="absolute -inset-[1px] bg-gradient-to-br from-violet-500 via-transparent to-cyan-500 rounded-3xl -z-10" />
-              
-              <div className="space-y-8 text-center">
-                <p className="vision-text text-xl md:text-2xl lg:text-3xl text-slate-700 leading-relaxed font-medium">
-                  스토리텔링 중심의 <span className="bg-gradient-to-r from-violet-600 to-violet-500 bg-clip-text text-transparent font-bold">크리에이티브 AI 프로덕션</span>을 통해
-                </p>
-                <p className="vision-text text-xl md:text-2xl lg:text-3xl text-slate-700 leading-relaxed font-medium">
-                  아직 정립되지 않은 AI 콘텐츠 파이프라인의 <span className="bg-gradient-to-r from-cyan-600 to-cyan-500 bg-clip-text text-transparent font-bold">새로운 경제</span>를 구축하고,
-                </p>
-                <p className="vision-text text-2xl md:text-3xl lg:text-4xl text-slate-900 font-bold leading-relaxed">
-                  AI 콘텐츠 기술 기반의 <span className="bg-gradient-to-r from-violet-600 via-cyan-500 to-violet-600 bg-clip-text text-transparent">산업 혁신</span>을 선도합니다.
-                </p>
-              </div>
-
-              {/* Decorative elements */}
-              <div className="absolute top-6 left-6 w-8 h-8 border-l-3 border-t-3 border-violet-500/30 rounded-tl-xl" />
-              <div className="absolute top-6 right-6 w-8 h-8 border-r-3 border-t-3 border-cyan-500/30 rounded-tr-xl" />
-              <div className="absolute bottom-6 left-6 w-8 h-8 border-l-3 border-b-3 border-cyan-500/30 rounded-bl-xl" />
-              <div className="absolute bottom-6 right-6 w-8 h-8 border-r-3 border-b-3 border-violet-500/30 rounded-br-xl" />
+                을 통해
+              </p>
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-white/90 leading-relaxed">
+                아직 정립되지 않은 AI 콘텐츠 파이프라인의
+              </p>
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed">
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                  새로운 경제
+                </span>
+                를 구축하고,
+              </p>
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-white/90 leading-relaxed">
+                AI 콘텐츠 기술 기반의
+              </p>
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed">
+                <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+                  산업 혁신
+                </span>
+                을 선도합니다.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Our Expertise Section - Staircase Cards */}
-      <section ref={whatWeDoRef} className="py-24 relative bg-slate-50/50">
-        <div className="absolute inset-0 bg-grid opacity-5" />
+      {/* Expertise Section - Horizontal Cards */}
+      <section ref={expertiseRef} className="py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/5 to-transparent" />
+        
         <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection animation="fade-up">
-            <div className="text-center mb-16">
-              <span className="inline-block px-4 py-2 bg-cyan-500/10 rounded-full text-sm font-semibold text-cyan-600 mb-4 tracking-wider">
-                WHAT WE DO
-              </span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900">
-                Our Expertise
-              </h2>
-            </div>
-          </AnimatedSection>
+          {/* Section Label */}
+          <div className="mb-16">
+            <span className="text-xs text-slate-500 tracking-[0.3em] font-medium">02 — EXPERTISE</span>
+          </div>
 
-          {/* Staircase Cards Layout */}
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col gap-6">
-              {expertiseItems.map((item, index) => (
-                <div 
-                  key={item.number}
-                  className="expertise-card"
-                  style={{ 
-                    marginLeft: `${index * 8}%`,
-                    maxWidth: '85%'
-                  }}
-                >
-                  <div className="group relative bg-white rounded-2xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden">
-                    {/* Background Gradient */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                    
-
-                    <div className="relative z-10 flex items-start gap-6">
-                      {/* Number Badge as Icon */}
-                      <div className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}>
-                        <span className="text-2xl font-display font-black text-white">{item.number}</span>
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1">
-                        <h3 className="font-display text-xl md:text-2xl font-bold text-slate-900 mb-2 group-hover:text-violet-600 transition-colors duration-300">
-                          {item.title}
-                        </h3>
-                        <p className="text-slate-700 font-medium mb-2">
-                          {item.description}
-                        </p>
-                        <p className="text-slate-500 text-sm leading-relaxed">
-                          {item.detail}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Hover Line */}
-                    <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${item.gradient} w-0 group-hover:w-full transition-all duration-500`} />
+          {/* Expertise Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {expertiseItems.map((item, index) => (
+              <div 
+                key={item.title}
+                className="expertise-item group"
+              >
+                <div className="h-full p-8 md:p-10 rounded-3xl border border-white/5 bg-white/[0.02] backdrop-blur-sm hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500">
+                  {/* Icon */}
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                    <item.icon className="w-6 h-6 text-violet-400" />
                   </div>
+
+                  {/* Subtitle */}
+                  <span className="text-xs text-slate-500 tracking-wider uppercase block mb-2">
+                    {item.subtitle}
+                  </span>
+
+                  {/* Title */}
+                  <h3 className="font-display text-2xl font-bold text-white mb-4 group-hover:text-violet-300 transition-colors duration-300">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section ref={teamRef} className="py-24 relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-400/5 rounded-full blur-3xl" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection animation="fade-up">
-            <div className="text-center mb-8">
-              <span className="inline-block px-4 py-2 bg-slate-800/10 rounded-full text-sm font-semibold text-slate-700 mb-4 tracking-wider">
-                MEET THE TEAM
-              </span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-                Our Leadership
+      <section ref={teamRef} className="py-32 relative">
+        <div className="container mx-auto px-6">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+            <div>
+              <span className="text-xs text-slate-500 tracking-[0.3em] font-medium block mb-4">03 — TEAM</span>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                Leadership
               </h2>
-              <p className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
-                30년 이상의 VFX, 미디어, 테크놀로지 분야 경험을 바탕으로<br />
-                크리에이티브와 기술의 경계를 확장하는 팀입니다.
-              </p>
             </div>
-          </AnimatedSection>
+            <p className="text-slate-400 max-w-md text-sm leading-relaxed">
+              30년 이상의 VFX, 미디어, 테크놀로지 분야 경험을 바탕으로 
+              크리에이티브와 기술의 경계를 확장하는 팀입니다.
+            </p>
+          </div>
 
-          {/* Team Grid - All 4 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-16">
+          {/* Team Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {teamMembers.map((member, index) => (
               <TeamCard key={member.name} member={member} index={index} />
             ))}
@@ -394,29 +477,32 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <div className="absolute inset-0 bg-grid opacity-10" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl" />
+      <section className="py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-t from-violet-500/10 via-transparent to-transparent" />
         
         <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection animation="scale" className="text-center">
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
-              Ready to Start Your <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">Project</span>?
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="text-xs text-slate-500 tracking-[0.3em] font-medium block mb-8">04 — CONTACT</span>
+            
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
+              Ready to Create<br />
+              <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
+                Something Amazing?
+              </span>
             </h2>
-            <p className="text-slate-300 max-w-xl mx-auto mb-10 text-lg">
+            
+            <p className="text-slate-400 text-lg mb-12 max-w-xl mx-auto">
               Let's discuss how we can bring your vision to life with AI-powered filmmaking.
             </p>
+
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-500 to-cyan-500 text-white font-display font-semibold uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/30 hover:scale-105"
+              className="group inline-flex items-center gap-4 px-8 py-4 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold text-lg hover:opacity-90 transition-opacity"
             >
-              Contact Us
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              Start a Conversation
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-          </AnimatedSection>
+          </div>
         </div>
       </section>
 
