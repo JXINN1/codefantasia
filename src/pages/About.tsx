@@ -207,6 +207,8 @@ export default function About() {
   const expertiseRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const heroTextRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Custom cursor follower
@@ -220,38 +222,54 @@ export default function About() {
         duration: 0.8,
         ease: 'power3.out',
       });
+      
+      // Update mouse position for parallax effects
+      setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener('mousemove', moveCursor);
 
     const ctx = gsap.context(() => {
-      // Hero text reveal
+      // Hero text reveal with stagger
       gsap.fromTo(
         '.hero-line',
-        { y: 120, opacity: 0 },
+        { y: 120, opacity: 0, rotateX: -45 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.2,
+          rotateX: 0,
+          duration: 1.4,
           stagger: 0.15,
           ease: 'power4.out',
           delay: 0.3,
         }
       );
 
-      // Vision parallax
+      // Floating animation for hero elements
+      gsap.to('.hero-float', {
+        y: -20,
+        duration: 3,
+        ease: 'power1.inOut',
+        yoyo: true,
+        repeat: -1,
+      });
+
+      // Vision word-by-word reveal with scrub
       gsap.fromTo(
         '.vision-word',
-        { y: 100, opacity: 0 },
+        { y: 80, opacity: 0, filter: 'blur(10px)' },
         {
           y: 0,
           opacity: 1,
+          filter: 'blur(0px)',
           duration: 1,
-          stagger: 0.1,
+          stagger: 0.08,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: visionRef.current,
-            start: 'top 80%',
+            start: 'top 85%',
+            end: 'top 30%',
+            scrub: 0.5,
           },
         }
       );
@@ -298,6 +316,18 @@ export default function About() {
     };
   }, []);
 
+  // Calculate parallax offset based on mouse position
+  const getParallaxStyle = (intensity: number = 1) => {
+    const centerX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
+    const centerY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
+    const offsetX = ((mousePosition.x - centerX) / centerX) * 20 * intensity;
+    const offsetY = ((mousePosition.y - centerY) / centerY) * 20 * intensity;
+    return {
+      transform: `translate(${offsetX}px, ${offsetY}px)`,
+      transition: 'transform 0.3s ease-out',
+    };
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-100 to-white overflow-hidden">
       {/* Custom Cursor */}
@@ -314,30 +344,48 @@ export default function About() {
 
       {/* Hero Section - Cinematic Typography */}
       <section ref={heroRef} className="min-h-screen flex items-center justify-center relative">
-        {/* Background Grid */}
+        {/* Background Grid with parallax */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/5 rounded-full blur-[150px]" />
+          <div 
+            className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" 
+            style={getParallaxStyle(0.3)}
+          />
+          <div 
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/10 rounded-full blur-[150px] hero-float"
+            style={getParallaxStyle(0.5)}
+          />
+          {/* Additional floating orbs */}
+          <div 
+            className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[120px] hero-float"
+            style={getParallaxStyle(-0.4)}
+          />
+          <div 
+            className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-fuchsia-500/5 rounded-full blur-[100px] hero-float"
+            style={getParallaxStyle(0.6)}
+          />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-6xl mx-auto text-center">
+        <div ref={heroTextRef} className="container mx-auto px-6 relative z-10">
+          <div className="max-w-6xl mx-auto text-center" style={getParallaxStyle(0.15)}>
             {/* Label */}
             <div className="hero-line overflow-hidden mb-8">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 text-sm text-slate-600 tracking-widest">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 text-sm text-slate-600 tracking-widest backdrop-blur-sm bg-white/50">
                 <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
                 ABOUT US
               </span>
             </div>
 
             {/* Main Title */}
-            <div className="overflow-hidden mb-4">
+            <div className="overflow-hidden mb-4 perspective-1000">
               <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-slate-900">
                 CREATIVITY
               </h1>
             </div>
-            <div className="overflow-hidden mb-4">
-              <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent">
+            <div className="overflow-hidden mb-4 perspective-1000">
+              <h1 
+                className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent"
+                style={getParallaxStyle(0.1)}
+              >
                 MEETS AI
               </h1>
             </div>
@@ -355,8 +403,8 @@ export default function About() {
         {/* Scroll Indicator */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
           <div className="flex flex-col items-center gap-4">
-            <span className="text-xs text-slate-500 tracking-widest">SCROLL</span>
-            <div className="w-px h-16 bg-gradient-to-b from-violet-500 to-transparent" />
+            <span className="text-xs text-slate-500 tracking-widest animate-pulse">SCROLL</span>
+            <div className="w-px h-16 bg-gradient-to-b from-violet-500 to-transparent animate-bounce" style={{ animationDuration: '2s' }} />
           </div>
         </div>
       </section>
