@@ -15,6 +15,7 @@ const teamMembers = [
     initial: 'P',
     color: 'from-violet-500 to-fuchsia-500',
     careers: [
+      '26년 경력의 글로벌 3D·VFX·대형 미디어 콘텐츠 전문가',
       'WYSIWYG Studios 대표이사 (2016–2024)',
       'Showscan Entertainment (LA) 부사장 역임',
       'DGFX 대표이사 (1996-2000)',
@@ -31,6 +32,7 @@ const teamMembers = [
     initial: 'S',
     color: 'from-cyan-500 to-blue-500',
     careers: [
+      'AI 기반 콘텐츠·미디어아트·하이브리드 제작 총괄 전문가',
       'WYSIWYG Studios Creative Director (2018-2024)',
       '<로보카 폴리> TV 미술감독, 애니메이션 제작 및 상품 기획 총괄 (2009-2015)',
       '<아치와 씨팍> Feature Film - 기획/컨셉 디자인 (2001-2006)',
@@ -65,6 +67,7 @@ const teamMembers = [
     initial: 'K',
     color: 'from-rose-500 to-pink-500',
     careers: [
+      '콘텐츠·전시·미디어아트 기획 전문 프로듀서',
       'LAMPERS 기획팀 팀장 (2024–2025)',
       'WYSIWYG Studios 프로듀서 (2019–2024)',
       '비유비유 기획팀 책임(2017-2018)',
