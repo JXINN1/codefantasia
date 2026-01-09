@@ -418,31 +418,31 @@ export default function About() {
               <span className="text-xs text-slate-500 tracking-[0.3em] font-medium">01 — VISION</span>
             </div>
 
-            {/* Vision Text - Large Typography */}
+            {/* Vision Text - Large Typography with hover interactions */}
             <div className="space-y-4">
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed transition-all duration-500 ease-out hover:translate-x-3 hover:text-slate-900 cursor-default">
                 스토리텔링 중심의
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900">
-                <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900 transition-all duration-500 ease-out hover:translate-x-4 cursor-default group">
+                <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent transition-all duration-500 group-hover:from-violet-500 group-hover:to-fuchsia-500 group-hover:drop-shadow-[0_0_20px_rgba(139,92,246,0.3)]">
                   크리에이티브 AI 프로덕션
                 </span>
                 을 통해
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed transition-all duration-500 ease-out hover:translate-x-3 hover:text-slate-900 cursor-default">
                 아직 정립되지 않은 AI 콘텐츠 파이프라인의
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900">
-                <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900 transition-all duration-500 ease-out hover:translate-x-4 cursor-default group">
+                <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent transition-all duration-500 group-hover:from-cyan-500 group-hover:to-blue-500 group-hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">
                   새로운 경제
                 </span>
                 를 구축하고,
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed transition-all duration-500 ease-out hover:translate-x-3 hover:text-slate-900 cursor-default">
                 AI 콘텐츠 기술 기반의
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900">
-                <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900 transition-all duration-500 ease-out hover:translate-x-4 cursor-default group">
+                <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent transition-all duration-500 group-hover:from-violet-500 group-hover:via-fuchsia-500 group-hover:to-cyan-500 group-hover:drop-shadow-[0_0_20px_rgba(192,132,252,0.3)]">
                   산업 혁신
                 </span>
                 을 선도합니다.
