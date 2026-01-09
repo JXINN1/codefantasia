@@ -114,11 +114,11 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
       <div 
         className={`relative overflow-hidden rounded-3xl transition-all duration-700 ease-out ${
           isHovered 
-            ? 'bg-slate-900 shadow-2xl scale-[1.02]' 
-            : 'bg-slate-900/50 backdrop-blur-sm'
+            ? 'bg-white shadow-2xl scale-[1.02]' 
+            : 'bg-white/80 backdrop-blur-sm'
         }`}
         style={{
-          border: '1px solid rgba(255,255,255,0.1)',
+          border: '1px solid rgba(0,0,0,0.1)',
         }}
       >
         {/* Gradient Border Effect */}
@@ -146,12 +146,12 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
           </div>
 
           {/* Name */}
-          <h3 className="font-display text-2xl font-bold text-white mb-2 tracking-tight">
+          <h3 className="font-display text-2xl font-bold text-slate-900 mb-2 tracking-tight">
             {member.name}
           </h3>
 
           {/* Minimal Description */}
-          <p className="text-slate-400 text-sm mb-6 line-clamp-2">
+          <p className="text-slate-600 text-sm mb-6 line-clamp-2">
             {member.careers[0]}
           </p>
 
@@ -161,13 +161,13 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
               isHovered ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
-            <div className="pt-6 border-t border-white/10 space-y-6">
+            <div className="pt-6 border-t border-slate-200 space-y-6">
               {/* Career */}
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Career</h4>
                 <ul className="space-y-2">
                   {member.careers.slice(1).map((career, i) => (
-                    <li key={i} className="text-sm text-slate-300 flex items-start gap-2">
+                    <li key={i} className="text-sm text-slate-700 flex items-start gap-2">
                       <span className={`w-1 h-1 rounded-full bg-gradient-to-r ${member.color} mt-2 flex-shrink-0`} />
                       {career}
                     </li>
@@ -180,8 +180,8 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
                 <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">Projects</h4>
                 <ul className="space-y-2">
                   {member.projects.map((project, i) => (
-                    <li key={i} className="text-sm text-slate-400 flex items-start gap-2">
-                      <span className="w-1 h-1 rounded-full bg-white/30 mt-2 flex-shrink-0" />
+                    <li key={i} className="text-sm text-slate-600 flex items-start gap-2">
+                      <span className="w-1 h-1 rounded-full bg-slate-400 mt-2 flex-shrink-0" />
                       {project}
                     </li>
                   ))}
@@ -192,8 +192,8 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
 
           {/* View More Indicator */}
           <div className={`flex items-center gap-2 mt-4 transition-all duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
-            <span className="text-xs text-slate-500 uppercase tracking-wider">Hover for more</span>
-            <ArrowRight className="w-3 h-3 text-slate-500" />
+            <span className="text-xs text-slate-400 uppercase tracking-wider">Hover for more</span>
+            <ArrowRight className="w-3 h-3 text-slate-400" />
           </div>
         </div>
       </div>
@@ -299,13 +299,13 @@ export default function About() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-b from-slate-100 to-white overflow-hidden">
       {/* Custom Cursor */}
       <div 
         ref={cursorRef}
         className="fixed w-64 h-64 pointer-events-none z-0 hidden lg:block"
         style={{
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
           transform: 'translate(-50%, -50%)',
         }}
       />
@@ -316,15 +316,15 @@ export default function About() {
       <section ref={heroRef} className="min-h-screen flex items-center justify-center relative">
         {/* Background Grid */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/10 rounded-full blur-[150px]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/5 rounded-full blur-[150px]" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
             {/* Label */}
             <div className="hero-line overflow-hidden mb-8">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-sm text-slate-400 tracking-widest">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 text-sm text-slate-600 tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
                 ABOUT US
               </span>
@@ -332,19 +332,19 @@ export default function About() {
 
             {/* Main Title */}
             <div className="overflow-hidden mb-4">
-              <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter">
+              <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-slate-900">
                 CREATIVITY
               </h1>
             </div>
             <div className="overflow-hidden mb-4">
-              <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+              <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent">
                 MEETS AI
               </h1>
             </div>
 
             {/* Subtitle */}
             <div className="hero-line mt-12">
-              <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
                 스토리텔링 중심의 AI 프로덕션으로<br className="hidden sm:block" />
                 콘텐츠 산업의 새로운 지평을 열어갑니다
               </p>
@@ -372,29 +372,29 @@ export default function About() {
 
             {/* Vision Text - Large Typography */}
             <div className="space-y-4">
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-white/90 leading-relaxed">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed">
                 스토리텔링 중심의
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed">
-                <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900">
+                <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
                   크리에이티브 AI 프로덕션
                 </span>
                 을 통해
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-white/90 leading-relaxed">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed">
                 아직 정립되지 않은 AI 콘텐츠 파이프라인의
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed">
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900">
+                <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                   새로운 경제
                 </span>
                 를 구축하고,
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-white/90 leading-relaxed">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed">
                 AI 콘텐츠 기술 기반의
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed">
-                <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900">
+                <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent">
                   산업 혁신
                 </span>
                 을 선도합니다.
@@ -421,10 +421,10 @@ export default function About() {
                 key={item.title}
                 className="expertise-item group"
               >
-                <div className="h-full p-8 md:p-10 rounded-3xl border border-white/5 bg-white/[0.02] backdrop-blur-sm hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500">
+                <div className="h-full p-8 md:p-10 rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-sm hover:bg-white hover:border-slate-300 hover:shadow-xl transition-all duration-500">
                   {/* Icon */}
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                    <item.icon className="w-6 h-6 text-violet-400" />
+                    <item.icon className="w-6 h-6 text-violet-600" />
                   </div>
 
                   {/* Subtitle */}
@@ -433,12 +433,12 @@ export default function About() {
                   </span>
 
                   {/* Title */}
-                  <h3 className="font-display text-2xl font-bold text-white mb-4 group-hover:text-violet-300 transition-colors duration-300">
+                  <h3 className="font-display text-2xl font-bold text-slate-900 mb-4 group-hover:text-violet-600 transition-colors duration-300">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-slate-600 text-sm leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -455,11 +455,11 @@ export default function About() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
             <div>
               <span className="text-xs text-slate-500 tracking-[0.3em] font-medium block mb-4">03 — TEAM</span>
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900">
                 Leadership
               </h2>
             </div>
-            <p className="text-slate-400 max-w-md text-sm leading-relaxed">
+            <p className="text-slate-600 max-w-md text-sm leading-relaxed">
               30년 이상의 VFX, 미디어, 테크놀로지 분야 경험을 바탕으로 
               크리에이티브와 기술의 경계를 확장하는 팀입니다.
             </p>
@@ -474,15 +474,13 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-32 relative">
+      {/* CTA Section - Dark themed like other pages */}
+      <section className="py-32 relative bg-gradient-to-b from-slate-900 to-slate-950">
         <div className="absolute inset-0 bg-gradient-to-t from-violet-500/10 via-transparent to-transparent" />
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="text-xs text-slate-500 tracking-[0.3em] font-medium block mb-8">04 — CONTACT</span>
-            
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-white">
               Ready to Create<br />
               <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
                 Something Amazing?
