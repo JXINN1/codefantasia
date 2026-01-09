@@ -15,16 +15,14 @@ const teamMembers = [
     initial: 'P',
     color: 'from-violet-500 to-fuchsia-500',
     careers: [
-      '26년 경력의 글로벌 3D·VFX·대형 미디어 콘텐츠 전문가',
-      'Showscan Entertainment (LA) 부사장 역임',
       'WYSIWYG Studios 대표이사 (2016–2024)',
-      'CES·올림픽·월드 스포츠 이벤트 3D 콘텐츠 총괄',
+      'Showscan Entertainment (LA) 부사장 역임',
+      'DGFX 대표이사 (1996-2000)',
     ],
     projects: [
       'Odysseo by Cavalia 3D 촬영',
       'CES 2014 24K 콘텐츠 – LG Display',
-      '아시안 게임·세리에A·IAAF 3D 중계',
-      '소녀시대 〈Run Devil Run〉 3D MV',
+      '아시안 게임·세리에A·IAAF 3D 중계 <대호>, <검사외전> 등 다수 영화 VFX 총괄',
     ]
   },
   { 
@@ -33,16 +31,14 @@ const teamMembers = [
     initial: 'S',
     color: 'from-cyan-500 to-blue-500',
     careers: [
-      'AI 기반 콘텐츠·미디어아트·하이브리드 제작 총괄 전문가',
-      '2025 서울 국제 AI 영화제 금상',
-      'LA International AI Film Festival BEST Hybrid AI Film',
-      'WYSIWYG Studios Creative Director (2018–2024)',
+      'WYSIWYG Studios Creative Director (2018-2024)',
+      '<로보카 폴리> TV 미술감독, 애니메이션 제작 및 상품 기획 총괄 (2009-2015)',
+      '<아치와 씨팍> Feature Film - 기획/컨셉 디자인 (2001-2006)',
     ],
     projects: [
-      '부천국제영화제 AI 콘퍼런스 초청 강연',
+      '2025 서울 국제 AI 영화제 금상 부천국제영화제 AI 콘퍼런스 초청 강연',
       '영화 〈부산행〉, 〈염력〉 컨셉 디자인 참여',
-      '〈로보카 폴리〉 미술감독·상품기획 총괄',
-      '미디어아트·AR·AI 콘텐츠 기획 및 제작 총괄',
+      '<AR 돈의문>, <기아 360> 등 미디어아트·AR·AI 콘텐츠 기획 및 제작 총괄',
     ]
   },
   { 
@@ -69,10 +65,9 @@ const teamMembers = [
     initial: 'K',
     color: 'from-rose-500 to-pink-500',
     careers: [
-      '콘텐츠·전시·미디어아트 기획 전문 프로듀서',
       'LAMPERS 기획팀 팀장 (2024–2025)',
       'WYSIWYG Studios 프로듀서 (2019–2024)',
-      '극장판 애니메이션·국립박물관·대형 전시 프로젝트 다수',
+      '비유비유 기획팀 책임(2017-2018)',
     ],
     projects: [
       'Paradise City Art Space 전시 기획',
@@ -328,7 +323,7 @@ export default function About() {
             <div className="hero-line overflow-hidden mb-8">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-sm text-slate-400 tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
-                ABOUT LAMPERS
+                ABOUT US
               </span>
             </div>
 
