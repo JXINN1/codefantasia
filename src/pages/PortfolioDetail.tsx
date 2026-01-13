@@ -84,7 +84,7 @@ export default function PortfolioDetail() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-6 rounded-xl bg-card border border-border/50">
                 <div>
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">Category</span>
-                  <p className="mt-1 font-medium text-foreground">{project.subtitle}</p>
+                  <p className="mt-1 font-medium text-foreground">{project.detailCategory || project.subtitle}</p>
                 </div>
                 <div>
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">Studio</span>
@@ -92,11 +92,11 @@ export default function PortfolioDetail() {
                 </div>
                 <div>
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">Tools</span>
-                  <p className="mt-1 font-medium text-foreground">AI Generation</p>
+                  <p className="mt-1 font-medium text-foreground">{project.tools || 'AI Generation'}</p>
                 </div>
                 <div>
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">Year</span>
-                  <p className="mt-1 font-medium text-foreground">2024</p>
+                  <p className="mt-1 font-medium text-foreground">{project.year || '2024'}</p>
                 </div>
               </div>
             </AnimatedSection>
