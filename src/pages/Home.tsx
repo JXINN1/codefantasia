@@ -5,6 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
+import showreelVideo from '@/assets/showreel.mp4';
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -105,7 +107,7 @@ export default function Home() {
                   playsInline
                   className="w-full h-full object-cover"
                 >
-                  <source src="/codefantasia/videos/showreel.mp4" type="video/mp4"/>
+                  <source src={showreelVideo} type="video/mp4"/>
                 </video>
                 
                 {/* Scanline effect */}
