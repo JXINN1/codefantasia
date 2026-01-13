@@ -17,8 +17,7 @@ export const portfolioItems = [
   {
     slug: 'red-soda-circle',
     title: 'RED SODA CIRCLE',
-    subtitle: 'Red Soda_ENT. Season 1',
-    category: 'ORIGINAL CONTENTS (IP)',
+    subtitle: 'Virtual Artists',
     videoUrl: 'https://www.youtube.com/watch?v=GeiryySprUc&t=44s',
     description: 'An original IP content series showcasing innovative storytelling through AI-powered visual production.',
     detailCategory: 'Original Contents (IP)',
@@ -103,7 +102,7 @@ export default function Portfolio() {
                 slug={item.slug}
                 title={item.title}
                 subtitle={item.subtitle}
-                category={item.category}
+                category={'category' in item ? (item as { category?: string }).category : undefined}
                 videoUrl={item.videoUrl}
                 index={index}
               />
