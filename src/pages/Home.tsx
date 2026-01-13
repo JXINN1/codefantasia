@@ -105,7 +105,7 @@ export default function Home() {
                   playsInline
                   className="w-full h-full object-cover"
                 >
-                  <source src="/videos/showreel.mp4" type="video/mp4" />
+                  <source src="/codefantasia/videos/showreel.mp4" type="video/mp4"/>
                 </video>
                 
                 {/* Scanline effect */}
