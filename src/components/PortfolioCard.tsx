@@ -77,7 +77,7 @@ export default function PortfolioCard({
     >
       <Link
         to={`/portfolio/${slug}`}
-        className="block group relative overflow-hidden rounded-xl bg-card border border-border/50 transition-all duration-500 hover:border-primary/50"
+        className="block group relative overflow-hidden rounded-xl bg-card border border-border/50 transition-all duration-500 hover:border-primary/50 h-full flex flex-col"
       >
         {/* Thumbnail */}
         <div className="relative aspect-video overflow-hidden">
@@ -126,19 +126,21 @@ export default function PortfolioCard({
         </div>
 
         {/* Content */}
-        <div className="p-5">
-          {category && (
-            <span className="inline-block px-2 py-1 mb-2 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-violet-500/20 to-cyan-500/20 text-violet-600 rounded border border-violet-500/30">
-              {category}
-            </span>
-          )}
+        <div className="p-5 flex-1 flex flex-col">
+          <div className="min-h-[28px]">
+            {category && (
+              <span className="inline-block px-2 py-1 mb-2 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-violet-500/20 to-cyan-500/20 text-violet-600 rounded border border-violet-500/30">
+                {category}
+              </span>
+            )}
+          </div>
           <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-1">
             {title}
           </h3>
           <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>
           
           {/* Hover Line */}
-          <div className="mt-4 h-0.5 w-0 bg-neon-gradient group-hover:w-full transition-all duration-500 rounded-full" />
+          <div className="mt-auto pt-4 h-0.5 w-0 bg-neon-gradient group-hover:w-full transition-all duration-500 rounded-full" />
         </div>
       </Link>
     </div>
