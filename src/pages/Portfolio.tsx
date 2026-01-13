@@ -40,6 +40,13 @@ export const portfolioItems = [
     videoUrl: 'https://www.youtube.com/watch?v=GeiryySprUc&t=44s',
     description: 'An original IP content series showcasing innovative storytelling through AI-powered visual production.',
   },
+  {
+    slug: 'kei-smile-mv',
+    title: "Kei(케이) 'Smile' (Official MV)",
+    subtitle: 'AI Music Video 2025',
+    videoUrl: 'https://www.youtube.com/watch?v=RJSJ06zlUqY',
+    description: 'Official music video for Kei\'s "Smile". A vibrant AI-generated music video showcasing the harmony between artistic vision and cutting-edge AI visual production.',
+  },
 ];
 
 export default function Portfolio() {
