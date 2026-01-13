@@ -5,32 +5,11 @@ import AnimatedSection from '@/components/AnimatedSection';
 
 export const portfolioItems = [
   {
-    slug: 'prototype-concept-video',
-    title: 'PROTOTYPE CONCEPT VIDEO',
-    subtitle: 'AI Animation',
-    videoUrl: 'https://www.youtube.com/watch?v=iOg9nU_pXhs',
-    description: 'A groundbreaking concept video showcasing the potential of AI-generated animation. This piece demonstrates our experimental approach to visual storytelling, blending futuristic aesthetics with cutting-edge AI technology.',
-  },
-  {
-    slug: 'resin-drive-short-film',
-    title: 'RESIN DRIVE SHORT FILM',
-    subtitle: 'AI Short Film',
-    videoUrl: 'https://vimeo.com/1092377931?fl=pl&fe=sh',
-    description: 'An atmospheric short film exploring themes of isolation and technology. Created entirely using AI generation tools, this piece pushes the boundaries of what\'s possible in narrative filmmaking.',
-  },
-  {
-    slug: 'voices',
-    title: 'VOICES',
-    subtitle: 'AI Short Film',
-    videoUrl: 'https://vimeo.com/1039905268?fl=pl&fe=sh',
-    description: 'A haunting exploration of human connection in the digital age. This AI-generated short film combines experimental visuals with an evocative soundscape to create an immersive viewing experience.',
-  },
-  {
-    slug: 'baek-ayeon-my-universe',
-    title: "백아연 'My Universe' (Official MV)",
-    subtitle: 'AI Music Video',
-    videoUrl: 'https://www.youtube.com/watch?v=igPb1ypyMDE&list=RDigPb1ypyMDE&start_radio=1',
-    description: 'Official music video for Baek A-yeon\'s "My Universe". This project demonstrates the seamless integration of AI-generated visuals with traditional music video production, creating a unique visual language.',
+    slug: 'kei-smile-mv',
+    title: "Kei(케이) 'Smile' (Official MV)",
+    subtitle: 'AI Music Video 2025',
+    videoUrl: 'https://www.youtube.com/watch?v=RJSJ06zlUqY',
+    description: 'Official music video for Kei\'s "Smile". A vibrant AI-generated music video showcasing the harmony between artistic vision and cutting-edge AI visual production.',
   },
   {
     slug: 'red-soda-circle',
@@ -41,11 +20,32 @@ export const portfolioItems = [
     description: 'An original IP content series showcasing innovative storytelling through AI-powered visual production.',
   },
   {
-    slug: 'kei-smile-mv',
-    title: "Kei(케이) 'Smile' (Official MV)",
-    subtitle: 'AI Music Video 2025',
-    videoUrl: 'https://www.youtube.com/watch?v=RJSJ06zlUqY',
-    description: 'Official music video for Kei\'s "Smile". A vibrant AI-generated music video showcasing the harmony between artistic vision and cutting-edge AI visual production.',
+    slug: 'baek-ayeon-my-universe',
+    title: "백아연 'My Universe' (Official MV)",
+    subtitle: 'AI Music Video',
+    videoUrl: 'https://www.youtube.com/watch?v=igPb1ypyMDE&list=RDigPb1ypyMDE&start_radio=1',
+    description: 'Official music video for Baek A-yeon\'s "My Universe". This project demonstrates the seamless integration of AI-generated visuals with traditional music video production, creating a unique visual language.',
+  },
+  {
+    slug: 'prototype-concept-video',
+    title: 'PROTOTYPE CONCEPT VIDEO',
+    subtitle: 'AI Animation 2025',
+    videoUrl: 'https://www.youtube.com/watch?v=iOg9nU_pXhs',
+    description: 'A groundbreaking concept video showcasing the potential of AI-generated animation. This piece demonstrates our experimental approach to visual storytelling, blending futuristic aesthetics with cutting-edge AI technology.',
+  },
+  {
+    slug: 'resin-drive-short-film',
+    title: 'RESIN DRIVE SHORT FILM',
+    subtitle: 'AI Short Film 2025',
+    videoUrl: 'https://vimeo.com/1092377931?fl=pl&fe=sh',
+    description: 'An atmospheric short film exploring themes of isolation and technology. Created entirely using AI generation tools, this piece pushes the boundaries of what\'s possible in narrative filmmaking.',
+  },
+  {
+    slug: 'voices',
+    title: 'VOICES',
+    subtitle: 'AI Short Film',
+    videoUrl: 'https://vimeo.com/1039905268?fl=pl&fe=sh',
+    description: 'A haunting exploration of human connection in the digital age. This AI-generated short film combines experimental visuals with an evocative soundscape to create an immersive viewing experience.',
   },
 ];
 
