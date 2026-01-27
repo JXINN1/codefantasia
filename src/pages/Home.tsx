@@ -11,15 +11,22 @@ import showreelVideo from '@/assets/showreel.mp4';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  // Check sessionStorage to skip intro if already seen in this session
+  // Always show intro on first visit - check sessionStorage
   const [showIntro, setShowIntro] = useState(() => {
+    // For testing: clear storage to always see intro
+    // Uncomment below line to force intro every time:
+    // sessionStorage.removeItem('introSeen');
     return sessionStorage.getItem('introSeen') !== 'true';
   });
+  
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Only run animations when intro is not showing
+    if (showIntro) return;
+    
     const ctx = gsap.context(() => {
       // Set initial states
       gsap.set(videoRef.current, { opacity: 0, y: 60 });
@@ -48,7 +55,7 @@ export default function Home() {
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [showIntro]);
 
   // Handle intro completion
   const handleIntroComplete = () => {
