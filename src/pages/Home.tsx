@@ -1,17 +1,20 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
+import IntroLanding from '@/components/IntroLanding';
 import showreelVideo from '@/assets/showreel.mp4';
-
-
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  // Check sessionStorage to skip intro if already seen in this session
+  const [showIntro, setShowIntro] = useState(() => {
+    return sessionStorage.getItem('introSeen') !== 'true';
+  });
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -46,6 +49,16 @@ export default function Home() {
 
     return () => ctx.revert();
   }, []);
+
+  // Handle intro completion
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+
+  // Show intro if not seen in this session
+  if (showIntro) {
+    return <IntroLanding onComplete={handleIntroComplete} />;
+  }
 
   return (
     <main className="min-h-screen bg-background">
