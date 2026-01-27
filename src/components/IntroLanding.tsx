@@ -15,48 +15,41 @@ interface Particle {
   size: number;
 }
 
-interface KitschElement {
-  id: number;
-  x: number;
-  y: number;
-  type: 'star' | 'arrow' | 'code';
-  rotation: number;
-}
-
 export default function IntroLanding({ onComplete }: IntroLandingProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const logoImgRef = useRef<HTMLImageElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const magneticRef = useRef({ x: 0, y: 0 });
   const mouseRef = useRef({ x: 0, y: 0 });
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number>();
+  const glitchTimelineRef = useRef<gsap.core.Timeline | null>(null);
   
   const [isHovered, setIsHovered] = useState(false);
-  const [kitschElements, setKitschElements] = useState<KitschElement[]>([]);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Initialize subtle particles for minimal aesthetic
+  // Initialize subtle particles
   const initParticles = useCallback(() => {
     const chars = ['•', '○', '+', '×'];
     const particles: Particle[] = [];
     
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 25; i++) {
       particles.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
         char: chars[Math.floor(Math.random() * chars.length)],
-        speed: 0.2 + Math.random() * 0.3,
-        opacity: 0.05 + Math.random() * 0.1,
-        size: 8 + Math.random() * 8,
+        speed: 0.15 + Math.random() * 0.25,
+        opacity: 0.04 + Math.random() * 0.08,
+        size: 6 + Math.random() * 6,
       });
     }
     
     particlesRef.current = particles;
   }, []);
 
-  // Animate particles on canvas - subtle minimal style
+  // Animate particles
   const animateParticles = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -71,28 +64,24 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particlesRef.current.forEach((particle) => {
-        // Mouse influence
         const dx = mouseRef.current.x - particle.x;
         const dy = mouseRef.current.y - particle.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         
-        if (dist < 120) {
-          const force = (120 - dist) / 120;
-          particle.x -= (dx / dist) * force * 1.5;
-          particle.y -= (dy / dist) * force * 1.5;
+        if (dist < 100) {
+          const force = (100 - dist) / 100;
+          particle.x -= (dx / dist) * force * 1;
+          particle.y -= (dy / dist) * force * 1;
         }
 
-        // Float upward slowly
         particle.y -= particle.speed;
-        particle.x += Math.sin(Date.now() * 0.0005 + particle.y * 0.005) * 0.3;
+        particle.x += Math.sin(Date.now() * 0.0003 + particle.y * 0.003) * 0.2;
 
-        // Reset if out of bounds
-        if (particle.y < -50) {
-          particle.y = canvas.height + 50;
+        if (particle.y < -30) {
+          particle.y = canvas.height + 30;
           particle.x = Math.random() * canvas.width;
         }
 
-        // Draw particle - dark color on light background
         ctx.font = `${particle.size}px 'Inter', sans-serif`;
         ctx.fillStyle = `rgba(0, 0, 0, ${particle.opacity})`;
         ctx.fillText(particle.char, particle.x, particle.y);
@@ -104,7 +93,7 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
     render();
   }, []);
 
-  // Handle mouse move for magnetic effect
+  // Magnetic cursor effect
   const handleMouseMove = useCallback((e: MouseEvent) => {
     mouseRef.current = { x: e.clientX, y: e.clientY };
     
@@ -117,11 +106,11 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
       const dy = e.clientY - logoY;
       const dist = Math.sqrt(dx * dx + dy * dy);
       
-      if (dist < 250) {
-        const force = (250 - dist) / 250;
+      if (dist < 200) {
+        const force = (200 - dist) / 200;
         magneticRef.current = {
-          x: dx * force * 0.12,
-          y: dy * force * 0.12,
+          x: dx * force * 0.1,
+          y: dy * force * 0.1,
         };
         
         gsap.to(logoRef.current, {
@@ -134,78 +123,22 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
         gsap.to(logoRef.current, {
           x: 0,
           y: 0,
-          duration: 0.6,
-          ease: 'elastic.out(1, 0.5)',
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.6)',
         });
       }
     }
   }, [isTransitioning]);
 
-  // Handle logo click - spawn kitsch elements
+  // Click to transition
   const handleLogoClick = useCallback(() => {
     if (isTransitioning) return;
-    
-    const rect = logoRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    // Spawn kitsch elements
-    const types: ('star' | 'arrow' | 'code')[] = ['star', 'arrow', 'code'];
-    const newElements: KitschElement[] = [];
-    
-    for (let i = 0; i < 8; i++) {
-      const angle = (i / 8) * Math.PI * 2;
-      newElements.push({
-        id: Date.now() + i,
-        x: rect.left + rect.width / 2 + Math.cos(angle) * 80,
-        y: rect.top + rect.height / 2 + Math.sin(angle) * 80,
-        type: types[Math.floor(Math.random() * types.length)],
-        rotation: Math.random() * 360,
-      });
-    }
-    
-    setKitschElements(prev => [...prev, ...newElements]);
-
-    // Animate kitsch elements out
-    setTimeout(() => {
-      newElements.forEach((el, i) => {
-        const element = document.getElementById(`kitsch-${el.id}`);
-        if (element) {
-          gsap.fromTo(element, 
-            { scale: 0, opacity: 0 },
-            { 
-              scale: 1, 
-              opacity: 1, 
-              duration: 0.3,
-              delay: i * 0.03,
-              ease: 'back.out(2)',
-            }
-          );
-          
-          gsap.to(element, {
-            x: Math.cos((i / 8) * Math.PI * 2) * 180,
-            y: Math.sin((i / 8) * Math.PI * 2) * 180,
-            opacity: 0,
-            scale: 1.5,
-            duration: 0.7,
-            delay: 0.25 + i * 0.03,
-            ease: 'power2.out',
-            onComplete: () => {
-              setKitschElements(prev => prev.filter(k => k.id !== el.id));
-            }
-          });
-        }
-      });
-    }, 10);
-
-    // Start transition
-    setTimeout(() => startTransition(), 500);
-  }, [isTransitioning]);
-
-  // Transition to main content
-  const startTransition = useCallback(() => {
-    if (!logoRef.current || !containerRef.current) return;
-    
     setIsTransitioning(true);
+
+    // Kill hover glitch
+    if (glitchTimelineRef.current) {
+      glitchTimelineRef.current.kill();
+    }
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -214,49 +147,110 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
       }
     });
 
-    // Zoom in logo and fade out
-    tl.to(logoRef.current, {
-      scale: 8,
-      opacity: 0,
-      filter: 'blur(20px)',
-      duration: 0.8,
-      ease: 'power3.in',
+    // Intense glitch before zoom
+    tl.to(logoImgRef.current, {
+      x: 5,
+      filter: 'hue-rotate(30deg) brightness(1.2)',
+      duration: 0.05,
     })
+    .to(logoImgRef.current, {
+      x: -8,
+      filter: 'hue-rotate(-30deg) brightness(0.9)',
+      duration: 0.05,
+    })
+    .to(logoImgRef.current, {
+      x: 6,
+      filter: 'hue-rotate(20deg) brightness(1.1)',
+      duration: 0.05,
+    })
+    .to(logoImgRef.current, {
+      x: -4,
+      filter: 'hue-rotate(-20deg)',
+      duration: 0.05,
+    })
+    .to(logoImgRef.current, {
+      x: 0,
+      filter: 'hue-rotate(0deg) brightness(1)',
+      duration: 0.05,
+    })
+    // Zoom in with fade
+    .to(logoRef.current, {
+      scale: 12,
+      opacity: 0,
+      filter: 'blur(10px)',
+      duration: 0.9,
+      ease: 'power2.in',
+    })
+    // Fade out container with white overlay
+    .to(overlayRef.current, {
+      opacity: 1,
+      duration: 0.3,
+    }, '-=0.4')
     .to(containerRef.current, {
       opacity: 0,
-      duration: 0.3,
-    }, '-=0.3');
-  }, [onComplete]);
+      duration: 0.2,
+    });
+  }, [isTransitioning, onComplete]);
 
-  // Glitch effect on hover
+  // Hover glitch effect - subtle shake
   useEffect(() => {
     if (!logoImgRef.current || isTransitioning) return;
 
     if (isHovered) {
-      const glitchTl = gsap.timeline({ repeat: -1, repeatDelay: 0.15 });
+      const tl = gsap.timeline({ repeat: -1 });
+      glitchTimelineRef.current = tl;
       
-      glitchTl
-        .to(logoImgRef.current, {
-          x: 3,
-          filter: 'hue-rotate(20deg) saturate(1.5)',
-          duration: 0.05,
-        })
-        .to(logoImgRef.current, {
-          x: -3,
-          filter: 'hue-rotate(-20deg) saturate(1.2)',
-          duration: 0.05,
-        })
-        .to(logoImgRef.current, {
-          x: 0,
-          filter: 'hue-rotate(0deg) saturate(1)',
-          duration: 0.05,
-        });
+      // Subtle shake/tremble with glitch
+      tl.to(logoImgRef.current, {
+        x: 2,
+        y: -1,
+        rotation: 0.5,
+        filter: 'hue-rotate(10deg)',
+        duration: 0.08,
+        ease: 'steps(1)',
+      })
+      .to(logoImgRef.current, {
+        x: -3,
+        y: 1,
+        rotation: -0.5,
+        filter: 'hue-rotate(-15deg)',
+        duration: 0.08,
+        ease: 'steps(1)',
+      })
+      .to(logoImgRef.current, {
+        x: 1,
+        y: -2,
+        rotation: 0.3,
+        filter: 'hue-rotate(5deg)',
+        duration: 0.08,
+        ease: 'steps(1)',
+      })
+      .to(logoImgRef.current, {
+        x: -1,
+        y: 0,
+        rotation: -0.2,
+        filter: 'hue-rotate(-5deg)',
+        duration: 0.08,
+        ease: 'steps(1)',
+      })
+      .to(logoImgRef.current, {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        filter: 'hue-rotate(0deg)',
+        duration: 0.15,
+      })
+      .to(logoImgRef.current, {
+        duration: 0.3, // Pause before next shake
+      });
 
       return () => {
-        glitchTl.kill();
+        tl.kill();
         gsap.to(logoImgRef.current, {
           x: 0,
-          filter: 'hue-rotate(0deg) saturate(1)',
+          y: 0,
+          rotation: 0,
+          filter: 'hue-rotate(0deg)',
           duration: 0.2,
         });
       };
@@ -272,8 +266,8 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
 
     // Entrance animation
     gsap.fromTo(logoRef.current,
-      { opacity: 0, scale: 0.8, y: 30 },
-      { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'elastic.out(1, 0.6)', delay: 0.2 }
+      { opacity: 0, scale: 0.9, y: 20 },
+      { opacity: 1, scale: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.2 }
     );
 
     return () => {
@@ -281,30 +275,11 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      if (glitchTimelineRef.current) {
+        glitchTimelineRef.current.kill();
+      }
     };
   }, [initParticles, animateParticles, handleMouseMove]);
-
-  // Render kitsch element based on type
-  const renderKitschElement = (el: KitschElement) => {
-    switch (el.type) {
-      case 'star':
-        return (
-          <svg viewBox="0 0 24 24" className="w-6 h-6 fill-primary">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-        );
-      case 'arrow':
-        return (
-          <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-foreground fill-none stroke-2">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        );
-      case 'code':
-        return (
-          <span className="text-xs font-mono font-bold text-foreground">{'</>'}</span>
-        );
-    }
-  };
 
   return (
     <div
@@ -317,11 +292,8 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
         className="absolute inset-0 pointer-events-none"
       />
 
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 bg-grid opacity-[0.03] pointer-events-none" />
-
-      {/* Soft ambient glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[100px]" />
+      {/* Subtle grid */}
+      <div className="absolute inset-0 bg-grid opacity-[0.02] pointer-events-none" />
 
       {/* Logo Container */}
       <div
@@ -331,63 +303,45 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleLogoClick}
       >
-        {/* RGB Shift layers (visible on hover) */}
+        {/* RGB shift layers on hover */}
         {isHovered && !isTransitioning && (
           <>
             <img 
               src={logoImage}
               alt=""
-              className="absolute inset-0 w-[280px] md:w-[400px] lg:w-[500px] h-auto opacity-30 pointer-events-none"
-              style={{ transform: 'translate(-3px, -2px)', filter: 'hue-rotate(-30deg)' }}
+              className="absolute inset-0 w-[280px] md:w-[400px] lg:w-[480px] h-auto opacity-20 pointer-events-none"
+              style={{ transform: 'translate(-2px, -1px)', filter: 'hue-rotate(-40deg) saturate(2)' }}
             />
             <img 
               src={logoImage}
               alt=""
-              className="absolute inset-0 w-[280px] md:w-[400px] lg:w-[500px] h-auto opacity-30 pointer-events-none"
-              style={{ transform: 'translate(3px, 2px)', filter: 'hue-rotate(30deg)' }}
+              className="absolute inset-0 w-[280px] md:w-[400px] lg:w-[480px] h-auto opacity-20 pointer-events-none"
+              style={{ transform: 'translate(2px, 1px)', filter: 'hue-rotate(40deg) saturate(2)' }}
             />
           </>
         )}
 
-        {/* Main logo image */}
+        {/* Main logo */}
         <img
           ref={logoImgRef}
           src={logoImage}
           alt="Code Fantasia"
-          className="relative w-[280px] md:w-[400px] lg:w-[500px] h-auto drop-shadow-lg"
-          style={{
-            filter: isHovered ? 'drop-shadow(0 0 30px rgba(0, 200, 200, 0.3))' : 'none',
-            transition: 'filter 0.3s ease',
-          }}
+          className="relative w-[280px] md:w-[400px] lg:w-[480px] h-auto"
         />
 
         {/* Click hint */}
-        <p className="text-center mt-8 text-muted-foreground/60 font-body text-sm tracking-widest uppercase">
-          Click to Enter
+        <p className={`text-center mt-6 text-sm tracking-widest uppercase transition-opacity duration-300 ${
+          isHovered ? 'text-foreground/60' : 'text-muted-foreground/40'
+        }`}>
+          {isHovered ? 'Click to Enter' : 'Hover to Interact'}
         </p>
-
-        {/* Minimal decorative corners */}
-        <div className="absolute -top-6 -left-6 w-6 h-6 border-l border-t border-foreground/10" />
-        <div className="absolute -top-6 -right-6 w-6 h-6 border-r border-t border-foreground/10" />
-        <div className="absolute -bottom-6 -left-6 w-6 h-6 border-l border-b border-foreground/10" />
-        <div className="absolute -bottom-6 -right-6 w-6 h-6 border-r border-b border-foreground/10" />
       </div>
 
-      {/* Kitsch Elements */}
-      {kitschElements.map((el) => (
-        <div
-          key={el.id}
-          id={`kitsch-${el.id}`}
-          className="fixed pointer-events-none z-50"
-          style={{
-            left: el.x,
-            top: el.y,
-            transform: `translate(-50%, -50%) rotate(${el.rotation}deg)`,
-          }}
-        >
-          {renderKitschElement(el)}
-        </div>
-      ))}
+      {/* White overlay for smooth transition */}
+      <div 
+        ref={overlayRef}
+        className="absolute inset-0 bg-white pointer-events-none opacity-0"
+      />
 
       {/* Skip button */}
       <button
@@ -395,7 +349,7 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
           sessionStorage.setItem('introSeen', 'true');
           onComplete();
         }}
-        className="absolute bottom-8 right-8 text-muted-foreground/40 hover:text-muted-foreground/70 text-xs font-body tracking-wider transition-colors"
+        className="absolute bottom-8 right-8 text-muted-foreground/30 hover:text-muted-foreground/60 text-xs tracking-wider transition-colors"
       >
         SKIP →
       </button>
