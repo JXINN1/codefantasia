@@ -333,7 +333,7 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
         <p className={`text-center mt-6 text-sm tracking-widest uppercase transition-opacity duration-300 ${
           isHovered ? 'text-foreground/60' : 'text-muted-foreground/40'
         }`}>
-          {isHovered ? 'Click to Enter' : 'Hover to Interact'}
+          Click to Enter
         </p>
       </div>
 

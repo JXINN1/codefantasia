@@ -376,14 +376,14 @@ export default function About() {
             </div>
 
             {/* Main Title */}
-            <div className="overflow-hidden mb-4 perspective-1000">
-              <h1 className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-slate-900">
+            <div className="overflow-hidden mb-2 perspective-1000">
+              <h1 className="hero-line font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-slate-900">
                 CREATIVITY
               </h1>
             </div>
             <div className="overflow-hidden mb-4 perspective-1000">
               <h1 
-                className="hero-line font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent"
+                className="hero-line font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent"
                 style={getParallaxStyle(0.1)}
               >
                 MEETS AI
@@ -523,28 +523,27 @@ export default function About() {
       </section>
 
       {/* CTA Section - Dark themed like other pages */}
-      <section className="py-32 relative bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="absolute inset-0 bg-gradient-to-t from-violet-500/10 via-transparent to-transparent" />
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="absolute inset-0 bg-grid opacity-10" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl" />
         
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-white">
-              Ready to Create<br />
-              <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
-                Something Amazing?
-              </span>
+          <div className="text-center">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
+              Ready to Start Your <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">Project</span>?
             </h2>
-            
-            <p className="text-slate-400 text-lg mb-12 max-w-xl mx-auto">
+            <p className="text-slate-300 max-w-xl mx-auto mb-10 text-lg">
               Let's discuss how we can bring your vision to life with AI-powered filmmaking.
             </p>
-
             <Link
               to="/contact"
-              className="group inline-flex items-center gap-4 px-8 py-4 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold text-lg hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-500 to-cyan-500 text-white font-display font-semibold uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/30 hover:scale-105"
             >
-              Start a Conversation
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              Contact Us
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
         </div>
