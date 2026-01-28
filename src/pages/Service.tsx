@@ -188,47 +188,6 @@ export default function Service() {
         </div>
       </section>
 
-      {/* Process Section - Moved from About */}
-      <section className="py-32 relative overflow-hidden bg-slate-900">
-        <div className="absolute inset-0 bg-grid opacity-10" />
-        <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection animation="fade-up" className="text-center mb-16">
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-white">
-              Our <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">Process</span>
-            </h2>
-            <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
-              A streamlined approach to bringing your vision to life
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Discovery', description: 'Understanding your vision and goals' },
-              { step: '02', title: 'Concept', description: 'Developing the creative direction' },
-              { step: '03', title: 'Production', description: 'AI-powered creation and iteration' },
-              { step: '04', title: 'Delivery', description: 'Final polish and handoff' },
-            ].map((item, index) => (
-              <AnimatedSection key={item.step} animation="fade-up" delay={index * 0.15}>
-                <div className="relative text-center group">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-violet-500/50 group-hover:border-violet-400 group-hover:shadow-lg group-hover:shadow-violet-500/30 transition-all duration-300 bg-slate-800/50">
-                    <span className="font-display text-xl font-bold text-violet-400">{item.step}</span>
-                  </div>
-                  <h3 className="mt-6 font-display text-lg font-semibold text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-slate-400">
-                    {item.description}
-                  </p>
-                  {index < 3 && (
-                    <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-violet-500/50 to-transparent" />
-                  )}
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="absolute inset-0 bg-grid opacity-10" />
