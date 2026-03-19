@@ -151,7 +151,7 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
           </h3>
 
           {/* Minimal Description */}
-          <p className="text-slate-600 text-sm mb-6 line-clamp-2 font-bold">
+          <p className="text-slate-600 text-sm mb-6 line-clamp-2">
             {member.careers[0]}
           </p>
 
@@ -486,7 +486,7 @@ export default function About() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-600 text-sm leading-relaxed font-bold">
+                  <p className="text-slate-600 text-sm leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -507,7 +507,7 @@ export default function About() {
                 Leadership
               </h2>
             </div>
-            <p className="text-slate-600 max-w-md text-sm leading-relaxed font-bold">
+            <p className="text-slate-600 max-w-md text-sm leading-relaxed">
               30년 이상의 VFX, 미디어, 테크놀로지 분야 경험을 바탕으로 
               크리에이티브와 기술의 경계를 확장하는 팀입니다.
             </p>

@@ -11,7 +11,7 @@ export default function Footer() {
             <Link to="/" className="inline-block mb-6">
               <img src={logo} alt="CODE FANTASIA" className="h-10 brightness-0 invert" />
             </Link>
-            <div className="text-slate-400 text-sm leading-relaxed space-y-2 font-bold">
+            <div className="text-slate-200 text-sm leading-relaxed space-y-2">
               <p>
                 Company Name: CODE FANTASIA Inc. | CEO: Park Kwan Woo | Business License No.: 649-81-03553
               </p>
@@ -40,7 +40,7 @@ export default function Footer() {
                 <li key={item}>
                   <Link
                     to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                    className="text-slate-400 hover:text-violet-400 transition-colors duration-300 font-bold"
+                    className="text-slate-200 hover:text-violet-400 transition-colors duration-300"
                   >
                     {item}
                   </Link>
@@ -58,7 +58,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:admin@codefantasia.ai"
-                  className="text-slate-400 hover:text-violet-400 transition-colors duration-300 font-bold"
+                  className="text-slate-200 hover:text-violet-400 transition-colors duration-300"
                 >
                   admin@codefantasia.ai
                 </a>
