@@ -64,6 +64,16 @@ export const portfolioItems = [
     tools: 'live-action, AI Generation',
     year: '2024',
   },
+  {
+    slug: 'astrochild-short-film',
+    title: "이우 '낯선 이 어둠 속에서' (ASTROCHILD Short Film)",
+    subtitle: 'AI Animation',
+    videoUrl: 'https://www.youtube.com/watch?v=kC15OMTa0EQ',
+    description: 'AI Animation Film ASTROCHILD IN THE LONELY PLANET – OST, Episode 3. A sad and beautiful journey of an ASTROCHILD, born on a "THINKING PLANET" somewhere deep in space.',
+    detailCategory: 'AI Animation',
+    tools: 'AI Generation',
+    year: '2026',
+  },
 ];
 
 export default function Portfolio() {
