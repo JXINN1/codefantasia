@@ -130,7 +130,7 @@ export default function Contact() {
                       name="projectType"
                       value={formData.projectType}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                      className="w-full px-4 py-3 h-[50px] bg-card border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm font-normal appearance-none"
                     >
                       <option value="">Select a type</option>
                       <option value="animation">AI Animation</option>
