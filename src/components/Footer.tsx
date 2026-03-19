@@ -39,7 +39,7 @@ export default function Footer() {
               {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
-                    to={item === 'Home' ? '/home' : item === 'Services' ? '/service' : `/${item.toLowerCase()}`}
+                    to={item === 'Home' ? '/' : item === 'Services' ? '/service' : `/${item.toLowerCase()}`}
                     className="text-slate-200 hover:text-violet-400 transition-colors duration-300"
                   >
                     {item}
