@@ -1,38 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
-import IntroLanding from '@/components/IntroLanding';
 import showreelVideo from '@/assets/showreel.mp4';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  // Always show intro on first visit - check sessionStorage
-  const [showIntro, setShowIntro] = useState(() => {
-    // For testing: clear storage to always see intro
-    // Uncomment below line to force intro every time:
-    // sessionStorage.removeItem('introSeen');
-    return sessionStorage.getItem('introSeen') !== 'true';
-  });
-  
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Only run animations when intro is not showing
-    if (showIntro) return;
-    
     const ctx = gsap.context(() => {
-      // Set initial states
       gsap.set(videoRef.current, { opacity: 0, y: 60 });
       gsap.set(ctaRef.current, { opacity: 0, y: 20 });
 
-      // Hero entrance animation with slight delay to ensure DOM is ready
       const tl = gsap.timeline({ 
         defaults: { ease: 'power3.out' },
         delay: 0.1 
@@ -41,7 +27,6 @@ export default function Home() {
       tl.to(videoRef.current, { opacity: 1, y: 0, duration: 1 })
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4');
 
-      // Parallax effect on scroll
       gsap.to('.hero-bg', {
         yPercent: 30,
         ease: 'none',
@@ -55,17 +40,7 @@ export default function Home() {
     }, heroRef);
 
     return () => ctx.revert();
-  }, [showIntro]);
-
-  // Handle intro completion
-  const handleIntroComplete = () => {
-    setShowIntro(false);
-  };
-
-  // Show intro if not seen in this session
-  if (showIntro) {
-    return <IntroLanding onComplete={handleIntroComplete} />;
-  }
+  }, []);
 
   return (
     <main className="min-h-screen bg-background">

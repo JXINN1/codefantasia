@@ -142,7 +142,6 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
 
     const tl = gsap.timeline({
       onComplete: () => {
-        sessionStorage.setItem('introSeen', 'true');
         onComplete();
       }
     });
