@@ -486,7 +486,7 @@ export default function About() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate-600 text-sm leading-relaxed font-bold">
                     {item.description}
                   </p>
                 </div>
