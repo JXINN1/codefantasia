@@ -393,7 +393,8 @@ export default function About() {
             {/* Subtitle */}
             <div className="hero-line mt-12">
               <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                스토리텔링 중심의 AI 프로덕션으로<br className="hidden sm:block" />
+                스토리텔링 중심의 AI 프로덕션으로{' '}
+                <br className="sm:hidden" />
                 콘텐츠 산업의 새로운 지평을 열어갑니다
               </p>
             </div>
