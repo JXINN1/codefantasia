@@ -50,7 +50,7 @@ export default function Service() {
               Crafting the Future of{' '}
               <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">Visual Storytelling</span>
             </h1>
-            <p className="mt-6 text-xl text-slate-600 max-w-2xl">
+            <p className="mt-6 text-xl text-slate-600 max-w-2xl font-bold">
               We specialize in AI-powered filmmaking, creating tools and content that define the next generation of visual media.
             </p>
           </AnimatedSection>
