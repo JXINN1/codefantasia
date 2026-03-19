@@ -11,7 +11,7 @@ export default function Footer() {
             <Link to="/" className="inline-block mb-6">
               <img src={logo} alt="CODE FANTASIA" className="h-10 brightness-0 invert" />
             </Link>
-            <div className="text-slate-400 text-sm leading-relaxed space-y-2">
+            <div className="text-slate-400 text-sm leading-relaxed space-y-2 font-bold">
               <p>
                 Company Name: CODE FANTASIA Inc. | CEO: Park Kwan Woo | Business License No.: 649-81-03553
               </p>
