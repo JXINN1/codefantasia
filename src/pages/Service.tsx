@@ -50,7 +50,7 @@ export default function Service() {
               Crafting the Future of{' '}
               <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">Visual Storytelling</span>
             </h1>
-            <p className="mt-6 text-xl text-slate-600 max-w-2xl">
+            <p className="mt-6 text-xl text-slate-600 max-w-2xl font-bold">
               We specialize in AI-powered filmmaking, creating tools and content that define the next generation of visual media.
             </p>
           </AnimatedSection>
@@ -85,7 +85,7 @@ export default function Service() {
                       <h2 className="font-display text-3xl md:text-4xl font-bold text-slate-800 mb-4">
                         {service.title}
                       </h2>
-                      <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                      <p className="text-slate-600 text-lg leading-relaxed mb-6 font-bold">
                         {service.description}
                       </p>
                       

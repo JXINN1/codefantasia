@@ -111,7 +111,7 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-xs font-mono text-muted-foreground tracking-wider">CODE FANTASIA SHOWREEL 2025</span>
+                <span className="text-xs font-mono text-muted-foreground tracking-wider"></span>
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                   <span className="text-xs text-primary font-mono">LIVE</span>
