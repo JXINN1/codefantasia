@@ -393,7 +393,8 @@ export default function About() {
             {/* Subtitle */}
             <div className="hero-line mt-12">
               <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                스토리텔링 중심의 AI 프로덕션으로<br className="hidden sm:block" />
+                스토리텔링 중심의 AI 프로덕션으로{' '}
+                <br className="sm:hidden" />
                 콘텐츠 산업의 새로운 지평을 열어갑니다
               </p>
             </div>
@@ -430,7 +431,9 @@ export default function About() {
                 을 통해
               </p>
               <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed transition-all duration-500 ease-out hover:translate-x-3 hover:text-slate-900 cursor-default">
-                아직 정립되지 않은 AI 콘텐츠 파이프라인의
+                아직 정립되지 않은
+                <br className="md:hidden" />
+                {' '}AI 콘텐츠 파이프라인의
               </p>
               <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900 transition-all duration-500 ease-out hover:translate-x-4 cursor-default group">
                 <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent transition-all duration-500 group-hover:from-cyan-500 group-hover:to-blue-500 group-hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">

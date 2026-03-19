@@ -129,7 +129,7 @@ export default function Service() {
                         </div>
                       ) : service.images.length === 2 ? (
                         // Double image staggered layout
-                        <div className="relative h-[400px] md:h-[500px]">
+                        <div className="relative h-[300px] md:h-[500px]">
                           {/* First image - positioned left and up */}
                           <div className="group absolute left-0 top-0 w-[60%] z-10 rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
