@@ -8,7 +8,7 @@ import logo from '@/assets/logo.avif';
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-  { href: '/', label: 'Home' },
+  { href: '/home', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/service', label: 'Services' },
   { href: '/portfolio', label: 'Portfolio' },
