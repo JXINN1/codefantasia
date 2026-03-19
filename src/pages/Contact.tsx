@@ -184,8 +184,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-slate-800">Email</h3>
-                      <a href="mailto:hello@codefantasia.ai" className="text-slate-600 hover:text-violet-600 transition-colors">
-                        hello@codefantasia.ai
+                      <a href="mailto:admin@codefantasia.ai" className="text-slate-600 hover:text-violet-600 transition-colors">
+                        admin@codefantasia.ai
                       </a>
                     </div>
                   </div>

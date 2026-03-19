@@ -24,9 +24,9 @@ const services = [
     id: 'original-ip',
     title: 'CODE FANTASIA Original Contents (IP)',
     subtitle: 'Virtual Artist & AI Storytelling',
-    description: '버추얼 아티스트 제작 / AI를 활용한 스토리기반의 오리지널 영화 / 애니메이션 / 미디어 콘텐츠 제작',
+    description: 'AI를 활용한 스토리기반의 오리지널 영화 / 애니메이션 / 미디어 콘텐츠 제작',
     images: [originalIp, originalIp2],
-    features: ['Virtual Artists', 'Original Films', 'Animation', 'Media Contents'],
+    features: ['Original Films', 'Animation', 'Media Contents'],
     gradient: 'from-violet-500/20 via-pink-500/10 to-transparent',
   },
 ];

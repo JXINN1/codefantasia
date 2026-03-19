@@ -1,20 +1,33 @@
 import { Link } from 'react-router-dom';
+import logo from '@/assets/logo.avif';
 
 export default function Footer() {
   return (
     <footer className="relative bg-slate-900 border-t border-slate-800">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* Brand */}
+          {/* Brand & Company Info */}
           <div className="md:col-span-2">
-            <Link to="/" className="inline-block">
-              <span className="font-display text-2xl font-bold tracking-wider text-white">
-                CODE<span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">FANTASIA</span>
-              </span>
+            <Link to="/" className="inline-block mb-6">
+              <img src={logo} alt="CODE FANTASIA" className="h-10 brightness-0 invert" />
             </Link>
-            <p className="mt-4 text-slate-400 max-w-md leading-relaxed">
-              We create tools, workflows, and aesthetics that will define a generation of AI-powered filmmaking.
-            </p>
+            <div className="text-slate-400 text-sm leading-relaxed space-y-2">
+              <p>
+                Company Name: CODE FANTASIA Inc. | CEO: Park Kwan Woo | Business License No.: 649-81-03553
+              </p>
+              <p>
+                Addr: 서울특별시 강남구 학동로25길 19, 밸런스빌딩 I
+              </p>
+              <p>
+                19, Hakdong-ro 25-gil, Gangnam-gu, Seoul, 06046, Republic of Korea
+              </p>
+              <p>
+                Tel: T+82 70-4814-4461 | Email:{' '}
+                <a href="mailto:admin@codefantasia.ai" className="hover:text-violet-400 transition-colors">
+                  admin@codefantasia.ai
+                </a>
+              </p>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -36,7 +49,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Connect */}
           <div>
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-white mb-4">
               Connect
@@ -44,10 +57,10 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:hello@codefantasia.ai"
+                  href="mailto:admin@codefantasia.ai"
                   className="text-slate-400 hover:text-violet-400 transition-colors duration-300"
                 >
-                  hello@codefantasia.ai
+                  admin@codefantasia.ai
                 </a>
               </li>
             </ul>
@@ -59,11 +72,6 @@ export default function Footer() {
           <p className="text-sm text-slate-500">
             © {new Date().getFullYear()} Code Fantasia. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <span className="text-xs text-slate-600 uppercase tracking-wider">
-              AI-Powered Filmmaking
-            </span>
-          </div>
         </div>
       </div>
     </footer>
