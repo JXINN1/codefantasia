@@ -8,7 +8,7 @@ import vfx3 from '@/assets/vfx3.jpeg';
 import vfx4 from '@/assets/vfx4.png';
 import originalIp from '@/assets/originalip.jpg';
 import originalIp2 from '@/assets/originalip2.png';
-import saasImg from '@/assets/saas.jpg';
+
 
 const services = [
   {
@@ -28,15 +28,6 @@ const services = [
     images: [originalIp, originalIp2],
     features: ['Virtual Artists', 'Original Films', 'Animation', 'Media Contents'],
     gradient: 'from-violet-500/20 via-pink-500/10 to-transparent',
-  },
-  {
-    id: 'ai-tech',
-    title: 'AI Technology Product Development',
-    subtitle: 'Software & SaaS Platform',
-    description: '프로그램 소프트웨어 개발 / B to B 서비스 / SaaS 플랫폼 개발',
-    images: [saasImg],
-    features: ['Software Development', 'B2B Services', 'SaaS Platform', 'Custom Solutions'],
-    gradient: 'from-cyan-500/20 via-blue-500/10 to-transparent',
   },
 ];
 
