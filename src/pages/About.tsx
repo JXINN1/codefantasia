@@ -151,7 +151,7 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
           </h3>
 
           {/* Minimal Description */}
-          <p className="text-slate-600 text-sm mb-6 line-clamp-2 font-bold">
+          <p className="text-slate-600 text-sm mb-6 line-clamp-2">
             {member.careers[0]}
           </p>
 
