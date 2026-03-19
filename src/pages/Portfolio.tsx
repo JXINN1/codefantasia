@@ -5,6 +5,16 @@ import AnimatedSection from '@/components/AnimatedSection';
 
 export const portfolioItems = [
   {
+    slug: 'astrochild-short-film',
+    title: "이우 '낯선 이 어둠 속에서' (ASTROCHILD Short Film)",
+    subtitle: 'AI Animation',
+    videoUrl: 'https://www.youtube.com/watch?v=kC15OMTa0EQ',
+    description: 'AI Animation Film ASTROCHILD IN THE LONELY PLANET – OST, Episode 3. A sad and beautiful journey of an ASTROCHILD, born on a "THINKING PLANET" somewhere deep in space.',
+    detailCategory: 'AI Animation',
+    tools: 'AI Generation',
+    year: '2026',
+  },
+  {
     slug: 'kei-smile-mv',
     title: "Kei(케이) 'Smile' (Official MV)",
     subtitle: 'AI Music Video',
@@ -63,16 +73,6 @@ export const portfolioItems = [
     detailCategory: 'AI Short Film',
     tools: 'live-action, AI Generation',
     year: '2024',
-  },
-  {
-    slug: 'astrochild-short-film',
-    title: "이우 '낯선 이 어둠 속에서' (ASTROCHILD Short Film)",
-    subtitle: 'AI Animation',
-    videoUrl: 'https://www.youtube.com/watch?v=kC15OMTa0EQ',
-    description: 'AI Animation Film ASTROCHILD IN THE LONELY PLANET – OST, Episode 3. A sad and beautiful journey of an ASTROCHILD, born on a "THINKING PLANET" somewhere deep in space.',
-    detailCategory: 'AI Animation',
-    tools: 'AI Generation',
-    year: '2026',
   },
 ];
 
