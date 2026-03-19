@@ -40,7 +40,7 @@ export default function Footer() {
                 <li key={item}>
                   <Link
                     to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                    className="text-slate-400 hover:text-violet-400 transition-colors duration-300"
+                    className="text-slate-400 hover:text-violet-400 transition-colors duration-300 font-bold"
                   >
                     {item}
                   </Link>
