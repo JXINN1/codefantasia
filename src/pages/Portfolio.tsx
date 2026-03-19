@@ -95,7 +95,7 @@ export default function Portfolio() {
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl">
               <span className="text-gradient">Portfolio</span>
             </h1>
-            <p className="mt-6 text-xl text-muted-foreground max-w-2xl font-bold">
+            <p className="mt-6 text-xl text-muted-foreground max-w-2xl">
               Explore our collection of AI-powered visual projects, from experimental animations to full-length short films.
             </p>
           </AnimatedSection>
