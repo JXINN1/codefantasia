@@ -58,7 +58,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:admin@codefantasia.ai"
-                  className="text-slate-400 hover:text-violet-400 transition-colors duration-300 font-bold"
+                  className="text-slate-200 hover:text-violet-400 transition-colors duration-300"
                 >
                   admin@codefantasia.ai
                 </a>
