@@ -85,7 +85,7 @@ export default function Service() {
                       <h2 className="font-display text-3xl md:text-4xl font-bold text-slate-800 mb-4">
                         {service.title}
                       </h2>
-                      <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                      <p className="text-slate-600 text-lg leading-relaxed mb-6 font-bold">
                         {service.description}
                       </p>
                       
