@@ -15,7 +15,7 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-  { href: '/home', label: 'Home' },
+  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/service', label: 'Services' },
   { href: '/portfolio', label: 'Portfolio' },

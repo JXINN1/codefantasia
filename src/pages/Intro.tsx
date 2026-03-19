@@ -1,25 +1,19 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import IntroLanding from '@/components/IntroLanding';
+import Home from '@/pages/Home';
 
 export default function Intro() {
-  const navigate = useNavigate();
-
-  // If intro already seen, redirect to /home
-  useEffect(() => {
-    if (sessionStorage.getItem('introSeen') === 'true') {
-      navigate('/home', { replace: true });
-    }
-  }, [navigate]);
+  const [showHome, setShowHome] = useState(
+    sessionStorage.getItem('introSeen') === 'true'
+  );
 
   const handleIntroComplete = () => {
     sessionStorage.setItem('introSeen', 'true');
-    navigate('/home', { replace: true });
+    setShowHome(true);
   };
 
-  // If already seen, render nothing while redirecting
-  if (sessionStorage.getItem('introSeen') === 'true') {
-    return null;
+  if (showHome) {
+    return <Home />;
   }
 
   return <IntroLanding onComplete={handleIntroComplete} />;
