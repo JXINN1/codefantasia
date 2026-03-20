@@ -55,7 +55,6 @@ export default function Header() {
   const handleMobileNav = (href: string) => {
     setMobileOpen(false);
     navigate(href);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

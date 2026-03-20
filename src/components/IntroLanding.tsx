@@ -199,54 +199,41 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
       const tl = gsap.timeline({ repeat: -1 });
       glitchTimelineRef.current = tl;
       
-      // Subtle shake/tremble with glitch
+      // Subtle vertical tremble with color shift (no horizontal movement)
       tl.to(logoImgRef.current, {
-        x: 2,
         y: -1,
-        rotation: 0.5,
+        rotation: 0.3,
         filter: 'hue-rotate(10deg)',
         duration: 0.08,
         ease: 'steps(1)',
       })
       .to(logoImgRef.current, {
-        x: -3,
         y: 1,
-        rotation: -0.5,
+        rotation: -0.3,
         filter: 'hue-rotate(-15deg)',
         duration: 0.08,
         ease: 'steps(1)',
       })
       .to(logoImgRef.current, {
-        x: 1,
-        y: -2,
-        rotation: 0.3,
+        y: -0.5,
+        rotation: 0.2,
         filter: 'hue-rotate(5deg)',
         duration: 0.08,
         ease: 'steps(1)',
       })
       .to(logoImgRef.current, {
-        x: -1,
-        y: 0,
-        rotation: -0.2,
-        filter: 'hue-rotate(-5deg)',
-        duration: 0.08,
-        ease: 'steps(1)',
-      })
-      .to(logoImgRef.current, {
-        x: 0,
         y: 0,
         rotation: 0,
         filter: 'hue-rotate(0deg)',
         duration: 0.15,
       })
       .to(logoImgRef.current, {
-        duration: 0.3, // Pause before next shake
+        duration: 0.4, // Pause before next tremble
       });
 
       return () => {
         tl.kill();
         gsap.to(logoImgRef.current, {
-          x: 0,
           y: 0,
           rotation: 0,
           filter: 'hue-rotate(0deg)',
