@@ -73,9 +73,9 @@ const teamMembers = [
       '비유비유 기획팀 책임(2017-2018)',
     ],
     projects: [
-      'Paradise City Art Space 전시 기획',
-      '국립고궁박물관 디지털 문화유산 콘텐츠',
       '극장판 애니메이션 〈도티와 영원의 탑〉 PD',
+      '국립고궁박물관 디지털 문화유산 콘텐츠',
+      'Paradise City Art Space 전시 기획',
       '다수 미디어아트 전시 기획',
     ]
   },
