@@ -234,7 +234,6 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
       return () => {
         tl.kill();
         gsap.to(logoImgRef.current, {
-          x: 0,
           y: 0,
           rotation: 0,
           filter: 'hue-rotate(0deg)',
