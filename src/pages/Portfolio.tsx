@@ -69,7 +69,7 @@ export const portfolioItems = [
     slug: 'voices',
     title: 'VOICES',
     subtitle: 'AI Short Film',
-    videoUrl: 'https://vimeo.com/1039905268?fl=pl&fe=sh',
+    videoUrl: 'https://vimeo.com/1168371296',
     description: 'A haunting exploration of human connection in the digital age. This AI-generated short film combines experimental visuals with an evocative soundscape to create an immersive viewing experience.',
     detailCategory: 'AI Short Film',
     tools: 'live-action, AI Generation',
