@@ -29,7 +29,7 @@ export const portfolioItems = [
     slug: 'baek-ayeon-my-universe',
     title: "백아연 'My Universe' (Official MV)",
     subtitle: 'AI Music Video',
-    videoUrl: 'https://www.youtube.com/watch?v=igPb1ypyMDE&list=RDigPb1ypyMDE&start_radio=1',
+    videoUrl: 'https://youtu.be/FyAAbFmupWc',
     description: 'Official music video for Baek A-yeon\'s "My Universe". This project demonstrates the seamless integration of AI-generated visuals with traditional music video production, creating a unique visual language.',
     detailCategory: 'AI Music Video',
     tools: 'AI Generation',
