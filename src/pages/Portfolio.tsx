@@ -6,20 +6,10 @@ import AnimatedSection from '@/components/AnimatedSection';
 
 export const portfolioItems = [
   {
-    slug: 'astrochild-short-film',
-    title: "이우 '낯선 이 어둠 속에서' (ASTROCHILD Short Film)",
-    subtitle: 'AI Animation',
-    videoUrl: 'https://www.youtube.com/watch?v=kC15OMTa0EQ',
-    description: 'AI Animation Film ASTROCHILD IN THE LONELY PLANET – OST, Episode 3. A sad and beautiful journey of an ASTROCHILD, born on a "THINKING PLANET" somewhere deep in space.',
-    detailCategory: 'AI Animation',
-    tools: 'AI Generation',
-    year: '2026',
-  },
-  {
     slug: 'kei-smile-mv',
     title: "Kei(케이) 'Smile' (Official MV)",
     subtitle: 'AI Music Video',
-    videoUrl: 'https://www.youtube.com/watch?v=RJSJ06zlUqY',
+    videoUrl: 'https://youtu.be/Qccf-K269aU',
     description: 'Official music video for Kei\'s "Smile". A vibrant AI-generated music video showcasing the harmony between artistic vision and cutting-edge AI visual production.',
     detailCategory: 'AI Music Video',
     tools: 'AI Generation',
@@ -39,7 +29,7 @@ export const portfolioItems = [
     slug: 'baek-ayeon-my-universe',
     title: "백아연 'My Universe' (Official MV)",
     subtitle: 'AI Music Video',
-    videoUrl: 'https://www.youtube.com/watch?v=igPb1ypyMDE&list=RDigPb1ypyMDE&start_radio=1',
+    videoUrl: 'https://youtu.be/FyAAbFmupWc',
     description: 'Official music video for Baek A-yeon\'s "My Universe". This project demonstrates the seamless integration of AI-generated visuals with traditional music video production, creating a unique visual language.',
     detailCategory: 'AI Music Video',
     tools: 'AI Generation',
