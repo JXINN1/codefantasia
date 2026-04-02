@@ -8,6 +8,8 @@ import vfx3 from '@/assets/vfx3.jpeg';
 import vfx4 from '@/assets/vfx4.png';
 import originalIp from '@/assets/originalip.jpg';
 import originalIp2 from '@/assets/originalip2.png';
+import aiTech1 from '@/assets/ai-tech1.png';
+import aiTech2 from '@/assets/ai-tech2.jpg';
 
 
 const services = [
