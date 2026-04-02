@@ -6,10 +6,30 @@ import AnimatedSection from '@/components/AnimatedSection';
 
 export const portfolioItems = [
   {
+    slug: 'csr-official-mv',
+    title: "CSR(첫사랑) '숨길 수 없는 맘인걸' (Official MV)",
+    subtitle: 'AI Music Video',
+    videoUrl: 'https://www.youtube.com/watch?v=wu7b0oYIMG4',
+    description: 'Official music video for CSR\'s "숨길 수 없는 맘인걸". A captivating AI-generated music video blending emotional storytelling with innovative AI visual production.',
+    detailCategory: 'AI Music Video',
+    tools: 'AI Generation',
+    year: '2025',
+  },
+  {
+    slug: 'leewoo-short-film',
+    title: "이우 '낯선 이 어둠 속에서' (Short Film)",
+    subtitle: 'AI Short Film',
+    videoUrl: 'https://www.youtube.com/watch?v=hzihNxDyTOE',
+    description: 'A compelling short film exploring themes of solitude and discovery. Created with AI generation tools, this piece showcases the potential of AI-driven narrative filmmaking.',
+    detailCategory: 'AI Short Film',
+    tools: 'AI Generation',
+    year: '2025',
+  },
+  {
     slug: 'kei-smile-mv',
     title: "Kei(케이) 'Smile' (Official MV)",
     subtitle: 'AI Music Video',
-    videoUrl: 'https://youtu.be/Qccf-K269aU',
+    videoUrl: 'https://www.youtube.com/watch?v=g-8IkB_1h5E',
     description: 'Official music video for Kei\'s "Smile". A vibrant AI-generated music video showcasing the harmony between artistic vision and cutting-edge AI visual production.',
     detailCategory: 'AI Music Video',
     tools: 'AI Generation',
