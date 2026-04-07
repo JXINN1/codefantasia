@@ -331,6 +331,7 @@ export default function About() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-100 to-white overflow-hidden">
+      <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
       {/* Custom Cursor */}
       <div 
         ref={cursorRef}
