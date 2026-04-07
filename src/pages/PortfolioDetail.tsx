@@ -36,6 +36,7 @@ export default function PortfolioDetail() {
 
   return (
     <main className="min-h-screen bg-background">
+      <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
       <Header />
 
       {/* Breadcrumb */}
