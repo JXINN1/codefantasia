@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useParams, Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -35,6 +36,7 @@ export default function PortfolioDetail() {
 
   return (
     <main className="min-h-screen bg-background">
+      <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
       <Header />
 
       {/* Breadcrumb */}

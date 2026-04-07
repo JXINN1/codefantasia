@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
@@ -45,6 +46,7 @@ const services = [
 export default function Service() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
+      <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
       <Header />
 
       {/* Hero Section */}
