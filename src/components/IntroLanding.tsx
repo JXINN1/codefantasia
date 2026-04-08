@@ -81,7 +81,8 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background"
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ backgroundColor: '#f5f5f5' }}
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 bg-grid opacity-[0.03] pointer-events-none" />
