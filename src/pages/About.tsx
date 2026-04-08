@@ -207,7 +207,7 @@ export default function About() {
   const expertiseRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
 
   useEffect(() => {
     // Custom cursor follower
@@ -221,9 +221,6 @@ export default function About() {
         duration: 0.8,
         ease: 'power3.out',
       });
-      
-      // Update mouse position for parallax effects
-      setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener('mousemove', moveCursor);
