@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MagneticButton from '@/components/MagneticButton';
+import MouseWaveBackground from '@/components/MouseWaveBackground';
 import showreelVideo from '@/assets/showreel.mp4';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -162,9 +163,8 @@ export default function Home() {
 
       {/* ── ABOUT BLOCK: Creativity Meets AI ── */}
       <section ref={aboutRef} className="relative overflow-hidden">
-        {/* Dark top half */}
         <div className="relative py-32 md:py-44 bg-slate-950">
-          {/* Animated glow orbs */}
+          <MouseWaveBackground color="139, 92, 246" opacity={0.05} />
           <div className="about-orb-1 absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px]" />
           <div className="about-orb-2 absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-[100px]" />
           <div className="absolute inset-0 bg-grid opacity-[0.06]" />
@@ -221,7 +221,7 @@ export default function Home() {
 
       {/* ── SERVICES BLOCK ── */}
       <section ref={servicesRef} className="relative py-32 md:py-44 bg-white overflow-hidden">
-        {/* Subtle background elements */}
+        <MouseWaveBackground color="100, 100, 140" opacity={0.04} />
         <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-slate-100 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-50 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
 
@@ -275,6 +275,7 @@ export default function Home() {
 
       {/* ── CTA SECTION ── */}
       <section className="relative py-40 overflow-hidden bg-slate-950">
+        <MouseWaveBackground color="6, 182, 212" opacity={0.04} />
         <div className="absolute inset-0 bg-grid opacity-[0.06]" />
         <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-violet-600/15 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px]" />
