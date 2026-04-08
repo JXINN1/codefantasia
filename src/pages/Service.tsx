@@ -53,26 +53,8 @@ export default function Service() {
       </Helmet>
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-10" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-400/10 rounded-full blur-3xl" />
-
-        <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection animation="fade-up">
-            <span className="inline-block px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-wider text-violet-600 border border-violet-500/30 rounded-full bg-violet-50">
-              Our Services
-            </span>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl text-slate-900">
-              Crafting the Future of{' '}
-              <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">Visual Storytelling</span>
-            </h1>
-            <p className="mt-6 text-xl text-slate-600 max-w-2xl">
-              We specialize in AI-powered filmmaking, creating tools and content that define the next generation of visual media.
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
+      {/* Spacer for header */}
+      <div className="pt-28" />
 
       {/* Staggered Services Section */}
       <section className="py-20 relative">
