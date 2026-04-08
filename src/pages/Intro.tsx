@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import IntroLanding from '@/components/IntroLanding';
 import Home from '@/pages/Home';
 
 export default function Intro() {
-  const [showHome, setShowHome] = useState(false);
+  const alreadySeen = sessionStorage.getItem('introSeen') === 'true';
+  const [showHome, setShowHome] = useState(alreadySeen);
 
   const handleIntroComplete = () => {
     sessionStorage.setItem('introSeen', 'true');
