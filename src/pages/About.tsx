@@ -229,29 +229,6 @@ export default function About() {
     window.addEventListener('mousemove', moveCursor);
 
     const ctx = gsap.context(() => {
-      // Hero text reveal with stagger
-      gsap.fromTo(
-        '.hero-line',
-        { y: 120, opacity: 0, rotateX: -45 },
-        {
-          y: 0,
-          opacity: 1,
-          rotateX: 0,
-          duration: 1.4,
-          stagger: 0.15,
-          ease: 'power4.out',
-          delay: 0.3,
-        }
-      );
-
-      // Floating animation for hero elements
-      gsap.to('.hero-float', {
-        y: -20,
-        duration: 3,
-        ease: 'power1.inOut',
-        yoyo: true,
-        repeat: -1,
-      });
 
       // Vision word-by-word reveal with scrub
       gsap.fromTo(
