@@ -332,11 +332,10 @@ export default function About() {
       {/* Vision Section - Minimalist Typography */}
       <section ref={visionRef} className="py-32 md:py-48 relative">
         <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            {/* Section Label */}
-            <div className="mb-16">
-              <span className="text-xs text-slate-500 tracking-[0.3em] font-medium">01 — VISION</span>
-            </div>
+          {/* Section Label */}
+          <div className="mb-16">
+            <span className="text-xs text-slate-500 tracking-[0.3em] font-medium">01 — VISION</span>
+          </div>
 
             {/* Vision Text - Large Typography with hover interactions */}
             <div className="space-y-4">
@@ -363,14 +362,13 @@ export default function About() {
               <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-light text-slate-700 leading-relaxed transition-all duration-500 ease-out hover:translate-x-3 hover:text-slate-900 cursor-default">
                 AI 콘텐츠 기술 기반의
               </p>
-              <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900 transition-all duration-500 ease-out hover:translate-x-4 cursor-default group">
+            <p className="vision-word text-3xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-slate-900 transition-all duration-500 ease-out hover:translate-x-4 cursor-default group">
                 <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent transition-all duration-500 group-hover:from-violet-500 group-hover:via-fuchsia-500 group-hover:to-cyan-500 group-hover:drop-shadow-[0_0_20px_rgba(192,132,252,0.3)]">
-                  산업 혁신
+                   산업 혁신
                 </span>
-                을 선도합니다.
+                 을 선도합니다.
               </p>
             </div>
-          </div>
         </div>
       </section>
 
