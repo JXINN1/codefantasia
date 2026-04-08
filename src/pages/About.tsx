@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
@@ -292,17 +292,7 @@ export default function About() {
     };
   }, []);
 
-  // Calculate parallax offset based on mouse position
-  const getParallaxStyle = (intensity: number = 1) => {
-    const centerX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
-    const centerY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
-    const offsetX = ((mousePosition.x - centerX) / centerX) * 20 * intensity;
-    const offsetY = ((mousePosition.y - centerY) / centerY) * 20 * intensity;
-    return {
-      transform: `translate(${offsetX}px, ${offsetY}px)`,
-      transition: 'transform 0.3s ease-out',
-    };
-  };
+
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-100 to-white overflow-hidden">
