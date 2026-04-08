@@ -54,10 +54,14 @@ export default function IntroLanding({ onComplete }: IntroLandingProps) {
       delay: 0.2,
     });
 
+    const startTime = Date.now();
+    const MIN_DISPLAY = 2000; // Show logo for at least 2 seconds
+
     const onCanPlay = () => {
       videoReadyRef.current = true;
-      // Give logo at least 1.5s of screen time before transitioning
-      setTimeout(() => transitionOut(), 800);
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(0, MIN_DISPLAY - elapsed);
+      setTimeout(() => transitionOut(), remaining);
     };
 
     video.addEventListener('canplaythrough', onCanPlay);
