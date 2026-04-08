@@ -82,10 +82,10 @@ export default function Header() {
               key={link.href}
               to={link.href}
               className={cn(
-                'relative font-body text-sm font-medium tracking-wide uppercase transition-colors duration-300',
+                'relative font-body text-sm font-semibold tracking-wide uppercase transition-colors duration-300',
                 location.pathname === link.href
-                  ? 'text-violet-600'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'text-black'
+                  : 'text-black/80 hover:text-black'
               )}
             >
               {link.label}
