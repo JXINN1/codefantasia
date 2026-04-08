@@ -43,7 +43,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
         className="fixed inset-0 z-[100] pointer-events-none"
         style={{
           background: 'linear-gradient(135deg, #1e1b4b 0%, #0f172a 50%, #1e1b4b 100%)',
-          scaleY: 0,
+          transform: 'scaleY(0)',
         }}
       />
       <div ref={contentRef}>{children}</div>
