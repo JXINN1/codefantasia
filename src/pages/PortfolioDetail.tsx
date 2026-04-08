@@ -36,7 +36,11 @@ export default function PortfolioDetail() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+        <link rel="canonical" href="https://codefantasia.ai/" />
+      </Helmet>
       <Header />
 
       {/* Breadcrumb */}

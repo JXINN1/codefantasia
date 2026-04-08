@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -44,6 +45,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
+      <Helmet>
+        <title>CODE FANTASIA</title>
+        <meta name="description" content="CODE FANTASIA" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href="https://codefantasia.ai/" />
+      </Helmet>
       <Header />
 
       {/* Hero Section */}

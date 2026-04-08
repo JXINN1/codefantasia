@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /about
-Disallow: /contact
-Disallow: /service
-Disallow: /portfolio
 
 Sitemap: https://codefantasia.ai/sitemap.xml
