@@ -1,344 +1,176 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import logoImage from '@/assets/logo.avif';
+import showreelVideo from '@/assets/showreel.mp4';
 
 interface IntroLandingProps {
   onComplete: () => void;
 }
 
-interface Particle {
-  x: number;
-  y: number;
-  char: string;
-  speed: number;
-  opacity: number;
-  size: number;
-}
-
 export default function IntroLanding({ onComplete }: IntroLandingProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const logoImgRef = useRef<HTMLImageElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const magneticRef = useRef({ x: 0, y: 0 });
-  const mouseRef = useRef({ x: 0, y: 0 });
-  const particlesRef = useRef<Particle[]>([]);
-  const animationFrameRef = useRef<number>();
-  const glitchTimelineRef = useRef<gsap.core.Timeline | null>(null);
-  
-  const [isHovered, setIsHovered] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const logoRef = useRef<HTMLImageElement>(null);
+  const gaugeRef = useRef<HTMLDivElement>(null);
+  const gaugeFillRef = useRef<HTMLDivElement>(null);
+  const gaugeTextRef = useRef<HTMLSpanElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [progress, setProgress] = useState(0);
+  const videoReadyRef = useRef(false);
+  const fakeProgressRef = useRef(0);
+  const animFrameRef = useRef<number>();
 
-  // Initialize subtle particles
-  const initParticles = useCallback(() => {
-    const chars = ['•', '○', '+', '×'];
-    const particles: Particle[] = [];
-    
-    for (let i = 0; i < 25; i++) {
-      particles.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        char: chars[Math.floor(Math.random() * chars.length)],
-        speed: 0.15 + Math.random() * 0.25,
-        opacity: 0.04 + Math.random() * 0.08,
-        size: 6 + Math.random() * 6,
-      });
-    }
-    
-    particlesRef.current = particles;
-  }, []);
+  // Simulate loading progress and track actual video readiness
+  const startLoading = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  // Animate particles
-  const animateParticles = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    // Listen for video ready
+    const onCanPlay = () => {
+      videoReadyRef.current = true;
+    };
+    video.addEventListener('canplaythrough', onCanPlay);
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Start loading the video
+    video.load();
 
-    const render = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Animate fake progress that speeds up when video is actually ready
+    const tick = () => {
+      const current = fakeProgressRef.current;
       
-      particlesRef.current.forEach((particle) => {
-        const dx = mouseRef.current.x - particle.x;
-        const dy = mouseRef.current.y - particle.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        
-        if (dist < 100) {
-          const force = (100 - dist) / 100;
-          particle.x -= (dx / dist) * force * 1;
-          particle.y -= (dy / dist) * force * 1;
+      if (videoReadyRef.current) {
+        // Video ready — rush to 100
+        fakeProgressRef.current = Math.min(100, current + 3);
+      } else {
+        // Slow fake progress, cap at 85 until video loads
+        if (current < 85) {
+          fakeProgressRef.current = current + 0.4 + Math.random() * 0.6;
         }
+      }
 
-        particle.y -= particle.speed;
-        particle.x += Math.sin(Date.now() * 0.0003 + particle.y * 0.003) * 0.2;
+      const rounded = Math.floor(fakeProgressRef.current);
+      setProgress(rounded);
 
-        if (particle.y < -30) {
-          particle.y = canvas.height + 30;
-          particle.x = Math.random() * canvas.width;
-        }
+      if (rounded >= 100) {
+        // Loading complete — trigger transition
+        transitionOut();
+        return;
+      }
 
-        ctx.font = `${particle.size}px 'Inter', sans-serif`;
-        ctx.fillStyle = `rgba(0, 0, 0, ${particle.opacity})`;
-        ctx.fillText(particle.char, particle.x, particle.y);
-      });
-
-      animationFrameRef.current = requestAnimationFrame(render);
+      animFrameRef.current = requestAnimationFrame(tick);
     };
 
-    render();
-  }, []);
-
-  // Magnetic cursor effect
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    mouseRef.current = { x: e.clientX, y: e.clientY };
-    
-    if (logoRef.current && !isTransitioning) {
-      const rect = logoRef.current.getBoundingClientRect();
-      const logoX = rect.left + rect.width / 2;
-      const logoY = rect.top + rect.height / 2;
-      
-      const dx = e.clientX - logoX;
-      const dy = e.clientY - logoY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      
-      if (dist < 200) {
-        const force = (200 - dist) / 200;
-        magneticRef.current = {
-          x: dx * force * 0.1,
-          y: dy * force * 0.1,
-        };
-        
-        gsap.to(logoRef.current, {
-          x: magneticRef.current.x,
-          y: magneticRef.current.y,
-          duration: 0.4,
-          ease: 'power2.out',
-        });
-      } else {
-        gsap.to(logoRef.current, {
-          x: 0,
-          y: 0,
-          duration: 0.5,
-          ease: 'elastic.out(1, 0.6)',
-        });
-      }
-    }
-  }, [isTransitioning]);
-
-  // Click to transition
-  const handleLogoClick = useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-
-    // Kill hover glitch
-    if (glitchTimelineRef.current) {
-      glitchTimelineRef.current.kill();
-    }
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        onComplete();
-      }
-    });
-
-    // Intense glitch before zoom
-    tl.to(logoImgRef.current, {
-      x: 5,
-      filter: 'hue-rotate(30deg) brightness(1.2)',
-      duration: 0.05,
-    })
-    .to(logoImgRef.current, {
-      x: -8,
-      filter: 'hue-rotate(-30deg) brightness(0.9)',
-      duration: 0.05,
-    })
-    .to(logoImgRef.current, {
-      x: 6,
-      filter: 'hue-rotate(20deg) brightness(1.1)',
-      duration: 0.05,
-    })
-    .to(logoImgRef.current, {
-      x: -4,
-      filter: 'hue-rotate(-20deg)',
-      duration: 0.05,
-    })
-    .to(logoImgRef.current, {
-      x: 0,
-      filter: 'hue-rotate(0deg) brightness(1)',
-      duration: 0.05,
-    })
-    // Zoom in with fade
-    .to(logoRef.current, {
-      scale: 12,
-      opacity: 0,
-      filter: 'blur(10px)',
-      duration: 0.9,
-      ease: 'power2.in',
-    })
-    // Fade out container with white overlay
-    .to(overlayRef.current, {
-      opacity: 1,
-      duration: 0.3,
-    }, '-=0.4')
-    .to(containerRef.current, {
-      opacity: 0,
-      duration: 0.2,
-    });
-  }, [isTransitioning, onComplete]);
-
-  // Hover glitch effect - subtle shake
-  useEffect(() => {
-    if (!logoImgRef.current || isTransitioning) return;
-
-    if (isHovered) {
-      const tl = gsap.timeline({ repeat: -1 });
-      glitchTimelineRef.current = tl;
-      
-      // Subtle vertical tremble with color shift (no horizontal movement)
-      tl.to(logoImgRef.current, {
-        y: -1,
-        rotation: 0.3,
-        filter: 'hue-rotate(10deg)',
-        duration: 0.08,
-        ease: 'steps(1)',
-      })
-      .to(logoImgRef.current, {
-        y: 1,
-        rotation: -0.3,
-        filter: 'hue-rotate(-15deg)',
-        duration: 0.08,
-        ease: 'steps(1)',
-      })
-      .to(logoImgRef.current, {
-        y: -0.5,
-        rotation: 0.2,
-        filter: 'hue-rotate(5deg)',
-        duration: 0.08,
-        ease: 'steps(1)',
-      })
-      .to(logoImgRef.current, {
-        y: 0,
-        rotation: 0,
-        filter: 'hue-rotate(0deg)',
-        duration: 0.15,
-      })
-      .to(logoImgRef.current, {
-        duration: 0.4, // Pause before next tremble
-      });
-
-      return () => {
-        tl.kill();
-        gsap.to(logoImgRef.current, {
-          y: 0,
-          rotation: 0,
-          filter: 'hue-rotate(0deg)',
-          duration: 0.2,
-        });
-      };
-    }
-  }, [isHovered, isTransitioning]);
-
-  // Initialize
-  useEffect(() => {
-    initParticles();
-    animateParticles();
-    
-    window.addEventListener('mousemove', handleMouseMove);
-
-    // Entrance animation
-    gsap.fromTo(logoRef.current,
-      { opacity: 0, scale: 0.9, y: 20 },
-      { opacity: 1, scale: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.2 }
-    );
+    animFrameRef.current = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-      if (glitchTimelineRef.current) {
-        glitchTimelineRef.current.kill();
-      }
+      video.removeEventListener('canplaythrough', onCanPlay);
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [initParticles, animateParticles, handleMouseMove]);
+  }, []);
+
+  const transitionOut = useCallback(() => {
+    const tl = gsap.timeline({
+      onComplete: () => {
+        sessionStorage.setItem('introSeen', 'true');
+        onComplete();
+      },
+    });
+
+    // Logo + gauge fade up and out
+    tl.to([logoRef.current, gaugeRef.current], {
+      opacity: 0,
+      y: -40,
+      duration: 0.6,
+      ease: 'power3.inOut',
+      stagger: 0.05,
+    })
+    // Container fades
+    .to(containerRef.current, {
+      opacity: 0,
+      duration: 0.4,
+      ease: 'power2.inOut',
+    }, '-=0.2');
+  }, [onComplete]);
+
+  useEffect(() => {
+    // Entrance animation
+    const tl = gsap.timeline();
+    
+    gsap.set([logoRef.current, gaugeRef.current], { opacity: 0, y: 30 });
+
+    tl.to(logoRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      delay: 0.2,
+    })
+    .to(gaugeRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out',
+    }, '-=0.4');
+
+    const cleanup = startLoading();
+
+    return () => {
+      tl.kill();
+      cleanup?.();
+    };
+  }, [startLoading]);
+
+  // Update gauge fill width
+  useEffect(() => {
+    if (gaugeFillRef.current) {
+      gaugeFillRef.current.style.width = `${progress}%`;
+    }
+  }, [progress]);
 
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-100"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background"
     >
-      {/* Particle Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
-      />
-
       {/* Subtle grid */}
-      <div className="absolute inset-0 bg-grid opacity-[0.02] pointer-events-none" />
+      <div className="absolute inset-0 bg-grid opacity-[0.03] pointer-events-none" />
 
-      {/* Logo Container */}
-      <div
-        ref={logoRef}
-        className="relative cursor-pointer select-none"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={handleLogoClick}
-      >
-        {/* RGB shift layers on hover */}
-        {isHovered && !isTransitioning && (
-          <>
-            <img 
-              src={logoImage}
-              alt=""
-              className="absolute inset-0 w-[280px] md:w-[400px] lg:w-[480px] h-auto opacity-20 pointer-events-none"
-              style={{ transform: 'translate(-2px, -1px)', filter: 'hue-rotate(-40deg) saturate(2)' }}
-            />
-            <img 
-              src={logoImage}
-              alt=""
-              className="absolute inset-0 w-[280px] md:w-[400px] lg:w-[480px] h-auto opacity-20 pointer-events-none"
-              style={{ transform: 'translate(2px, 1px)', filter: 'hue-rotate(40deg) saturate(2)' }}
-            />
-          </>
-        )}
-
-        {/* Main logo */}
-        <img
-          ref={logoImgRef}
-          src={logoImage}
-          alt="Code Fantasia"
-          className="relative w-[280px] md:w-[400px] lg:w-[480px] h-auto"
-        />
-
-        {/* Click hint */}
-        <p className={`text-center mt-6 text-sm tracking-widest uppercase transition-opacity duration-300 ${
-          isHovered ? 'text-black' : 'text-black/60'
-        }`}>
-          Click to Enter
-        </p>
-      </div>
-
-      {/* White overlay for smooth transition */}
-      <div 
-        ref={overlayRef}
-        className="absolute inset-0 bg-white pointer-events-none opacity-0"
+      {/* Hidden video element for preloading */}
+      <video
+        ref={videoRef}
+        src={showreelVideo}
+        preload="auto"
+        muted
+        playsInline
+        className="hidden"
       />
 
-      {/* Skip button */}
-      <button
-        onClick={() => {
-          sessionStorage.setItem('introSeen', 'true');
-          onComplete();
-        }}
-        className="absolute bottom-8 right-8 text-muted-foreground/30 hover:text-muted-foreground/60 text-xs tracking-wider transition-colors"
-      >
-        SKIP →
-      </button>
+      {/* Logo */}
+      <img
+        ref={logoRef}
+        src={logoImage}
+        alt="Code Fantasia"
+        className="w-[220px] md:w-[320px] lg:w-[380px] h-auto mb-12"
+      />
+
+      {/* Loading gauge */}
+      <div ref={gaugeRef} className="flex flex-col items-center gap-4 w-full max-w-xs">
+        {/* Progress bar */}
+        <div className="w-full h-[2px] bg-muted/30 rounded-full overflow-hidden">
+          <div
+            ref={gaugeFillRef}
+            className="h-full bg-gradient-to-r from-primary via-secondary to-primary rounded-full transition-[width] duration-100 ease-out"
+            style={{ width: '0%' }}
+          />
+        </div>
+
+        {/* Percentage */}
+        <span
+          ref={gaugeTextRef}
+          className="font-display text-xs tracking-[0.3em] text-muted-foreground"
+        >
+          {progress}%
+        </span>
+      </div>
     </div>
   );
 }

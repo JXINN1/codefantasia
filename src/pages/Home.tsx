@@ -132,14 +132,8 @@ export default function Home() {
             className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none"
           >
             <div className="text-center">
-              <p className="font-body text-sm md:text-base uppercase tracking-[0.4em] text-white/60 mb-4">
-                AI-Powered Visual Production
-              </p>
-              <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95]">
-                <span className="block">CODE</span>
-                <span className="block bg-gradient-to-r from-violet-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
-                  FANTASIA
-                </span>
+              <h1 className="font-body text-base md:text-xl lg:text-2xl uppercase tracking-[0.3em] text-white/80 font-light">
+                Next-Generation AI Content Lab
               </h1>
             </div>
 
