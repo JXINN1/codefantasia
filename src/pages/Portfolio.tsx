@@ -111,7 +111,11 @@ export const portfolioItems = [
 export default function Portfolio() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
-      <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+        <link rel="canonical" href="https://codefantasia.ai/" />
+      </Helmet>
       <Header />
 
       {/* Hero Section */}
