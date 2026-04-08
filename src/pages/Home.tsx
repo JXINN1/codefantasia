@@ -5,8 +5,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AnimatedSection from '@/components/AnimatedSection';
-import TextReveal from '@/components/TextReveal';
 import MagneticButton from '@/components/MagneticButton';
 import showreelVideo from '@/assets/showreel.mp4';
 
@@ -16,6 +14,8 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const overlayTextRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,16 +48,68 @@ export default function Home() {
         });
       }
 
+      // About section animations
+      if (aboutRef.current) {
+        const aboutElements = aboutRef.current.querySelectorAll('.about-animate');
+        gsap.set(aboutElements, { opacity: 0, y: 60 });
+        ScrollTrigger.create({
+          trigger: aboutRef.current,
+          start: 'top 75%',
+          onEnter: () => {
+            gsap.to(aboutElements, {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              stagger: 0.15,
+              ease: 'power3.out',
+            });
+          },
+          once: true,
+        });
+
+        // Parallax glow orbs
+        gsap.to('.about-orb-1', {
+          y: -80,
+          scrollTrigger: { trigger: aboutRef.current, start: 'top bottom', end: 'bottom top', scrub: 2 },
+        });
+        gsap.to('.about-orb-2', {
+          y: 60,
+          scrollTrigger: { trigger: aboutRef.current, start: 'top bottom', end: 'bottom top', scrub: 2 },
+        });
+      }
+
+      // Services section
+      if (servicesRef.current) {
+        const serviceElements = servicesRef.current.querySelectorAll('.service-animate');
+        gsap.set(serviceElements, { opacity: 0, y: 50 });
+        ScrollTrigger.create({
+          trigger: servicesRef.current,
+          start: 'top 75%',
+          onEnter: () => {
+            gsap.to(serviceElements, {
+              opacity: 1,
+              y: 0,
+              duration: 0.9,
+              stagger: 0.12,
+              ease: 'power3.out',
+            });
+          },
+          once: true,
+        });
+      }
+
       // CTA entrance
-      gsap.set(ctaRef.current, { opacity: 0, y: 40 });
-      ScrollTrigger.create({
-        trigger: ctaRef.current,
-        start: 'top 85%',
-        onEnter: () => {
-          gsap.to(ctaRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' });
-        },
-        once: true,
-      });
+      if (ctaRef.current) {
+        gsap.set(ctaRef.current, { opacity: 0, y: 40 });
+        ScrollTrigger.create({
+          trigger: ctaRef.current,
+          start: 'top 85%',
+          onEnter: () => {
+            gsap.to(ctaRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' });
+          },
+          once: true,
+        });
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -109,106 +161,140 @@ export default function Home() {
       </section>
 
       {/* ── ABOUT BLOCK: Creativity Meets AI ── */}
-      <section className="py-32 md:py-40 bg-gradient-to-b from-slate-950 to-slate-100 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-5" />
-        <AnimatedSection animation="fade-up" className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-sm text-white/60 tracking-widest uppercase mb-8">
-              <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
-              About Us
-            </span>
+      <section ref={aboutRef} className="relative overflow-hidden">
+        {/* Dark top half */}
+        <div className="relative py-32 md:py-44 bg-slate-950">
+          {/* Animated glow orbs */}
+          <div className="about-orb-1 absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px]" />
+          <div className="about-orb-2 absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-[100px]" />
+          <div className="absolute inset-0 bg-grid opacity-[0.06]" />
 
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white mb-2">
-              CREATIVITY
-            </h2>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent mb-8">
-              MEETS AI
-            </h2>
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
+              {/* Label */}
+              <div className="about-animate mb-10">
+                <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 text-xs text-white/50 tracking-[0.25em] uppercase backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+                  About Us
+                </span>
+              </div>
 
-            <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-12">
-              스토리텔링 중심의 AI 프로덕션으로
-              <br className="sm:hidden" />
-              {' '}콘텐츠 산업의 새로운 지평을 열어갑니다
-            </p>
+              {/* Main headline */}
+              <h2 className="about-animate font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[0.95] mb-3">
+                CREATIVITY
+              </h2>
+              <h2 className="about-animate font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.95] mb-10">
+                <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(139,92,246,0.4)]">
+                  MEETS AI
+                </span>
+              </h2>
 
-            <MagneticButton>
-              <Link
-                to="/about"
-                className="group relative inline-flex items-center gap-3 px-10 py-5 border border-white/20 text-white font-display font-semibold uppercase tracking-wider rounded-full overflow-hidden transition-all duration-500 hover:border-violet-400/60 hover:shadow-lg hover:shadow-violet-500/20"
-              >
-                <span className="relative z-10">More About Us</span>
-                <svg className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-cyan-600/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              </Link>
-            </MagneticButton>
+              {/* Thin divider line */}
+              <div className="about-animate w-16 h-px bg-gradient-to-r from-transparent via-violet-400 to-transparent mx-auto mb-8" />
+
+              {/* Description */}
+              <p className="about-animate text-lg md:text-xl text-white/50 max-w-xl mx-auto leading-relaxed mb-14 font-body">
+                스토리텔링 중심의 AI 프로덕션으로
+                <br />
+                콘텐츠 산업의 새로운 지평을 열어갑니다
+              </p>
+
+              {/* Button */}
+              <div className="about-animate">
+                <MagneticButton>
+                  <Link
+                    to="/about"
+                    className="group relative inline-flex items-center gap-3 px-10 py-5 border border-white/15 text-white font-display text-sm font-semibold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:border-violet-400/50 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
+                  >
+                    <span className="relative z-10">More About Us</span>
+                    <svg className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                    <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-cyan-600/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                  </Link>
+                </MagneticButton>
+              </div>
+            </div>
           </div>
-        </AnimatedSection>
+        </div>
       </section>
 
       {/* ── SERVICES BLOCK ── */}
-      <section className="py-32 md:py-40 bg-slate-50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-200/20 rounded-full blur-3xl" />
+      <section ref={servicesRef} className="relative py-32 md:py-44 bg-white overflow-hidden">
+        {/* Subtle background elements */}
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-slate-100 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-50 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
 
-        <AnimatedSection animation="fade-up" className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 text-sm text-slate-600 tracking-widest uppercase mb-8 bg-white/50 backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
-              Our Services
-            </span>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            {/* Label */}
+            <div className="service-animate mb-10">
+              <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 text-xs text-slate-400 tracking-[0.25em] uppercase bg-white/80 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                Our Services
+              </span>
+            </div>
 
-            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
-              Crafting the Future of{' '}
-              <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">
+            {/* Headline */}
+            <h2 className="service-animate font-display text-4xl md:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.05] mb-8 tracking-tight">
+              Crafting the Future of
+              <br />
+              <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
                 Visual Storytelling
               </span>
             </h2>
 
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-12">
-              우리는 AI 기반으로 차세대 비주얼 미디어를 정의할 콘텐츠와 기술을 개발합니다
+            {/* Divider */}
+            <div className="service-animate w-16 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mb-8" />
+
+            {/* Description */}
+            <p className="service-animate text-lg md:text-xl text-slate-500 max-w-xl mx-auto leading-relaxed mb-14 font-body">
+              우리는 AI 기반으로 차세대 비주얼 미디어를 정의할
+              <br />
+              콘텐츠와 기술을 개발합니다
             </p>
 
-            <MagneticButton>
-              <Link
-                to="/service"
-                className="group relative inline-flex items-center gap-3 px-10 py-5 bg-slate-900 text-white font-display font-semibold uppercase tracking-wider rounded-full overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-slate-900/30"
-              >
-                <span className="relative z-10">Our Services</span>
-                <svg className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-cyan-400 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                <span className="absolute inset-0 z-10 flex items-center justify-center gap-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-display font-semibold uppercase tracking-wider">
-                  Our Services
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            {/* Button */}
+            <div className="service-animate">
+              <MagneticButton>
+                <Link
+                  to="/service"
+                  className="group relative inline-flex items-center gap-3 px-10 py-5 bg-slate-900 text-white font-display text-sm font-semibold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(15,23,42,0.3)]"
+                >
+                  <span className="relative z-10">Our Services</span>
+                  <svg className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </span>
-              </Link>
-            </MagneticButton>
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                </Link>
+              </MagneticButton>
+            </div>
           </div>
-        </AnimatedSection>
+        </div>
       </section>
 
       {/* ── CTA SECTION ── */}
-      <section className="py-40 relative overflow-hidden bg-gradient-to-br from-slate-950 via-[#0c0a1d] to-slate-950">
-        <div className="absolute inset-0 bg-grid opacity-10" />
-        <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-violet-600/15 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-cyan-500/10 rounded-full blur-3xl animate-float animation-delay-300" />
+      <section className="relative py-40 overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 bg-grid opacity-[0.06]" />
+        <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-violet-600/15 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px]" />
 
-        <AnimatedSection animation="scale" className="container mx-auto px-6 text-center relative z-10">
+        <div className="container mx-auto px-6 text-center relative z-10">
           <div ref={ctaRef}>
-            <p className="text-violet-400 text-sm uppercase tracking-[0.3em] font-body mb-6">Next Step</p>
-            <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+            <p className="text-violet-400/70 text-xs uppercase tracking-[0.3em] font-body mb-8">Next Step</p>
+
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-[1.05] tracking-tight">
               Ready to Create
               <br />
-              <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
                 Something Amazing
-              </span>?
+              </span>
+              <span className="text-white">?</span>
             </h2>
-            <p className="text-slate-400 max-w-xl mx-auto mb-12 text-lg font-body">
+
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
+
+            <p className="text-white/40 max-w-md mx-auto mb-14 text-lg font-body leading-relaxed">
               Let's collaborate on your next AI-powered visual project
             </p>
 
@@ -216,17 +302,17 @@ export default function Home() {
               <MagneticButton>
                 <Link
                   to="/portfolio"
-                  className="group relative inline-flex items-center gap-3 px-10 py-5 bg-white text-slate-900 font-display font-semibold uppercase tracking-wider rounded-full overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-violet-500/20"
+                  className="group relative inline-flex items-center gap-3 px-10 py-5 bg-white text-slate-900 font-display text-sm font-semibold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(139,92,246,0.2)]"
                 >
                   <span className="relative z-10">View Our Work</span>
-                  <svg className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <svg className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                   <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-cyan-400 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                  <span className="absolute inset-0 z-10 flex items-center justify-center gap-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-display font-semibold uppercase tracking-wider">
+                  <span className="absolute inset-0 z-10 flex items-center justify-center gap-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-display text-sm font-semibold uppercase tracking-[0.2em]">
                     View Our Work
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </span>
                 </Link>
@@ -235,14 +321,14 @@ export default function Home() {
               <MagneticButton>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-3 px-10 py-5 border border-white/20 text-white font-display font-semibold uppercase tracking-wider rounded-full transition-all duration-300 hover:border-violet-400/60 hover:shadow-lg hover:shadow-violet-500/10"
+                  className="inline-flex items-center gap-3 px-10 py-5 border border-white/15 text-white font-display text-sm font-semibold uppercase tracking-[0.2em] rounded-full transition-all duration-300 hover:border-violet-400/50 hover:shadow-[0_0_40px_rgba(139,92,246,0.1)]"
                 >
                   Get in Touch
                 </Link>
               </MagneticButton>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </section>
 
       <Footer />

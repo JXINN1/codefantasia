@@ -310,8 +310,26 @@ export default function About() {
 
       <Header />
 
-      {/* Spacer for header */}
-      <div className="pt-28" />
+      {/* Hero Heading */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-10" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-400/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-fuchsia-400/10 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div>
+            <span className="inline-block px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-wider text-violet-600 border border-violet-500/30 rounded-full">
+              About Us
+            </span>
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl">
+              <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">Creativity Meets AI</span>
+            </h1>
+            <p className="mt-6 text-xl text-slate-500 max-w-2xl">
+              스토리텔링 중심의 AI 프로덕션으로 콘텐츠 산업의 새로운 지평을 열어갑니다
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Vision Section - Minimalist Typography */}
       <section ref={visionRef} className="py-32 md:py-48 relative">
