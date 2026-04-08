@@ -60,17 +60,14 @@ export default function Service() {
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-400/10 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-6 relative z-10">
-          <div>
+          <AnimatedSection animation="fade-up">
             <span className="inline-block px-4 py-2 mb-6 text-xs font-semibold uppercase tracking-wider text-cyan-600 border border-cyan-500/30 rounded-full">
               Our Services
             </span>
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl">
-              <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">Visual Storytelling</span>
+              <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">Our Services</span>
             </h1>
-            <p className="mt-6 text-xl text-slate-500 max-w-2xl">
-              우리는 AI 기반으로 차세대 비주얼 미디어를 정의할 콘텐츠와 기술을 개발합니다
-            </p>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
