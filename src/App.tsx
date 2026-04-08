@@ -12,6 +12,8 @@ import PortfolioDetail from "./pages/PortfolioDetail";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ScrollToTop from "./components/ScrollToTop";
+import CustomCursor from "./components/CustomCursor";
+import PageTransition from "./components/PageTransition";
 
 const queryClient = new QueryClient();
 
@@ -22,17 +24,20 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <CustomCursor />
           <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Intro />} />
-            <Route path="/home" element={<Navigate to="/" replace />} />
-            <Route path="/service" element={<Service />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/portfolio/:slug" element={<PortfolioDetail />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<Intro />} />
+              <Route path="/home" element={<Navigate to="/" replace />} />
+              <Route path="/service" element={<Service />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/portfolio/:slug" element={<PortfolioDetail />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </PageTransition>
         </BrowserRouter>
       </HelmetProvider>
     </TooltipProvider>
