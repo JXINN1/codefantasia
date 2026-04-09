@@ -7,7 +7,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MagneticButton from '@/components/MagneticButton';
 import MouseWaveBackground from '@/components/MouseWaveBackground';
-import TextReveal from '@/components/TextReveal';
 import showreelVideo from '@/assets/showreel.mp4';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +15,9 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const overlayTextRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const marqueeTrack1 = useRef<HTMLDivElement>(null);
+  const marqueeTrack2 = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -112,6 +114,30 @@ export default function Home() {
           once: true,
         });
       }
+
+      // Marquee scroll-synced animation
+      if (marqueeTrack1.current && marqueeTrack2.current && marqueeRef.current) {
+        gsap.to(marqueeTrack1.current, {
+          xPercent: -30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: marqueeRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+        gsap.to(marqueeTrack2.current, {
+          xPercent: 30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: marqueeRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -162,16 +188,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TRANSITION: Text Reveal ── */}
-      <section className="relative py-28 md:py-36 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-[0.04]" />
-        <div className="container mx-auto px-6 relative z-10">
-          <TextReveal
-            text="We craft cinematic visual experiences powered by the limitless potential of artificial intelligence"
-            className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-white/90 leading-tight tracking-tight text-center max-w-5xl mx-auto"
-            highlightWords={['cinematic', 'artificial', 'intelligence']}
-            stagger={0.04}
-          />
+      {/* ── MARQUEE TRANSITION ── */}
+      <section ref={marqueeRef} className="relative py-16 md:py-24 bg-slate-950 overflow-hidden border-y border-white/5">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/50 to-slate-950" />
+        <div className="relative z-10 space-y-6">
+          {/* Track 1: moves left */}
+          <div ref={marqueeTrack1} className="flex whitespace-nowrap gap-8" style={{ transform: 'translateX(10%)' }}>
+            {[...Array(4)].map((_, i) => (
+              <span key={i} className="font-display text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/[0.07] uppercase select-none">
+                Creativity · Innovation · AI · Storytelling · Vision ·
+              </span>
+            ))}
+          </div>
+          {/* Track 2: moves right */}
+          <div ref={marqueeTrack2} className="flex whitespace-nowrap gap-8" style={{ transform: 'translateX(-20%)' }}>
+            {[...Array(4)].map((_, i) => (
+              <span key={i} className="font-display text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/[0.04] uppercase select-none">
+                Production · Cinema · Future · Design · Technology ·
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
