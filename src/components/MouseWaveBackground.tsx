@@ -84,37 +84,18 @@ export default function MouseWaveBackground({
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
 
-      // Wave lines: 6 lines, all drawn full width, base subtle opacity
-      // The 2 closest lines to mouse get brighter
+      // Subtle wave lines (base layer)
       const lineCount = 6;
       const spacing = height / (lineCount + 1);
-      const lineYs: number[] = [];
       for (let i = 0; i < lineCount; i++) {
-        lineYs.push(spacing * (i + 1));
-      }
-
-      // Find the 2 closest lines to mouse Y
-      let closest2: number[] = [];
-      if (mx > 0 && my > 0) {
-        const sorted = lineYs
-          .map((ly, idx) => ({ idx, dist: Math.abs(ly - my) }))
-          .sort((a, b) => a.dist - b.dist);
-        closest2 = [sorted[0].idx, sorted[1].idx];
-      }
-
-      for (let i = 0; i < lineCount; i++) {
-        const baseY = lineYs[i];
-        const isClose = closest2.includes(i);
-        const baseAlpha = opacity * 1.2 * (1 - Math.abs(i - lineCount / 2) / lineCount);
-        const alpha = isClose ? baseAlpha + opacity * 1.8 : baseAlpha;
-        const lineWidth = isClose ? 1.0 : 0.8;
-
+        const baseY = spacing * (i + 1);
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(${color}, ${alpha})`;
-        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = `rgba(${color}, ${opacity * 1.2 * (1 - Math.abs(i - lineCount / 2) / lineCount)})`;
+        ctx.lineWidth = 0.8;
         for (let x = 0; x <= width; x += 4) {
           const wave1 = Math.sin(x * 0.004 + time + i * 0.7) * 5;
           const wave2 = Math.sin(x * 0.008 + time * 1.2 + i) * 3;
+          // Mouse influence on waves
           let mouseWave = 0;
           if (mx > 0 && my > 0) {
             const dx = x - mx;
@@ -143,7 +124,6 @@ export default function MouseWaveBackground({
           continue;
         }
 
-      // Ripple rings
         for (let ring = 0; ring < 3; ring++) {
           const ringRadius = r.radius - ring * 12;
           if (ringRadius <= 0) continue;
@@ -159,7 +139,7 @@ export default function MouseWaveBackground({
       // Subtle glow at mouse position
       if (mx > 0 && my > 0) {
         const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, 200);
-        gradient.addColorStop(0, `rgba(${color}, ${opacity * 2})`);
+        gradient.addColorStop(0, `rgba(${color}, ${opacity * 1.5})`);
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, width, height);
