@@ -161,6 +161,19 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── TRANSITION: Text Reveal ── */}
+      <section className="relative py-28 md:py-36 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-[0.04]" />
+        <div className="container mx-auto px-6 relative z-10">
+          <TextReveal
+            text="We craft cinematic visual experiences powered by the limitless potential of artificial intelligence"
+            className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-white/90 leading-tight tracking-tight text-center max-w-5xl mx-auto"
+            highlightWords={['cinematic', 'artificial', 'intelligence']}
+            stagger={0.04}
+          />
+        </div>
+      </section>
+
       {/* ── ABOUT BLOCK: Creativity Meets AI ── */}
       <section ref={aboutRef} className="relative overflow-hidden">
         <div className="relative py-32 md:py-44 bg-slate-950">
