@@ -84,33 +84,58 @@ export default function MouseWaveBackground({
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
 
-      // Subtle wave lines (base layer)
-      const lineCount = 8;
+      // Subtle wave lines - only visible near mouse
+      const lineCount = 6;
       const spacing = height / (lineCount + 1);
       for (let i = 0; i < lineCount; i++) {
         const baseY = spacing * (i + 1);
         ctx.beginPath();
-        const lineOpacity = opacity * 2.5 * (1 - Math.abs(i - lineCount / 2) / lineCount);
-        ctx.strokeStyle = `rgba(${color}, ${lineOpacity})`;
-        ctx.lineWidth = 1.2;
-        for (let x = 0; x <= width; x += 3) {
-          const wave1 = Math.sin(x * 0.004 + time + i * 0.7) * 7;
-          const wave2 = Math.sin(x * 0.008 + time * 1.2 + i) * 4;
-          const wave3 = Math.sin(x * 0.002 + time * 0.5 + i * 1.3) * 3;
-          // Mouse influence on waves
+        const baseOpacity = opacity * 0.6 * (1 - Math.abs(i - lineCount / 2) / lineCount);
+        ctx.lineWidth = 0.8;
+        for (let x = 0; x <= width; x += 4) {
+          const wave1 = Math.sin(x * 0.004 + time + i * 0.7) * 5;
+          const wave2 = Math.sin(x * 0.008 + time * 1.2 + i) * 3;
           let mouseWave = 0;
+          let localOpacity = baseOpacity;
           if (mx > 0 && my > 0) {
             const dx = x - mx;
             const dy = baseY - my;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            const influence = Math.max(0, 1 - dist / 450) * 22;
-            mouseWave = Math.sin(x * 0.006 - time * 1.5) * influence;
+            const proximity = Math.max(0, 1 - dist / 350);
+            localOpacity = baseOpacity + proximity * opacity * 3;
+            mouseWave = Math.sin(x * 0.006 - time * 1.5) * proximity * 18;
           }
-          const y = baseY + wave1 + wave2 + wave3 + mouseWave;
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
+          const y = baseY + wave1 + wave2 + mouseWave;
+          if (x === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
         }
+        ctx.strokeStyle = `rgba(${color}, ${baseOpacity + (mx > 0 ? 0 : 0)})`;
         ctx.stroke();
+
+        // Redraw bright segment near mouse
+        if (mx > 0 && my > 0) {
+          ctx.beginPath();
+          let started = false;
+          for (let x = 0; x <= width; x += 4) {
+            const dx = x - mx;
+            const dy = baseY - my;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const proximity = Math.max(0, 1 - dist / 350);
+            if (proximity <= 0) { started = false; continue; }
+            const wave1 = Math.sin(x * 0.004 + time + i * 0.7) * 5;
+            const wave2 = Math.sin(x * 0.008 + time * 1.2 + i) * 3;
+            const mouseWave = Math.sin(x * 0.006 - time * 1.5) * proximity * 18;
+            const y = baseY + wave1 + wave2 + mouseWave;
+            if (!started) { ctx.moveTo(x, y); started = true; }
+            else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = `rgba(${color}, ${opacity * 3.5})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
       }
 
       // Draw ripples on top
@@ -126,23 +151,23 @@ export default function MouseWaveBackground({
           continue;
         }
 
-        for (let ring = 0; ring < 4; ring++) {
-          const ringRadius = r.radius - ring * 14;
+      // Ripple rings
+        for (let ring = 0; ring < 3; ring++) {
+          const ringRadius = r.radius - ring * 12;
           if (ringRadius <= 0) continue;
-          const ringOpacity = r.opacity * 1.8 * (1 - ring * 0.25);
+          const ringOpacity = r.opacity * (1 - ring * 0.3);
           ctx.beginPath();
           ctx.arc(r.x, r.y, ringRadius, 0, Math.PI * 2);
           ctx.strokeStyle = `rgba(${color}, ${ringOpacity})`;
-          ctx.lineWidth = 2 - ring * 0.4;
+          ctx.lineWidth = 1.5 - ring * 0.4;
           ctx.stroke();
         }
       }
 
       // Subtle glow at mouse position
       if (mx > 0 && my > 0) {
-        const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, 250);
-        gradient.addColorStop(0, `rgba(${color}, ${opacity * 3})`);
-        gradient.addColorStop(0.5, `rgba(${color}, ${opacity * 1.2})`);
+        const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, 200);
+        gradient.addColorStop(0, `rgba(${color}, ${opacity * 2})`);
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, width, height);
