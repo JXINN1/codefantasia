@@ -106,8 +106,8 @@ export default function MouseWaveBackground({
         const baseY = lineYs[i];
         const isClose = closest2.includes(i);
         const baseAlpha = opacity * 1.2 * (1 - Math.abs(i - lineCount / 2) / lineCount);
-        const alpha = isClose ? baseAlpha + opacity * 3 : baseAlpha;
-        const lineWidth = isClose ? 1.2 : 0.8;
+        const alpha = isClose ? baseAlpha + opacity * 1.8 : baseAlpha;
+        const lineWidth = isClose ? 1.0 : 0.8;
 
         ctx.beginPath();
         ctx.strokeStyle = `rgba(${color}, ${alpha})`;
