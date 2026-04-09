@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MagneticButton from '@/components/MagneticButton';
 import MouseWaveBackground from '@/components/MouseWaveBackground';
+import TextReveal from '@/components/TextReveal';
 import showreelVideo from '@/assets/showreel.mp4';
 
 gsap.registerPlugin(ScrollTrigger);
