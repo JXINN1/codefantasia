@@ -270,7 +270,7 @@ export default function Home() {
       </section>
 
       {/* ── SERVICES BLOCK ── */}
-      <section ref={servicesRef} className="relative py-32 md:py-44 bg-white overflow-hidden">
+      <section ref={servicesRef} className="relative py-32 md:py-44 bg-gradient-to-b from-slate-200 via-slate-100 to-slate-200 overflow-hidden">
         <MouseWaveBackground color="100, 100, 140" opacity={0.04} />
         <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-slate-100 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-50 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
