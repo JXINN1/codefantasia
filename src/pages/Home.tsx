@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MagneticButton from '@/components/MagneticButton';
 import MouseWaveBackground from '@/components/MouseWaveBackground';
+import TextReveal from '@/components/TextReveal';
 import showreelVideo from '@/assets/showreel.mp4';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -158,6 +159,19 @@ export default function Home() {
           <div className="absolute top-6 right-6 w-12 h-12 border-r border-t border-white/20 z-10" />
           <div className="absolute bottom-6 left-6 w-12 h-12 border-l border-b border-white/20 z-10" />
           <div className="absolute bottom-6 right-6 w-12 h-12 border-r border-b border-white/20 z-10" />
+        </div>
+      </section>
+
+      {/* ── TRANSITION: Text Reveal ── */}
+      <section className="relative py-28 md:py-36 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-[0.04]" />
+        <div className="container mx-auto px-6 relative z-10">
+          <TextReveal
+            text="We craft cinematic visual experiences powered by the limitless potential of artificial intelligence"
+            className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-white/90 leading-tight tracking-tight text-center max-w-5xl mx-auto"
+            highlightWords={['cinematic', 'artificial', 'intelligence']}
+            stagger={0.04}
+          />
         </div>
       </section>
 
