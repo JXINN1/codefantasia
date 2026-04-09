@@ -324,28 +324,32 @@ export default function Home() {
       </section>
 
       {/* ── CTA SECTION ── */}
-      <section className="relative py-40 overflow-hidden bg-gradient-to-b from-[#070a14] to-[#040610]">
+      <section className="relative py-32 md:py-44 overflow-hidden bg-gradient-to-b from-[#070a14] to-[#040610]">
         <MouseWaveBackground color="6, 182, 212" opacity={0.04} />
         <div className="absolute inset-0 bg-grid opacity-[0.06]" />
         <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-violet-600/15 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px]" />
 
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <div ref={ctaRef}>
-            <p className="text-violet-400/70 text-xs uppercase tracking-[0.3em] font-body mb-8">Next Step</p>
+        <div className="container mx-auto px-6 relative z-10">
+          <div ref={ctaRef} className="max-w-5xl mx-auto text-center">
+            <div className="mb-10">
+              <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 text-xs text-white/40 tracking-[0.25em] uppercase backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-pulse" />
+                Next Step
+              </span>
+            </div>
 
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-5 leading-[1.05] tracking-tight">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.05] mb-8 tracking-tight">
               Ready to Create
               <br />
               <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
-                Something Amazing
+                Something Amazing?
               </span>
-              <span className="text-white">?</span>
             </h2>
 
-            <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent mx-auto mb-8" />
 
-            <p className="text-white/40 max-w-md mx-auto mb-14 text-lg font-body leading-relaxed">
+            <p className="text-lg md:text-xl text-white/40 max-w-xl mx-auto leading-relaxed mb-14 font-body">
               협업을 바탕으로 창의적인 비전을 실현합니다.
             </p>
 

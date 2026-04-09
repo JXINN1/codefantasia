@@ -44,7 +44,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#e8e9ed] via-[#edeef2] to-[#f0f1f4]">
+    <main className="min-h-screen bg-gradient-to-b from-[#ede9f3] via-[#f0edf5] to-[#f3f0f7]">
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="googlebot" content="noindex, nofollow" />
