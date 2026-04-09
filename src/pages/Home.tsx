@@ -346,7 +346,7 @@ export default function Home() {
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mb-8" />
 
             <p className="text-white/40 max-w-md mx-auto mb-14 text-lg font-body leading-relaxed">
-              Let's collaborate on your next AI-powered visual project
+              협업을 바탕으로 창의적인 비전을 실현합니다.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5">

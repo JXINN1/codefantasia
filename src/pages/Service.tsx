@@ -204,9 +204,7 @@ export default function Service() {
             <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-6">
               Ready to Start Your <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">Project</span>?
             </h2>
-            <p className="text-slate-300 max-w-xl mx-auto mb-10 text-lg">
-              Let's discuss how we can bring your vision to life with AI-powered filmmaking.
-            </p>
+            <div className="mb-10" />
             <Link
               to="/contact"
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-500 to-cyan-500 text-white font-display font-semibold uppercase tracking-wider rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/30 hover:scale-105"
