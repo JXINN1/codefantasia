@@ -75,12 +75,44 @@ export default function MouseWaveBackground({
     const parent = canvas.parentElement;
     parent?.addEventListener('mousemove', handleMouse);
 
+    let time = 0;
+
     const draw = () => {
+      time += 0.006;
       ctx.clearRect(0, 0, width, height);
 
-      const ripples = ripplesRef.current;
+      const mx = mouseRef.current.x;
+      const my = mouseRef.current.y;
 
-      // Draw ripples
+      // Subtle wave lines (base layer)
+      const lineCount = 6;
+      const spacing = height / (lineCount + 1);
+      for (let i = 0; i < lineCount; i++) {
+        const baseY = spacing * (i + 1);
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${color}, ${opacity * 1.2 * (1 - Math.abs(i - lineCount / 2) / lineCount)})`;
+        ctx.lineWidth = 0.8;
+        for (let x = 0; x <= width; x += 4) {
+          const wave1 = Math.sin(x * 0.004 + time + i * 0.7) * 5;
+          const wave2 = Math.sin(x * 0.008 + time * 1.2 + i) * 3;
+          // Mouse influence on waves
+          let mouseWave = 0;
+          if (mx > 0 && my > 0) {
+            const dx = x - mx;
+            const dy = baseY - my;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const influence = Math.max(0, 1 - dist / 400) * 15;
+            mouseWave = Math.sin(x * 0.006 - time * 1.5) * influence;
+          }
+          const y = baseY + wave1 + wave2 + mouseWave;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+
+      // Draw ripples on top
+      const ripples = ripplesRef.current;
       for (let i = ripples.length - 1; i >= 0; i--) {
         const r = ripples[i];
         r.radius += r.speed;
@@ -92,11 +124,9 @@ export default function MouseWaveBackground({
           continue;
         }
 
-        // Multiple concentric rings per ripple
         for (let ring = 0; ring < 3; ring++) {
           const ringRadius = r.radius - ring * 12;
           if (ringRadius <= 0) continue;
-
           const ringOpacity = r.opacity * (1 - ring * 0.3);
           ctx.beginPath();
           ctx.arc(r.x, r.y, ringRadius, 0, Math.PI * 2);
@@ -107,8 +137,6 @@ export default function MouseWaveBackground({
       }
 
       // Subtle glow at mouse position
-      const mx = mouseRef.current.x;
-      const my = mouseRef.current.y;
       if (mx > 0 && my > 0) {
         const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, 200);
         gradient.addColorStop(0, `rgba(${color}, ${opacity * 1.5})`);
@@ -117,7 +145,6 @@ export default function MouseWaveBackground({
         ctx.fillRect(0, 0, width, height);
       }
 
-      // Cap ripple count
       if (ripples.length > 25) {
         ripples.splice(0, ripples.length - 25);
       }
