@@ -213,11 +213,11 @@ export default function Home() {
 
       {/* ── ABOUT BLOCK: Creativity Meets AI ── */}
       <section ref={aboutRef} className="relative overflow-hidden">
-        <div className="relative py-32 md:py-44 bg-slate-950">
+        <div className="relative py-32 md:py-44 bg-gradient-to-b from-slate-950 to-[#0a0e1a]">
           <MouseWaveBackground color="139, 92, 246" opacity={0.05} />
-          <div className="about-orb-1 absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px]" />
-          <div className="about-orb-2 absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-[100px]" />
-          <div className="absolute inset-0 bg-grid opacity-[0.06]" />
+          <div className="about-orb-1 absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[120px]" />
+          <div className="about-orb-2 absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/8 rounded-full blur-[100px]" />
+          <div className="absolute inset-0 bg-grid opacity-[0.04]" />
 
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
@@ -240,10 +240,10 @@ export default function Home() {
               </h2>
 
               {/* Thin divider line */}
-              <div className="about-animate w-16 h-px bg-gradient-to-r from-transparent via-violet-400 to-transparent mx-auto mb-8" />
+              <div className="about-animate w-16 h-px bg-gradient-to-r from-transparent via-violet-400/50 to-transparent mx-auto mb-8" />
 
               {/* Description */}
-              <p className="about-animate text-lg md:text-xl text-white/50 max-w-xl mx-auto leading-relaxed mb-14 font-body">
+              <p className="about-animate text-lg md:text-xl text-white/45 max-w-xl mx-auto leading-relaxed mb-14 font-body">
                 스토리텔링 중심의 AI 프로덕션으로
                 <br />
                 콘텐츠 산업의 새로운 지평을 열어갑니다
@@ -254,7 +254,7 @@ export default function Home() {
                 <MagneticButton>
                   <Link
                     to="/about"
-                    className="group relative inline-flex items-center gap-3 px-10 py-5 border border-white/15 text-white font-display text-sm font-semibold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:border-violet-400/50 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
+                    className="group relative inline-flex items-center gap-3 px-10 py-5 border border-white/10 text-white font-display text-sm font-semibold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:border-violet-400/40 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
                   >
                     <span className="relative z-10">More About Us</span>
                     <svg className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,35 +270,35 @@ export default function Home() {
       </section>
 
       {/* ── SERVICES BLOCK ── */}
-      <section ref={servicesRef} className="relative py-32 md:py-44 bg-gradient-to-b from-slate-200 via-slate-100 to-slate-200 overflow-hidden">
-        <MouseWaveBackground color="100, 100, 140" opacity={0.04} />
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-slate-100 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-50 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+      <section ref={servicesRef} className="relative py-32 md:py-44 bg-gradient-to-b from-[#0a0e1a] to-[#070a14] overflow-hidden">
+        <MouseWaveBackground color="100, 120, 180" opacity={0.04} />
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-slate-800/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-900/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             {/* Label */}
             <div className="service-animate mb-10">
-              <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 text-xs text-slate-400 tracking-[0.25em] uppercase bg-white/80 backdrop-blur-sm">
+              <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 text-xs text-white/40 tracking-[0.25em] uppercase backdrop-blur-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
                 Our Services
               </span>
             </div>
 
             {/* Headline */}
-            <h2 className="service-animate font-display text-4xl md:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.05] mb-8 tracking-tight">
+            <h2 className="service-animate font-display text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-[1.05] mb-8 tracking-tight">
               Crafting the Future of
               <br />
-              <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
                 Visual Storytelling
               </span>
             </h2>
 
             {/* Divider */}
-            <div className="service-animate w-16 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mb-8" />
+            <div className="service-animate w-16 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent mx-auto mb-8" />
 
             {/* Description */}
-            <p className="service-animate text-lg md:text-xl text-slate-500 max-w-xl mx-auto leading-relaxed mb-14 font-body">
+            <p className="service-animate text-lg md:text-xl text-white/40 max-w-xl mx-auto leading-relaxed mb-14 font-body">
               우리는 AI 기반으로 차세대 비주얼 미디어를 정의할
               <br />
               콘텐츠와 기술을 개발합니다
@@ -309,13 +309,13 @@ export default function Home() {
               <MagneticButton>
                 <Link
                   to="/service"
-                  className="group relative inline-flex items-center gap-3 px-10 py-5 bg-slate-900 text-white font-display text-sm font-semibold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(15,23,42,0.3)]"
+                  className="group relative inline-flex items-center gap-3 px-10 py-5 border border-white/10 text-white font-display text-sm font-semibold uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-500 hover:border-violet-400/40 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
                 >
                   <span className="relative z-10">Our Services</span>
                   <svg className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                  <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-cyan-600/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                 </Link>
               </MagneticButton>
             </div>
@@ -324,7 +324,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA SECTION ── */}
-      <section className="relative py-40 overflow-hidden bg-slate-950">
+      <section className="relative py-40 overflow-hidden bg-gradient-to-b from-[#070a14] to-[#040610]">
         <MouseWaveBackground color="6, 182, 212" opacity={0.04} />
         <div className="absolute inset-0 bg-grid opacity-[0.06]" />
         <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-violet-600/15 rounded-full blur-[120px]" />
