@@ -59,7 +59,7 @@ export default function MouseWaveBackground({
       mouseRef.current = { x, y };
 
       const now = Date.now();
-      if (now - lastRippleRef.current > 120) {
+      if (now - lastRippleRef.current > 350) {
         lastRippleRef.current = now;
         ripplesRef.current.push({
           x,
