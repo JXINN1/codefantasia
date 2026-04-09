@@ -63,11 +63,8 @@ export default function Contact() {
               Get in Touch
             </span>
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl text-slate-900">
-              Let's Create <span className="bg-gradient-to-r from-violet-600 to-cyan-500 bg-clip-text text-transparent">Together</span>
+              Contact
             </h1>
-            <p className="mt-6 text-xl text-slate-600 max-w-2xl">
-              Have a project in mind? We'd love to hear about it. Reach out and let's discuss how we can bring your vision to life.
-            </p>
           </AnimatedSection>
         </div>
       </section>
