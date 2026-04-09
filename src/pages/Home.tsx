@@ -204,7 +204,7 @@ export default function Home() {
           <div ref={marqueeTrack2} className="flex whitespace-nowrap gap-8" style={{ transform: 'translateX(-20%)' }}>
             {[...Array(4)].map((_, i) => (
               <span key={i} className="font-display text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/[0.04] uppercase select-none">
-                Production · Cinema · Future · Design · Technology ·
+                AI Production · Future · Design · Technology ·
               </span>
             ))}
           </div>
