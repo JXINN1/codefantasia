@@ -45,7 +45,7 @@ const services = [
 
 export default function Service() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-[#e8e9ed] via-[#edeef2] to-[#f0f1f4]">
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="googlebot" content="noindex, nofollow" />
