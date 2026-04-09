@@ -3,7 +3,7 @@ import logo from '@/assets/logo.avif';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-slate-900 border-t border-slate-800">
+    <footer className="relative bg-gradient-to-b from-[#040610] to-[#020308] border-t border-white/5">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand & Company Info */}
