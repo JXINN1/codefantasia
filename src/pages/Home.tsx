@@ -115,6 +115,30 @@ export default function Home() {
           once: true,
         });
       }
+
+      // Marquee scroll-synced animation
+      if (marqueeTrack1.current && marqueeTrack2.current && marqueeRef.current) {
+        gsap.to(marqueeTrack1.current, {
+          xPercent: -30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: marqueeRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+        gsap.to(marqueeTrack2.current, {
+          xPercent: 30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: marqueeRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+      }
     }, heroRef);
 
     return () => ctx.revert();
