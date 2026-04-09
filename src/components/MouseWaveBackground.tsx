@@ -62,22 +62,22 @@ export default function MouseWaveBackground({
       const my = mouseRef.current.y;
 
       // Draw subtle wave lines
-      const lineCount = 6;
+      const lineCount = 8;
       const spacing = height / (lineCount + 1);
 
       for (let i = 0; i < lineCount; i++) {
         const baseY = spacing * (i + 1);
         
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(${color}, ${opacity * (1 - Math.abs(i - lineCount / 2) / lineCount)})`;
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = `rgba(${color}, ${(opacity * 2.5) * (1 - Math.abs(i - lineCount / 2) / lineCount)})`;
+        ctx.lineWidth = 1.5;
 
         for (let x = 0; x <= width; x += 3) {
           // Distance from mouse influences wave amplitude
           const dx = x - mx;
           const dy = baseY - my;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const influence = Math.max(0, 1 - dist / 400) * 25;
+          const influence = Math.max(0, 1 - dist / 500) * 40;
 
           const wave1 = Math.sin(x * 0.005 + time + i * 0.8) * 8;
           const wave2 = Math.sin(x * 0.01 + time * 1.3 + i) * 4;
@@ -97,8 +97,8 @@ export default function MouseWaveBackground({
 
       // Subtle radial glow at mouse position
       if (mx > 0 && my > 0) {
-        const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, 200);
-        gradient.addColorStop(0, `rgba(${color}, ${opacity * 0.8})`);
+        const gradient = ctx.createRadialGradient(mx, my, 0, mx, my, 280);
+        gradient.addColorStop(0, `rgba(${color}, ${opacity * 1.8})`);
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, width, height);
