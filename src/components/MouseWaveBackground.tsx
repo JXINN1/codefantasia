@@ -84,58 +84,50 @@ export default function MouseWaveBackground({
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
 
-      // Subtle wave lines - only visible near mouse
+      // Wave lines: 6 lines, all drawn full width, base subtle opacity
+      // The 2 closest lines to mouse get brighter
       const lineCount = 6;
       const spacing = height / (lineCount + 1);
+      const lineYs: number[] = [];
       for (let i = 0; i < lineCount; i++) {
-        const baseY = spacing * (i + 1);
+        lineYs.push(spacing * (i + 1));
+      }
+
+      // Find the 2 closest lines to mouse Y
+      let closest2: number[] = [];
+      if (mx > 0 && my > 0) {
+        const sorted = lineYs
+          .map((ly, idx) => ({ idx, dist: Math.abs(ly - my) }))
+          .sort((a, b) => a.dist - b.dist);
+        closest2 = [sorted[0].idx, sorted[1].idx];
+      }
+
+      for (let i = 0; i < lineCount; i++) {
+        const baseY = lineYs[i];
+        const isClose = closest2.includes(i);
+        const baseAlpha = opacity * 1.2 * (1 - Math.abs(i - lineCount / 2) / lineCount);
+        const alpha = isClose ? baseAlpha + opacity * 3 : baseAlpha;
+        const lineWidth = isClose ? 1.2 : 0.8;
+
         ctx.beginPath();
-        const baseOpacity = opacity * 0.6 * (1 - Math.abs(i - lineCount / 2) / lineCount);
-        ctx.lineWidth = 0.8;
+        ctx.strokeStyle = `rgba(${color}, ${alpha})`;
+        ctx.lineWidth = lineWidth;
         for (let x = 0; x <= width; x += 4) {
           const wave1 = Math.sin(x * 0.004 + time + i * 0.7) * 5;
           const wave2 = Math.sin(x * 0.008 + time * 1.2 + i) * 3;
           let mouseWave = 0;
-          let localOpacity = baseOpacity;
           if (mx > 0 && my > 0) {
             const dx = x - mx;
             const dy = baseY - my;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            const proximity = Math.max(0, 1 - dist / 350);
-            localOpacity = baseOpacity + proximity * opacity * 3;
-            mouseWave = Math.sin(x * 0.006 - time * 1.5) * proximity * 18;
+            const influence = Math.max(0, 1 - dist / 400) * 15;
+            mouseWave = Math.sin(x * 0.006 - time * 1.5) * influence;
           }
           const y = baseY + wave1 + wave2 + mouseWave;
-          if (x === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
         }
-        ctx.strokeStyle = `rgba(${color}, ${baseOpacity + (mx > 0 ? 0 : 0)})`;
         ctx.stroke();
-
-        // Redraw bright segment near mouse
-        if (mx > 0 && my > 0) {
-          ctx.beginPath();
-          let started = false;
-          for (let x = 0; x <= width; x += 4) {
-            const dx = x - mx;
-            const dy = baseY - my;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const proximity = Math.max(0, 1 - dist / 350);
-            if (proximity <= 0) { started = false; continue; }
-            const wave1 = Math.sin(x * 0.004 + time + i * 0.7) * 5;
-            const wave2 = Math.sin(x * 0.008 + time * 1.2 + i) * 3;
-            const mouseWave = Math.sin(x * 0.006 - time * 1.5) * proximity * 18;
-            const y = baseY + wave1 + wave2 + mouseWave;
-            if (!started) { ctx.moveTo(x, y); started = true; }
-            else ctx.lineTo(x, y);
-          }
-          ctx.strokeStyle = `rgba(${color}, ${opacity * 3.5})`;
-          ctx.lineWidth = 1.2;
-          ctx.stroke();
-        }
       }
 
       // Draw ripples on top
